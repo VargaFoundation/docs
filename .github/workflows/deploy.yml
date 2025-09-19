@@ -3,7 +3,7 @@ name: Deploy Docusaurus to GitHub Pages
 on:
   push:
     branches:
-      - main # Déclenchez le workflow sur chaque push dans la branche "main".
+      - main 
 
 jobs:
   deploy:
@@ -11,12 +11,12 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 20 # Assurez-vous d'utiliser une version de Node.js compatible avec Docusaurus.
+          node-version: 20
           cache: 'yarn'
 
       - name: Install dependencies
