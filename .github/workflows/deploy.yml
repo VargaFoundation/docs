@@ -25,7 +25,14 @@ jobs:
       - name: Build the site
         run: yarn build
 
+#      - name: Deploy to GitHub Pages
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Token GitHub fourni automatiquement par GitHub Actions.
+#        run: yarn deploy
+
       - name: Deploy to GitHub Pages
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Token GitHub fourni automatiquement par GitHub Actions.
-        run: yarn deploy
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build
+          cname: docs.varga.foundation
