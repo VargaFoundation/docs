@@ -16,7 +16,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 16 # Assurez-vous d'utiliser une version de Node.js compatible avec Docusaurus.
+          node-version: 20 # Assurez-vous d'utiliser une version de Node.js compatible avec Docusaurus.
           cache: 'yarn'
 
       - name: Install dependencies
