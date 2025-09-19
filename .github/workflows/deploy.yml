@@ -1,0 +1,31 @@
+name: Deploy Docusaurus to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main # Déclenchez le workflow sur chaque push dans la branche "main".
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16 # Assurez-vous d'utiliser une version de Node.js compatible avec Docusaurus.
+          cache: 'yarn'
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Build the site
+        run: yarn build
+
+      - name: Deploy to GitHub Pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Token GitHub fourni automatiquement par GitHub Actions.
+        run: yarn deploy
