@@ -4,8 +4,8 @@
  * Modify the docusaurus.config.js file at your site's root instead.
  */
 export default {
-  "title": "My Site",
-  "tagline": "Dinosaurs are cool",
+  "title": "Varga Foundation",
+  "tagline": "Commited to open source, building the future of IA.",
   "favicon": "img/favicon.ico",
   "future": {
     "v4": {
@@ -73,7 +73,7 @@ export default {
   "themeConfig": {
     "image": "img/docusaurus-social-card.jpg",
     "navbar": {
-      "title": "My Site",
+      "title": "varga.foundation",
       "logo": {
         "alt": "My Site Logo",
         "src": "img/logo.svg"
@@ -83,15 +83,15 @@ export default {
           "type": "docSidebar",
           "sidebarId": "tutorialSidebar",
           "position": "left",
-          "label": "Tutorial"
+          "label": "docs"
         },
         {
-          "to": "/blog",
-          "label": "Blog",
-          "position": "left"
+          "href": "https://varga.foundation",
+          "position": "left",
+          "label": "fondation"
         },
         {
-          "href": "https://github.com/facebook/docusaurus",
+          "href": "https://github.com/vargafoundation/docs",
           "label": "GitHub",
           "position": "right"
         }
@@ -105,7 +105,7 @@ export default {
           "title": "Docs",
           "items": [
             {
-              "label": "Tutorial",
+              "label": "Intro",
               "to": "/docs/intro"
             }
           ]
@@ -114,16 +114,8 @@ export default {
           "title": "Community",
           "items": [
             {
-              "label": "Stack Overflow",
-              "href": "https://stackoverflow.com/questions/tagged/docusaurus"
-            },
-            {
-              "label": "Discord",
-              "href": "https://discordapp.com/invite/docusaurus"
-            },
-            {
               "label": "X",
-              "href": "https://x.com/docusaurus"
+              "href": "https://x.com/vargafoundation"
             }
           ]
         },
@@ -131,17 +123,13 @@ export default {
           "title": "More",
           "items": [
             {
-              "label": "Blog",
-              "to": "/blog"
-            },
-            {
               "label": "GitHub",
-              "href": "https://github.com/facebook/docusaurus"
+              "href": "https://github.com/vargafoundation"
             }
           ]
         }
       ],
-      "copyright": "Copyright © 2025 My Project, Inc. Built with Docusaurus."
+      "copyright": "Copyright © 2025 Varga Foundation"
     },
     "prism": {
       "theme": {
