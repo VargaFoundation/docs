@@ -1,30 +1,152 @@
-/**
- * Any CSS included here will be global. The classic template
- * bundles Infima by default. Infima is a CSS framework designed to
- * work well for content-centric websites.
- */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
 
-/* You can override the default Infima variables here. */
+/* Styles globaux */
 :root {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
-  --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --ifm-color-primary: #000000; /* Noir pour les accents */
+  --ifm-color-primary-dark: #000000;
+  --ifm-color-primary-darker: #000000;
+  --ifm-color-primary-darkest: #000000;
+  --ifm-color-primary-light: #333333;
+  --ifm-color-primary-lighter: #666666;
+  --ifm-color-primary-lightest: #999999;
+  --ifm-background-color: #ffffff; /* Fond blanc */
+  --ifm-font-family-base: 'JetBrains Mono', monospace; /* Police principale : JetBrains Mono */
+  --ifm-font-family-mono: 'Space Mono', monospace; /* Pour les titres ou code */
+  --ifm-font-color-base: #000000; /* Texte noir */
+  --ifm-navbar-background-color: #ffffff; /* Navbar blanc */
+  --ifm-navbar-link-color: #000000;
+  --ifm-navbar-link-hover-color: #333333;
+  --ifm-footer-background-color: #000000; /* Footer blanc */
+  --ifm-hero-background-color: var(--ifm-color-primary-lighter);
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
-[data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+/* Fond blanc pur, sans grille */
+body {
+  background-color: var(--ifm-background-color);
+  color: var(--ifm-font-color-base);
+  font-family: var(--ifm-font-family-base);
+}
+
+/* Navbar */
+.navbar {
+  box-shadow: none; /* Pas d'ombre */
+  border-bottom: 1px solid #f0f0f0; /* Ligne subtile */
+  padding: 1rem 2rem;
+}
+
+.navbar__logo {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #000;
+}
+
+.navbar__items {
+  gap: 1rem;
+}
+
+.navbar__link {
+  color: #000;
+  font-weight: 400;
+  text-transform: lowercase; /* Comme dans la capture */
+}
+
+.navbar__link:hover {
+  color: #333;
+  text-decoration: none;
+}
+
+/* Bouton GitHub dans navbar */
+.button--github {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* Section Hero */
+.hero {
+  padding: 8rem 2rem;
+  text-align: center;
+  background-color: var(--ifm-color-primary-lightest);
+}
+
+.hero__small-text {
+  font-size: 0.8rem;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.hero__title {
+  font-family: var(--ifm-font-family-mono); /* Space Mono pour les gros titres */
+  font-size: 8rem; /* Très grand, ajustez selon écran */
+  font-weight: 700;
+  line-height: 0.9;
+  margin: 0;
+  text-transform: lowercase;
+}
+
+.hero__title span {
+  display: block; /* Chaque mot sur une ligne */
+}
+
+.hero__subtitle {
+  font-size: 1.2rem;
+  color: #333;
+  margin-top: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Boutons */
+.buttons {
+  margin-top: 4rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.button--primary {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  padding: 1rem 2rem;
+  font-weight: bold;
+}
+
+.button--secondary {
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #000;
+  padding: 1rem 2rem;
+  font-weight: bold;
+}
+
+/* Footer (blanc, sans bordure superflue) */
+.footer {
+  background-color: var(--ifm-color-primary-light);
+  text-align: center;
+  padding: 4rem 2rem;
+  border-top: none; /* Pas de bordure pour un look clean */
+}
+
+.footer__text {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+.footer__logos {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.footer__logo {
+  background-color: #f0f0f0;
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  color: #333;
 }
