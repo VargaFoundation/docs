@@ -40,6 +40,20 @@ body {
   color: #000;
 }
 
+/* Force la hauteur du logo navbar à 60px, comme demandé */
+.navbar__logo img {
+  height: 60px !important;
+  margin-top: -12px;
+  width: auto;
+  display: block;
+}
+
+/* Assure l’alignement vertical du logo dans la marque de la navbar */
+.navbar__brand {
+  display: flex;
+  align-items: center;
+}
+
 .navbar__items {
   gap: 1rem;
 }
