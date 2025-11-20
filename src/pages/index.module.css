@@ -10,9 +10,25 @@
   overflow: hidden;
 }
 
+.mainTitle {
+  font-size: 5rem;
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  font-size: 1.15rem;
+  max-width: 900px;
+  margin: 1rem auto 2rem;
+}
+
 @media screen and (max-width: 996px) {
   .heroBanner {
     padding: 2rem;
+  }
+  .mainTitle {
+    font-size: 3rem;
   }
 }
 

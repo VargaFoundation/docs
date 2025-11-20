@@ -1,0 +1,8 @@
+{
+  "label": "Weave",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "A Hadoop CRD implmentation for Kubernetes"
+  }
+}

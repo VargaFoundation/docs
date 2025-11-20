@@ -5,8 +5,8 @@
  */
 export default {
   "title": "Varga Foundation",
-  "tagline": "Commited to open source, building the future of IA.",
-  "favicon": "img/favicon.ico",
+  "tagline": "Committed to open source, building the future of AI.",
+  "favicon": "img/favicon.png",
   "future": {
     "v4": {
       "removeLegacyPostBuildHeadAttribute": true,
@@ -47,6 +47,7 @@ export default {
       "classic",
       {
         "docs": {
+          "routeBasePath": "/",
           "sidebarPath": "./sidebars.ts",
           "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/"
         },
@@ -71,24 +72,23 @@ export default {
     ]
   ],
   "themeConfig": {
-    "image": "img/docusaurus-social-card.jpg",
+    "image": "img/Image2.png",
     "navbar": {
-      "title": "varga.foundation",
       "logo": {
-        "alt": "My Site Logo",
-        "src": "img/logo.svg"
+        "alt": "Varga Foundation Logo",
+        "src": "img/Image1.png"
       },
       "items": [
         {
           "type": "docSidebar",
           "sidebarId": "tutorialSidebar",
           "position": "left",
-          "label": "docs"
+          "label": "Docs"
         },
         {
           "href": "https://varga.foundation",
           "position": "left",
-          "label": "fondation"
+          "label": "Foundation"
         },
         {
           "href": "https://github.com/vargafoundation/docs",
@@ -106,7 +106,7 @@ export default {
           "items": [
             {
               "label": "Intro",
-              "to": "/docs/intro"
+              "to": "/intro"
             }
           ]
         },

@@ -1,11 +1,11 @@
 {
   "id": "intro",
-  "title": "Tutorial Intro",
-  "description": "Let's discover Docusaurus in less than 5 minutes.",
+  "title": "Projects",
+  "description": "Welcome to the Varga Foundation docs. We build and support open-source solutions for data and AI that are accessible, ethical, and community-driven.",
   "source": "@site/docs/intro.md",
   "sourceDirName": ".",
   "slug": "/intro",
-  "permalink": "/docs/intro",
+  "permalink": "/intro",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/intro.md",
@@ -13,11 +13,13 @@
   "version": "current",
   "sidebarPosition": 1,
   "frontMatter": {
+    "id": "intro",
+    "title": "Projects",
     "sidebar_position": 1
   },
   "sidebar": "tutorialSidebar",
   "next": {
-    "title": "Tutorial - Basics",
-    "permalink": "/docs/category/tutorial---basics"
+    "title": "Vorath",
+    "permalink": "/category/vorath"
   }
 }
