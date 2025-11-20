@@ -1,0 +1,8 @@
+{
+  "label": "Nexberos",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "description": "A Kerberos bridge for Kubernetes"
+  }
+}

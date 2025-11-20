@@ -6,8 +6,8 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   title: 'Varga Foundation',
-  tagline: 'Commited to open source, building the future of IA.',
-  favicon: 'img/favicon.ico',
+  tagline: 'Committed to open source, building the future of AI.',
+  favicon: 'img/favicon.png',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
@@ -41,6 +41,7 @@ const config: Config = {
       'classic',
       {
         docs: {
+          routeBasePath: '/',
           sidebarPath: './sidebars.ts',
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
@@ -71,24 +72,23 @@ const config: Config = {
 
   themeConfig: {
     // Replace with your project's social card
-    image: 'img/docusaurus-social-card.jpg',
+    image: 'img/Image2.png',
     navbar: {
-      title: 'varga.foundation',
       logo: {
-        alt: 'My Site Logo',
-        src: 'img/logo.svg',
+        alt: 'Varga Foundation Logo',
+        src: 'img/Image1.png',
       },
       items: [
         {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
-          label: 'docs',
+          label: 'Docs',
         },
         {
           href: 'https://varga.foundation',
           position: 'left',
-          label: 'fondation',
+          label: 'Foundation',
         },
         {
           href: 'https://github.com/vargafoundation/docs',
@@ -105,7 +105,7 @@ const config: Config = {
           items: [
             {
               label: 'Intro',
-              to: '/docs/intro',
+              to: '/intro',
             },
           ],
         },

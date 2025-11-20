@@ -1,68 +1,103 @@
 {
   "docusaurus-plugin-content-docs": {
     "default": {
-      "path": "/docs",
+      "path": "/",
       "versions": [
         {
           "name": "current",
           "label": "Next",
           "isLast": true,
-          "path": "/docs",
+          "path": "/",
           "mainDocId": "intro",
           "docs": [
             {
               "id": "intro",
-              "path": "/docs/intro",
+              "path": "/intro",
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "tutorial-basics/congratulations",
-              "path": "/docs/tutorial-basics/congratulations",
+              "id": "nexberos/index",
+              "path": "/nexberos/",
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "tutorial-basics/create-a-blog-post",
-              "path": "/docs/tutorial-basics/create-a-blog-post",
+              "id": "rivio/index",
+              "path": "/rivio/",
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "tutorial-basics/create-a-document",
-              "path": "/docs/tutorial-basics/create-a-document",
+              "id": "vorath/compatibility",
+              "path": "/vorath/compatibility",
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "tutorial-basics/create-a-page",
-              "path": "/docs/tutorial-basics/create-a-page",
+              "id": "vorath/configuration",
+              "path": "/vorath/configuration",
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "tutorial-basics/deploy-your-site",
-              "path": "/docs/tutorial-basics/deploy-your-site",
+              "id": "vorath/examples",
+              "path": "/vorath/examples",
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "tutorial-basics/markdown-features",
-              "path": "/docs/tutorial-basics/markdown-features",
+              "id": "vorath/faq",
+              "path": "/vorath/faq",
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "tutorial-extras/manage-docs-versions",
-              "path": "/docs/tutorial-extras/manage-docs-versions",
+              "id": "vorath/index",
+              "path": "/vorath/",
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "tutorial-extras/translate-your-site",
-              "path": "/docs/tutorial-extras/translate-your-site",
+              "id": "vorath/installation-deployment",
+              "path": "/vorath/installation-deployment",
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "/category/tutorial---basics",
-              "path": "/docs/category/tutorial---basics",
+              "id": "vorath/operations",
+              "path": "/vorath/operations",
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "/category/tutorial---extras",
-              "path": "/docs/category/tutorial---extras",
+              "id": "vorath/prerequisites-resources",
+              "path": "/vorath/prerequisites-resources",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "vorath/security",
+              "path": "/vorath/security",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "vorath/troubleshooting",
+              "path": "/vorath/troubleshooting",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "weave/index",
+              "path": "/weave/",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "/category/vorath",
+              "path": "/category/vorath",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "/category/rivio",
+              "path": "/category/rivio",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "/category/nexberos",
+              "path": "/category/nexberos",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "/category/weave",
+              "path": "/category/weave",
               "sidebar": "tutorialSidebar"
             }
           ],
@@ -70,7 +105,7 @@
           "sidebars": {
             "tutorialSidebar": {
               "link": {
-                "path": "/docs/intro",
+                "path": "/intro",
                 "label": "intro"
               }
             }
