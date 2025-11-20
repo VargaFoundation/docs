@@ -76,7 +76,8 @@ export default {
     "navbar": {
       "logo": {
         "alt": "Varga Foundation Logo",
-        "src": "img/Image1.png"
+        "src": "img/Image1.png",
+        "height": 60
       },
       "items": [
         {

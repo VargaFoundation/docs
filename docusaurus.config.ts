@@ -77,6 +77,7 @@ const config: Config = {
       logo: {
         alt: 'Varga Foundation Logo',
         src: 'img/Image1.png',
+        height: 60,
       },
       items: [
         {
