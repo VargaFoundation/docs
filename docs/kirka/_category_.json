@@ -1,0 +1,8 @@
+{
+  "label": "Kirka",
+  "position": 1,
+  "link": {
+    "type": "generated-index",
+    "description": "MLflow-compatible service for Hadoop ecosystem"
+  }
+}

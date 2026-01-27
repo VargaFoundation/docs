@@ -1,0 +1,8 @@
+{
+  "label": "Tarn",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "description": "Triton on YARN"
+  }
+}
