@@ -20,4 +20,10 @@ Welcome to the Varga Foundation docs. We build and support open-source solutions
 - [Weave](./weave/index.md)
   - Modular toolkit to orchestrate data and AI workflows.
 
+- [Kirka](./kirka/index.md)
+  - Secure platform for data operations and management.
+
+- [Tarn](./tarn/index.md)
+  - Community-driven toolkit for data and AI workflows.
+
 Each section includes an overview, installation, configuration, and links to the corresponding repositories and resources.
