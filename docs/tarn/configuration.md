@@ -56,7 +56,7 @@ Now you can point TARN to your models using the local mount path:
 
 ## Command Line Options
 
-Refer to the [deployment example](../installation-deployment.md) for the full command. Key options include:
+Refer to the [deployment example](./installation-deployment.md) for the full command. Key options include:
 
 - `--model-repository`: Path to Triton model repository (hdfs:/// or /)
 - `--image`: Docker image for Triton (e.g., nvcr.io/nvidia/tritonserver:24.09-py3)
