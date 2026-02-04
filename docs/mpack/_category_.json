@@ -1,0 +1,8 @@
+{
+  "label": "Ambari Mpack",
+  "position": 8,
+  "link": {
+    "type": "generated-index",
+    "description": "How to build and deploy Varga services using Ambari Management Packs (Mpack)."
+  }
+}
