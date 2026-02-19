@@ -26,4 +26,7 @@ Welcome to the Varga Foundation docs. We build and support open-source solutions
 - [Tarn](./tarn/index.md)
   - Community-driven toolkit for data and AI workflows.
 
+- [Argus](./argus/index.md)
+  - Production-ready ODBC driver for Apache Hive, Apache Impala, Trino, Apache Phoenix, and Apache Kudu. Single driver for multiple big data query engines.
+
 Each section includes an overview, installation, configuration, and links to the corresponding repositories and resources.

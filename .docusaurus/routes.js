@@ -119,16 +119,94 @@ export default [
   },
   {
     path: '/',
-    component: ComponentCreator('/', 'cf6'),
+    component: ComponentCreator('/', '6a1'),
     routes: [
       {
         path: '/',
-        component: ComponentCreator('/', '769'),
+        component: ComponentCreator('/', '16d'),
         routes: [
           {
             path: '/',
-            component: ComponentCreator('/', 'a6d'),
+            component: ComponentCreator('/', '168'),
             routes: [
+              {
+                path: '/argus/',
+                component: ComponentCreator('/argus/', '22b'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/argus/compatibility',
+                component: ComponentCreator('/argus/compatibility', 'ba1'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/argus/configuration',
+                component: ComponentCreator('/argus/configuration', '2a8'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/argus/examples',
+                component: ComponentCreator('/argus/examples', '303'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/argus/faq',
+                component: ComponentCreator('/argus/faq', 'fc7'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/argus/installation-deployment',
+                component: ComponentCreator('/argus/installation-deployment', 'b23'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/argus/operations',
+                component: ComponentCreator('/argus/operations', '088'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/argus/prerequisites-resources',
+                component: ComponentCreator('/argus/prerequisites-resources', '64d'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/argus/security',
+                component: ComponentCreator('/argus/security', 'c8d'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/argus/troubleshooting',
+                component: ComponentCreator('/argus/troubleshooting', 'a01'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/category/ambari-mpack',
+                component: ComponentCreator('/category/ambari-mpack', '32c'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/category/argus',
+                component: ComponentCreator('/category/argus', 'a0a'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/category/kirka',
+                component: ComponentCreator('/category/kirka', '82a'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
               {
                 path: '/category/nexberos',
                 component: ComponentCreator('/category/nexberos', 'd2e'),
@@ -138,6 +216,12 @@ export default [
               {
                 path: '/category/rivio',
                 component: ComponentCreator('/category/rivio', '63d'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/category/tarn',
+                component: ComponentCreator('/category/tarn', '919'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
@@ -160,6 +244,84 @@ export default [
                 sidebar: "tutorialSidebar"
               },
               {
+                path: '/kirka/',
+                component: ComponentCreator('/kirka/', 'ea9'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/kirka/compatibility',
+                component: ComponentCreator('/kirka/compatibility', 'c6c'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/kirka/configuration',
+                component: ComponentCreator('/kirka/configuration', '819'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/kirka/examples',
+                component: ComponentCreator('/kirka/examples', '9c5'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/kirka/faq',
+                component: ComponentCreator('/kirka/faq', '165'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/kirka/installation-deployment',
+                component: ComponentCreator('/kirka/installation-deployment', 'c66'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/kirka/operations',
+                component: ComponentCreator('/kirka/operations', '8b4'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/kirka/prerequisites-resources',
+                component: ComponentCreator('/kirka/prerequisites-resources', '9d0'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/kirka/security',
+                component: ComponentCreator('/kirka/security', '99b'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/kirka/troubleshooting',
+                component: ComponentCreator('/kirka/troubleshooting', '585'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/mpack/',
+                component: ComponentCreator('/mpack/', '27c'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/mpack/build',
+                component: ComponentCreator('/mpack/build', 'd3f'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/mpack/deployment',
+                component: ComponentCreator('/mpack/deployment', '619'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
                 path: '/nexberos/',
                 component: ComponentCreator('/nexberos/', 'd97'),
                 exact: true,
@@ -168,6 +330,66 @@ export default [
               {
                 path: '/rivio/',
                 component: ComponentCreator('/rivio/', '40e'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/tarn/',
+                component: ComponentCreator('/tarn/', '4cc'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/tarn/compatibility',
+                component: ComponentCreator('/tarn/compatibility', 'a1b'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/tarn/configuration',
+                component: ComponentCreator('/tarn/configuration', '25d'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/tarn/examples',
+                component: ComponentCreator('/tarn/examples', '669'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/tarn/faq',
+                component: ComponentCreator('/tarn/faq', '883'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/tarn/installation-deployment',
+                component: ComponentCreator('/tarn/installation-deployment', '486'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/tarn/operations',
+                component: ComponentCreator('/tarn/operations', 'b66'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/tarn/prerequisites-resources',
+                component: ComponentCreator('/tarn/prerequisites-resources', '96d'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/tarn/security',
+                component: ComponentCreator('/tarn/security', 'd95'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/tarn/troubleshooting',
+                component: ComponentCreator('/tarn/troubleshooting', '820'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
