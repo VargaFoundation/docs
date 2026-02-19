@@ -11,8 +11,123 @@
           "mainDocId": "intro",
           "docs": [
             {
+              "id": "argus/compatibility",
+              "path": "/argus/compatibility",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "argus/configuration",
+              "path": "/argus/configuration",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "argus/examples",
+              "path": "/argus/examples",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "argus/faq",
+              "path": "/argus/faq",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "argus/index",
+              "path": "/argus/",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "argus/installation-deployment",
+              "path": "/argus/installation-deployment",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "argus/operations",
+              "path": "/argus/operations",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "argus/prerequisites-resources",
+              "path": "/argus/prerequisites-resources",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "argus/security",
+              "path": "/argus/security",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "argus/troubleshooting",
+              "path": "/argus/troubleshooting",
+              "sidebar": "tutorialSidebar"
+            },
+            {
               "id": "intro",
               "path": "/intro",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "kirka/compatibility",
+              "path": "/kirka/compatibility",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "kirka/configuration",
+              "path": "/kirka/configuration",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "kirka/examples",
+              "path": "/kirka/examples",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "kirka/faq",
+              "path": "/kirka/faq",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "kirka/index",
+              "path": "/kirka/",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "kirka/installation-deployment",
+              "path": "/kirka/installation-deployment",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "kirka/operations",
+              "path": "/kirka/operations",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "kirka/prerequisites-resources",
+              "path": "/kirka/prerequisites-resources",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "kirka/security",
+              "path": "/kirka/security",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "kirka/troubleshooting",
+              "path": "/kirka/troubleshooting",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "mpack/build",
+              "path": "/mpack/build",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "mpack/deployment",
+              "path": "/mpack/deployment",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "mpack/index",
+              "path": "/mpack/",
               "sidebar": "tutorialSidebar"
             },
             {
@@ -23,6 +138,56 @@
             {
               "id": "rivio/index",
               "path": "/rivio/",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "tarn/compatibility",
+              "path": "/tarn/compatibility",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "tarn/configuration",
+              "path": "/tarn/configuration",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "tarn/examples",
+              "path": "/tarn/examples",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "tarn/faq",
+              "path": "/tarn/faq",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "tarn/index",
+              "path": "/tarn/",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "tarn/installation-deployment",
+              "path": "/tarn/installation-deployment",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "tarn/operations",
+              "path": "/tarn/operations",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "tarn/prerequisites-resources",
+              "path": "/tarn/prerequisites-resources",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "tarn/security",
+              "path": "/tarn/security",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "tarn/troubleshooting",
+              "path": "/tarn/troubleshooting",
               "sidebar": "tutorialSidebar"
             },
             {
@@ -81,13 +246,28 @@
               "sidebar": "tutorialSidebar"
             },
             {
+              "id": "/category/kirka",
+              "path": "/category/kirka",
+              "sidebar": "tutorialSidebar"
+            },
+            {
               "id": "/category/vorath",
               "path": "/category/vorath",
               "sidebar": "tutorialSidebar"
             },
             {
+              "id": "/category/argus",
+              "path": "/category/argus",
+              "sidebar": "tutorialSidebar"
+            },
+            {
               "id": "/category/rivio",
               "path": "/category/rivio",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "/category/tarn",
+              "path": "/category/tarn",
               "sidebar": "tutorialSidebar"
             },
             {
@@ -98,6 +278,11 @@
             {
               "id": "/category/weave",
               "path": "/category/weave",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "/category/ambari-mpack",
+              "path": "/category/ambari-mpack",
               "sidebar": "tutorialSidebar"
             }
           ],

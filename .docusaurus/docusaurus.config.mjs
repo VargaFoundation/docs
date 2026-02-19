@@ -130,7 +130,7 @@ export default {
           ]
         }
       ],
-      "copyright": "Copyright © 2025 Varga Foundation"
+      "copyright": "Copyright © 2026 Varga Foundation"
     },
     "prism": {
       "theme": {
