@@ -54,6 +54,13 @@ sidebar_position: 11
 - **Avatica error: no such connection**: The PQS connection may have timed out. Reconnect and retry.
 - **Empty result sets**: Verify the Phoenix table exists and has data. Use the Phoenix `sqlline` tool to test queries directly.
 
+### Trino v2 spooling issues
+
+- **"Unsupported spooling encoding"**: The driver only supports `json` encoding. Compressed encodings (`json+zstd`, `json+lz4`) are not yet supported. Ensure your Trino server is not forcing compressed encoding.
+- **Spooled segment fetch fails**: The spooled segment URI may have expired or the coordinator may be unreachable. Check network connectivity to the Trino coordinator and ensure segment TTLs are sufficient.
+- **Mixed v1/v2 responses**: This is normal. Even with `TrinoProtocol=v2`, the server may return v1-format data for some responses. The driver handles both formats automatically.
+- **v2 not working**: Verify your Trino version is 466 or later. Ensure `TrinoProtocol=v2` is set in the connection string. Enable `LogLevel=5` to confirm the `X-Trino-Client-Capabilities` header is being sent.
+
 ### Kudu-specific issues
 
 - **SQL parse error**: The Kudu backend only supports basic `SELECT ... FROM ... WHERE ... LIMIT` syntax. `JOIN`, `GROUP BY`, `ORDER BY`, subqueries, and DML statements are not supported.

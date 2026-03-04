@@ -63,6 +63,7 @@ BACKEND = hive
 | RetryDelay | | 2 | Delay between retries in seconds |
 | ApplicationName | AppName | - | Application identifier for query tracking |
 | FetchBufferSize | | 1000 | Rows per fetch batch |
+| TrinoProtocol | TRINO_PROTOCOL | v1 | Trino protocol version: `v1` (classic) or `v2` (spooling) |
 
 ### Default ports by backend
 
@@ -98,6 +99,8 @@ BACKEND = hive
 - Protocol: HTTP REST API (JSON)
 - DATABASE maps to Trino catalog via `X-Trino-Catalog` header
 - Catalog operations via `information_schema` queries
+- **v1 (default)**: Classic protocol — data is returned as flat JSON arrays in the response body
+- **v2 (spooling)**: Requires Trino 466+. Data may be returned as spooled segments (inline base64 or external URIs). Enable with `TrinoProtocol=v2`. The driver automatically handles both inline and spooled segments, including fetching external data and acknowledging consumed segments
 
 ### Phoenix
 
