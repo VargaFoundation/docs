@@ -19,7 +19,7 @@ sidebar_position: 2
 |---------|----------|-------------|-----------------|
 | Apache Hive | Thrift TCLIService (V10) | 10000 | HiveServer2 2.x, 3.x |
 | Apache Impala | Thrift TCLIService (V6) | 21050 | Impala 3.x, 4.x |
-| Trino | HTTP REST API (JSON) | 8080 | Trino 400+ |
+| Trino | HTTP REST API (JSON) | 8080 | Trino 400+ (v1), Trino 466+ (v2 spooling) |
 | Apache Phoenix | Avatica HTTP/JSON (PQS) | 8765 | Phoenix 5.x, PQS 6.x |
 | Apache Kudu | C++ Client API | 7051 | Kudu 1.15+ |
 

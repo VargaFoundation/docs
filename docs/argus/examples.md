@@ -74,6 +74,14 @@ SSLCAFile=/etc/ssl/certs/trino-ca.pem;
 BACKEND=trino;LogLevel=5;ApplicationName=Dashboard
 ```
 
+### Trino with v2 spooling protocol
+
+```
+HOST=trino.example.com;PORT=8443;UID=admin;
+SSL=1;SSLVerify=1;SSLCAFile=/etc/ssl/certs/trino-ca.pem;
+BACKEND=trino;TrinoProtocol=v2;ApplicationName=DataPipeline
+```
+
 ### Phoenix with timeout
 
 ```
