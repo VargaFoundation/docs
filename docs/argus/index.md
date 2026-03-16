@@ -51,6 +51,7 @@ Argus uses a two-layer pluggable architecture.
 - [Installation and deployment](./installation-deployment.md)
 - [Configuration](./configuration.md)
 - [Examples](./examples.md)
+- [Deploying with Microsoft Intune](./intune-deployment.md)
 - [Security](./security.md)
 - [Operations](./operations.md)
 - [Compatibility](./compatibility.md)

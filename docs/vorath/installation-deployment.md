@@ -4,27 +4,45 @@ title: Installation and deployment
 sidebar_position: 4
 ---
 
-This page describes how to install the HDFS CSI driver on Kubernetes using Helm. You can use published images or build
-and push your own image.
+This page describes how to install the HDFS CSI driver on Kubernetes using Helm.
 
 Prerequisites:
 
 - Helm 3.x and kubectl configured
-- Access to a container registry if you publish a custom image
 - Known HDFS settings (URL, user) and Kerberos artifacts if applicable (service principal and keytab)
 
-1) Optional: build the Docker image
+## Docker image
 
-If you want to build from sources:
+The Docker image is automatically built and published to GitHub Container Registry on every push to `main`:
 
 ```bash
-docker build -t <your-registry>/hdfs-csi-plugin:latest .
-docker push <your-registry>/hdfs-csi-plugin:latest
+docker pull ghcr.io/varga-foundation/vorath:latest
 ```
 
-2) Prepare your Helm values
+To build from source:
 
-Create a custom values file (e.g., values.override.yaml):
+```bash
+docker build -t vorath:latest .
+```
+
+## Install from the OCI registry
+
+The Helm chart is published to GitHub Container Registry as an OCI artifact.
+
+```bash
+helm install vorath oci://ghcr.io/varga-foundation/charts/hdfs-csi-plugin --version 1.0.0 \
+  --namespace vorath --create-namespace
+```
+
+## Install from local sources
+
+```bash
+helm install vorath ./kubernetes -n vorath --create-namespace
+```
+
+## Configuration
+
+Create a custom values file (e.g., `values.override.yaml`):
 
 ```yaml
 hdfs:
@@ -32,55 +50,73 @@ hdfs:
   user: "hdfs_csi"
 
 image:
-  repository: <your-registry>/hdfs-csi-plugin
+  repository: ghcr.io/varga-foundation/vorath
   tag: latest
+
+resources:
+  limits:
+    memory: "512Mi"
+    cpu: "500m"
+  requests:
+    memory: "256Mi"
+    cpu: "250m"
 ```
 
-3) Install
-
-From the repository root (where the chart is located):
+Then install with overrides:
 
 ```bash
-helm upgrade --install hdfs-csi-plugin ./hdfs-csi-plugin -n default -f values.override.yaml
+helm install vorath oci://ghcr.io/varga-foundation/charts/hdfs-csi-plugin --version 1.0.0 \
+  -f values.override.yaml -n vorath --create-namespace
 ```
 
-Resources deployed (depending on the chart):
+Resources deployed:
 
-- ConfigMap/Secret for HDFS and Kerberos configuration
-- Deployment/DaemonSet for Controller and Node components
-+- Required CSI sidecars (provisioner, attacher, registrar, liveness)
+- `ConfigMap` for HDFS configuration
+- `DaemonSet` for the CSI plugin pods
+- `Service` for the plugin
+- `CSIDriver` registration
+- RBAC resources (ClusterRole, ClusterRoleBinding, ServiceAccount)
 
-4) Verify
+## Verify
 
 ```bash
-kubectl get pods -n default
-kubectl logs deploy/hdfs-csi-plugin -n default --tail=200
+kubectl get pods -n vorath
+kubectl get csidrivers.storage.k8s.io
+kubectl logs -l app=hdfs-csi-plugin -n vorath
 ```
 
-5) Upgrade
-
-Update your values then run:
+## Upgrade
 
 ```bash
-helm upgrade hdfs-csi-plugin ./hdfs-csi-plugin -n default -f values.override.yaml
+helm upgrade vorath oci://ghcr.io/varga-foundation/charts/hdfs-csi-plugin --version 1.1.0 \
+  -f values.override.yaml -n vorath
 ```
 
-6) Rollback
+## Rollback
 
 ```bash
-helm history hdfs-csi-plugin -n default
-helm rollback hdfs-csi-plugin <REVISION> -n default
+helm history vorath -n vorath
+helm rollback vorath <REVISION> -n vorath
 ```
 
-7) Uninstall
+## Uninstall
 
 ```bash
-helm uninstall hdfs-csi-plugin -n default
+helm uninstall vorath -n vorath
 ```
 
-Deployment best practices:
+## CI/CD
 
-- Use a dedicated namespace (e.g., storage)
+GitHub Actions automatically:
+1. Builds the Maven project and runs tests.
+2. Builds and pushes the Docker image to `ghcr.io/varga-foundation/vorath`.
+3. Packages and pushes the Helm chart to `oci://ghcr.io/varga-foundation/charts/hdfs-csi-plugin`.
+
+Triggers: push/PR to `main`/`master`, or manual workflow dispatch.
+
+## Deployment best practices
+
+- Use a dedicated namespace (e.g., `vorath` or `storage`)
 - Set CPU/Memory requests and limits on the driver and sidecars
 - Version your values files and deploy via CI/CD
 - Validate in staging connected to a test HDFS cluster before production
