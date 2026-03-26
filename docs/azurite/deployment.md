@@ -34,7 +34,7 @@ Before starting, confirm the following:
 ### Network
 
 - [ ] A VNet and subnet created (or the bootstrap will create one)
-- [ ] NSG rules planned (see [NETWORKING.md](NETWORKING.md))
+- [ ] NSG rules planned (see [Networking Guide](./networking.md))
 
 ### Ambari
 

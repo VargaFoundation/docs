@@ -40,7 +40,7 @@ curl -v http://<ambari-server>:8080/
 
 2. **DNS resolution failure**: The worker VM cannot resolve the Ambari server hostname. Fix: Use an IP address in the Ambari server URL, or configure Azure DNS / custom DNS on the VNet.
 
-3. **NSG blocking traffic**: The worker VM cannot reach port 8080 or 8443 on the Ambari server. Fix: Add an inbound NSG rule allowing TCP 8080 from the VNet subnet (see [NETWORKING.md](NETWORKING.md)).
+3. **NSG blocking traffic**: The worker VM cannot reach port 8080 or 8443 on the Ambari server. Fix: Add an inbound NSG rule allowing TCP 8080 from the VNet subnet (see [Networking Guide](./networking.md)).
 
 4. **Ambari agent installed but not started**: Run `systemctl enable ambari-agent && systemctl start ambari-agent` on the worker VM.
 
@@ -282,7 +282,7 @@ curl -v http://<ambari-host>:8080/
 
 3. **PostgreSQL connection limit exceeded**: Too many connections. Check `max_connections` in `postgresql.conf`. Restart PostgreSQL after changing.
 
-4. **NSG blocking inbound 8080/8443**: Verify NSG rules allow TCP 8080 and 8443 from the VNet (see [NETWORKING.md](NETWORKING.md)).
+4. **NSG blocking inbound 8080/8443**: Verify NSG rules allow TCP 8080 and 8443 from the VNet (see [Networking Guide](./networking.md)).
 
 5. **Disk full on head node**: Check `df -h`. Clean up old logs: `find /var/log -name "*.log.*" -mtime +30 -delete`.
 
@@ -371,6 +371,6 @@ traceroute account.dfs.core.windows.net
 
 3. **Network bottleneck**: VMs in a different region than the storage account incur cross-region latency. Always co-locate VMs and storage in the same region.
 
-4. **Missing private endpoint**: Traffic goes over the public internet instead of the Azure backbone. Create a private endpoint for the storage account in your VNet (see [NETWORKING.md](NETWORKING.md)).
+4. **Missing private endpoint**: Traffic goes over the public internet instead of the Azure backbone. Create a private endpoint for the storage account in your VNet (see [Networking Guide](./networking.md)).
 
 5. **Small file problem**: Many small files cause high metadata overhead. Use SequenceFiles, ORC, or Parquet to consolidate. Run `hadoop archive` to reduce file count.
