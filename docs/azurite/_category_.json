@@ -1,0 +1,8 @@
+{
+  "label": "Azurite",
+  "position": 9,
+  "link": {
+    "type": "generated-index",
+    "description": "Deploy and manage Hadoop clusters on Azure with the Azurite Ambari Management Pack."
+  }
+}
