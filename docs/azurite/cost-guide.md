@@ -148,9 +148,9 @@ curl -s -H "Authorization: Bearer $TOKEN" http://localhost:8471/api/v1/status \
 **Common right-sizing moves**:
 | Current | Utilization | Recommendation |
 |---------|-------------|----------------|
-| D8_v3 (8 vCPU, 32 GB) | CPU <30%, Mem <40% | Downsize to D4_v3 (4 vCPU, 16 GB) |
-| D4_v3 (4 vCPU, 16 GB) | CPU >80% sustained | Upsize to D8_v3 or add more workers |
-| D16_v3 (16 vCPU, 64 GB) | Memory <25% | Switch to D8_v3 (half the memory) |
+| D8_v3 (8 vCPU, 32 GB) | CPU &lt;30%, Mem &lt;40% | Downsize to D4_v3 (4 vCPU, 16 GB) |
+| D4_v3 (4 vCPU, 16 GB) | CPU &gt;80% sustained | Upsize to D8_v3 or add more workers |
+| D16_v3 (16 vCPU, 64 GB) | Memory &lt;25% | Switch to D8_v3 (half the memory) |
 
 Change worker VM size in `azure.vm.pool.worker.size`. Existing workers keep their size; only new workers use the new size. To resize existing workers, decommission and reprovision them.
 
