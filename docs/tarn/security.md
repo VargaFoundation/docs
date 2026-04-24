@@ -4,12 +4,57 @@ title: Security
 sidebar_position: 6
 ---
 
-TARN implements several security features:
-- **API Token**: The Application Master can be configured with a token to secure the service discovery endpoint.
-- **Dynamic Discovery**: Eliminates the need to hardcode IP addresses, reducing exposure.
-- **YARN Isolation**: Leverages YARN's multi-tenancy and Docker isolation.
-- **Apache Ranger**: Provides centralized model-level authorization, ensuring that users can only discover and use models they are explicitly permitted to access.
-- **Kerberos Support**: Compatible with secured Hadoop clusters (ensure the discovery script has a valid ticket).
+TARN implements a defense-in-depth security model:
+
+**Authentication & transport**
+- **API Token** on every AM endpoint, compared in constant time (`MessageDigest.isEqual` on SHA-256 digests) to defeat timing attacks. Query-string tokens (`?token=…`) are refused — use the `X-TARN-Token` header exclusively so tokens don't leak through access logs, referrers, or browser history.
+- **TLS** (opt-in via `--tls-enabled`) for both the admin and OpenAI proxy ports. Keystore password resolved through Hadoop credential providers — never accepted on the CLI in plaintext. TLS 1.2 and 1.3 only; server picks cipher suites.
+- **Kerberos SPNEGO** at the Knox edge propagates user identity into `X-Forwarded-User` headers that TARN honors for Ranger and audit.
+
+**Authorization**
+- **Apache Ranger** for fine-grained per-model authorization (see below). Defaults to **fail-closed** (`--ranger-strict=true`) when a Ranger service is configured: if the plugin can't initialize, inference is denied and `/health` returns `503 RANGER_UNAVAILABLE`.
+- **Inference-level enforcement** on the OpenAI proxy — Ranger is checked both for the base model and for the combined `base#lora` resource, so a policy can grant the base while restricting specific adapters.
+- **LoRA-aware policies**: adapter names are discovered from `lora.json` and surface as first-class resources.
+
+**Defense-in-depth hardening**
+- **Shell injection closed** in `--model-repository` and `--secrets`: path inputs are matched against a strict allowlist (no spaces, backticks, `$`, `&`, `|`, `;`, `()`, `<>`, quotes, wildcards) before entering the Triton launch command. Paths must start with `hdfs://` or `/`.
+- **SSRF guard** on the metrics scraper: loopback, link-local (169.254/16), any-local, multicast addresses and any hostname containing shell metacharacters are rejected up-front.
+- **Secret redaction**: the `/config` endpoint scrubs custom env vars whose key matches `KEY|TOKEN|PASSWORD|SECRET|CREDENTIAL|PASSPHRASE|AUTH` (case-insensitive) and never echoes the `apiToken`.
+- **Security response headers** on every endpoint:
+  - `Strict-Transport-Security: max-age=31536000; includeSubDomains` (TLS only)
+  - `X-Content-Type-Options: nosniff`
+  - `X-Frame-Options: DENY`
+  - `Referrer-Policy: no-referrer`
+  - `Cache-Control: no-store`
+- **URL decoding** of query parameters uses `URLDecoder.decode(UTF_8)` so Ranger policies matching on decoded names (e.g. `foo bar`) can't be bypassed with `foo%20bar`.
+- **Ranger audit** receives the real client IP (from `X-Forwarded-For` when set by Knox/ingress, falling back to the peer socket), plus the authenticated user — no more `0.0.0.0` in audit logs.
+
+**YARN / Kubernetes isolation**
+- **YARN Isolation**: Leverages YARN's multi-tenancy and Docker isolation (anti-affinity via `--placement-tag`).
+- **Non-root pods** (`runAsUser: 10000`, `runAsNonRoot: true`, read-only FS, `capabilities.drop: ALL`, `seccompProfile: RuntimeDefault`) in the Kubernetes Operator image.
+
+## Quota admin & hot-reload
+
+Regulated clusters need policy changes without operator restarts. TARN exposes both push and pull paths:
+
+- **`POST /admin/quotas`** (token-protected) writes a new JSON rule set to ZooKeeper. Every AM replica hot-reloads within one Curator event (typically < 100 ms).
+- **`GET /admin/quotas`** returns the currently active JSON — diffable against your policy git.
+- Alternatively, write directly to the shared znode: `zkCli.sh set /services/triton/config/quotas '{"rules":[…]}'`.
+
+Example quotas JSON:
+
+```json
+{
+  "rules": [
+    { "user": "alice", "model": "llama-3-70b", "requestsPerMinute": 60 },
+    { "group": "paying-customers", "model": "*", "requestsPerMinute": 300 },
+    { "user": "banned-user", "model": "*", "requestsPerMinute": 0 },
+    { "model": "*", "requestsPerMinute": 10 }
+  ]
+}
+```
+
+Matching follows first-specific-match: exact user + exact model, exact user + `*`, group + exact model, group + `*`, default rule. `requestsPerMinute: 0` denies immediately without a bucket. Violations return `429 Too Many Requests` with a `Retry-After: <seconds>` header.
 
 ## Apache Ranger Integration
 
