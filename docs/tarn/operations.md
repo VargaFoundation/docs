@@ -170,12 +170,90 @@ A systemd unit file is provided in `services/tarn-haproxy-updater.service`. To i
 
 ## Monitoring with Grafana
 
-You can connect Grafana to the Application Master by adding a Prometheus data source pointing to:
-`http://<AM_HOST>:<AM_PORT>/metrics?token=<YOUR_TOKEN>`
+Prometheus scrapes `https://<AM_HOST>:<AM_PORT>/metrics` with the `X-TARN-Token` header. Tokens in the URL are refused — configure the scrape job to send the header instead:
 
-**Available metrics:**
-- `tarn_target_containers`: Target number of containers for scaling.
-- `tarn_running_containers`: Actual number of running containers.
-- `tarn_container_load`: Per-container load based on GPU or request activity.
-- `tarn_gpu_utilization`: Per-GPU utilization.
-- `tarn_gpu_memory_used`: Per-GPU memory usage.
+```yaml
+scrape_configs:
+  - job_name: tarn
+    scheme: https
+    tls_config:
+      insecure_skip_verify: false
+    authorization:
+      type: Bearer
+      credentials_file: /etc/prometheus/secrets/tarn-token
+    static_configs:
+      - targets: ['tarn-host:8888']
+```
+
+The Helm chart ships a ready-to-use ServiceMonitor (`--set serviceMonitor.enabled=true`) that emits an equivalent Prometheus Operator resource.
+
+### Core metrics (unchanged)
+
+- `tarn_target_containers` — target number of containers for scaling.
+- `tarn_running_containers` — actual number of running containers.
+- `tarn_container_load{container_id, host}` — per-container normalized load.
+- `tarn_gpu_*{container_id, host, gpu}` — NVIDIA GPU metrics (utilization, memory, …).
+- `tarn_container_startup_ms`, `tarn_container_queue_depth`.
+
+### New in the LLM / multi-tenant release
+
+- **`tarn_inference_latency_seconds{model, le}`** — native Prometheus histogram with buckets `{5ms, 10ms, 25ms, 50ms, 100ms, 250ms, 500ms, 1s, 2.5s, 5s, 10s, 30s, 60s}`. Aggregatable across replicas with `histogram_quantile()`. The previous `tarn_inference_latency_p{50,95,99}_ms` gauges are kept as deprecated per-instance indicators.
+- **`tarn_inference_requests_total{model, status}`** — counter split by `"success"` / `"error"`.
+- **`tarn_tokens_in_total{user, model}`** / **`tarn_tokens_out_total{user, model}`** — prompt and completion token counters per (user, model) for chargeback. OpenAI responses are parsed automatically for the `usage` block; streaming clients can POST to `/v1/usage` to report out-of-band.
+- **`tarn_model_error_rate{model}`** — gauge for quick dashboards.
+- **`tarn_alerts_total`**, **`tarn_container_failures_total`**, **`tarn_scaling_events_total`** — audit counters backing `/alerts`.
+
+### OpenTelemetry tracing
+
+TARN depends only on `opentelemetry-api`. To ship traces, attach the standard Java agent at startup:
+
+```bash
+java -javaagent:/opt/otel/opentelemetry-javaagent.jar \
+     -Dotel.exporter.otlp.endpoint=http://collector:4317 \
+     -Dotel.service.name=tarn-am \
+     ... varga.tarn.yarn.ApplicationMaster
+```
+
+The agent auto-configures the global provider and TARN's spans flow to OTLP, Jaeger, Zipkin, or any other supported backend. Spans created by TARN:
+
+- `POST /v1/chat/completions` (SERVER) — one per inbound proxy request, with attributes `tarn.user`, `tarn.model`, `tarn.lora`, `tarn.stream`, `tarn.container_id`.
+- `triton.upstream` (CLIENT) — the call to the Triton backend, with `http.url`, `http.status_code`.
+- W3C `traceparent` is propagated both directions, so Knox → TARN → Triton traces stitch together.
+
+### Structured JSON logs
+
+Activate via `-Dlog4j.configuration=log4j-json.properties` (ships in the JAR). Each line is a JSON object with fields `ts`, `level`, `logger`, `thread`, `message`, plus every MDC key — so `trace_id` and `span_id` pushed by the tracer show up automatically for cross-log / cross-trace correlation.
+
+## Scale-down drain
+
+When the scaling policy decides to shrink, the AM runs this sequence on the victim container:
+
+1. **Deregister from ZooKeeper** so Knox and any ZK watchers stop routing to it.
+2. **Poll Triton queue depth** (`nv_inference_pending_request_count`) every 500 ms until it reaches 0 or `--drain-timeout-ms` elapses.
+3. **SIGTERM via NodeManager** to stop the container.
+
+If the drain window closes with requests still queued, a `drain_timeout` alert is emitted but the container is still stopped — capacity is preserved and no container is "leaked".
+
+## Warmup
+
+Triton's `/v2/health/ready` returns 200 as soon as all configured models are loaded. For large LLMs the CUDA kernels still need a first call before latency is nominal. TARN defers ZooKeeper registration of a new container until `/v2/health/ready` passes (`--warmup-timeout-ms`, default 120 s), so Knox never routes to a cold backend.
+
+## Quotas (hot-reload)
+
+Two paths:
+
+1. **Admin REST API** (recommended for Ops tooling):
+    - `GET /admin/quotas` — returns the live JSON rule set.
+    - `POST /admin/quotas` (body = new JSON) — validates, writes to ZK, all replicas hot-reload.
+2. **Direct ZooKeeper** — `zkCli.sh set /services/triton/config/quotas '{…}'` works for GitOps pipelines using a ZK sync controller.
+
+Both paths update every AM replica within one Curator event; no restart needed.
+
+## Kubernetes Operator
+
+When TARN is deployed as a Kubernetes Operator (see the dedicated [Kubernetes Operator](./kubernetes-operator.md) page), operations are governed by CRs:
+
+- `kubectl get tritondeployments` (or `td`) lists all CRs and their phase.
+- `kubectl describe td <name>` shows Kubernetes Events for each reconcile transition (`Ready`, `Reconciling`, `InvalidSpec`, `ReconcileError`, `HTTPRouteFailed`, …).
+- Traffic split via `spec.traffic[]` creates one Deployment per variant, optionally with a Gateway API HTTPRoute for precise routing.
+- Leader election via `coordination.k8s.io/v1/leases` enables HA operator deployments (2+ replicas, 30 s failover).
