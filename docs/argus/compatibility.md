@@ -8,55 +8,78 @@ sidebar_position: 2
 
 | Component | Version |
 |-----------|---------|
-| ODBC | 3.x API Level 1 |
+| ODBC | 3.x API Level 1 (+ ODBC 2.x compatibility entry points) |
 | unixODBC | 2.3.x |
 | GLib | 2.56+ |
 | CMake | 3.16+ |
 
 ## Supported backends
 
-| Backend | Protocol | Default Port | Tested Versions |
-|---------|----------|-------------|-----------------|
-| Apache Hive | Thrift TCLIService (V10) | 10000 | HiveServer2 2.x, 3.x |
-| Apache Impala | Thrift TCLIService (V6) | 21050 | Impala 3.x, 4.x |
-| Trino | HTTP REST API (JSON) | 8080 | Trino 400+ (v1), Trino 466+ (v2 spooling) |
-| Apache Phoenix | Avatica HTTP/JSON (PQS) | 8765 | Phoenix 5.x, PQS 6.x |
-| Apache Kudu | C++ Client API | 7051 | Kudu 1.15+ |
+| Backend | `BACKEND=` | Protocol | Default Port | Notes |
+|---------|-----------|----------|-------------|-------|
+| Apache Hive | `hive` | Thrift TCLIService (V10), binary or HTTP | 10000 | HiveServer2 2.x, 3.x. Also serves **Spark Thrift Server**, **Flink SQL Gateway** and **Databricks** SQL warehouses (HiveServer2 protocol) |
+| Apache Impala | `impala` | Thrift TCLIService (V6) | 21050 | Impala 3.x, 4.x |
+| Trino | `trino` | HTTP REST API (JSON) | 8080 | Trino 400+ (v1), Trino 466+ (v2 spooling) |
+| Apache Phoenix | `phoenix` | Avatica HTTP/JSON (PQS) | 8765 | Phoenix 5.x, PQS 6.x |
+| Apache Pinot | `pinot` | HTTP/JSON (`/query/sql`) | 8000 (broker) | Validated end-to-end against a Pinot QuickStart cluster; table listing uses the controller (`:9000`) |
+| Apache Druid | `druid` | HTTP/JSON (`/druid/v2/sql`) | 8888 (router) | Built on the validated Pinot/Trino HTTP-JSON pattern; broker is 8082 |
+| Google BigQuery | `bigquery` | REST (`bigquery/v2`) | — | Public GCP, the BigQuery emulator, and sovereign clouds (e.g. S3NS) — every Google endpoint is configurable |
+| MySQL-wire | `mysql` | MySQL client/server protocol | 3306 | **StarRocks** / **Apache Doris** (FE port 9030), **ClickHouse** (MySQL interface, port 9004), MySQL/MariaDB. Validated against MariaDB 11 |
+| Arrow Flight SQL | `flightsql` | gRPC / Arrow Flight SQL | 32010 | **Dremio**, **InfluxDB 3** (port 8181), any Flight SQL server. Validated end-to-end against InfluxDB 3 Core |
+| Apache Kudu | `kudu` | C++ Client API | 7051 | Kudu 1.15+. **Deprecated** — prefer `BACKEND=impala` (Impala queries Kudu tables natively) |
 
 ## Platforms
 
 | Platform | Compiler | Status |
 |----------|----------|--------|
-| Linux (Ubuntu/Debian) | GCC | Supported |
+| Linux (Ubuntu/Debian) | GCC | Supported (`.deb` packages, unixODBC) |
 | Linux (Fedora/RHEL) | GCC | Supported |
 | macOS | Clang | Supported |
-| Windows (MSYS2/UCRT64) | MinGW | Supported |
+| Windows (MSYS2/UCRT64) | MinGW | Supported — the installer ships Hive, Impala, Trino, Phoenix, Pinot, Druid, BigQuery and MySQL-wire; Flight SQL and Kudu need dependencies MSYS2 does not provide |
 
-## ODBC functions implemented (52)
+## ODBC entry points (99)
+
+The driver exports 68 ANSI entry points plus 31 Unicode (`W`) variants.
 
 ### Environment & Handle
 - SQLAllocHandle, SQLFreeHandle
+- ODBC 2.x: SQLAllocEnv, SQLAllocConnect, SQLAllocStmt, SQLFreeEnv, SQLFreeConnect
 
 ### Connection
-- SQLConnect, SQLDriverConnect, SQLDisconnect, SQLGetConnectAttr, SQLSetConnectAttr
+- SQLConnect, SQLDriverConnect, SQLBrowseConnect, SQLDisconnect
+- SQLGetConnectAttr, SQLSetConnectAttr
 
 ### Statement
-- SQLExecDirect, SQLExecute, SQLPrepare, SQLCancel
-- SQLNumResultCols, SQLDescribeCol, SQLColAttribute
-- SQLFetch, SQLGetData, SQLBindCol, SQLCloseCursor, SQLFreeStmt
-- SQLSetStmtAttr, SQLGetStmtAttr, SQLRowCount, SQLMoreResults, SQLNumParams
+- SQLExecDirect, SQLExecute, SQLPrepare, SQLCancel, SQLNativeSql
+- SQLBindParameter, SQLNumParams, SQLDescribeParam, SQLParamData, SQLPutData
+- SQLNumResultCols, SQLDescribeCol, SQLColAttribute (and ODBC 2.x SQLColAttributes)
+- SQLFetch, **SQLFetchScroll**, SQLExtendedFetch, SQLGetData, SQLBindCol
+- SQLSetPos, SQLBulkOperations, SQLSetScrollOptions
+- SQLCloseCursor, SQLFreeStmt, SQLGetCursorName, SQLSetCursorName
+- SQLSetStmtAttr, SQLGetStmtAttr, SQLRowCount, SQLMoreResults
 
 ### Catalog
 - SQLTables, SQLColumns, SQLGetTypeInfo, SQLStatistics
 - SQLPrimaryKeys, SQLForeignKeys, SQLProcedures, SQLProcedureColumns
 - SQLSpecialColumns, SQLTablePrivileges, SQLColumnPrivileges
 
+### Descriptors
+- SQLGetDescField, SQLSetDescField, SQLGetDescRec, SQLSetDescRec, SQLCopyDesc
+
 ### Info & Diagnostics
 - SQLGetInfo, SQLGetDiagRec, SQLGetDiagField, SQLGetFunctions
-- SQLSetEnvAttr, SQLGetEnvAttr, SQLEndTran
+- SQLSetEnvAttr, SQLGetEnvAttr, SQLEndTran (and ODBC 2.x SQLError, SQLTransact)
 
-### Driver
-- SQLDrivers, SQLDataSources
+### Cursors and block fetch
+
+- **Block fetch**: `SQL_ATTR_ROW_ARRAY_SIZE` rowsets and `SQL_ATTR_PARAMSET_SIZE` parameter arrays.
+- **Static scrollable cursors**: `SQLFetchScroll` with NEXT/PRIOR/FIRST/LAST/ABSOLUTE/RELATIVE.
+
+## SQL dialects and identifier quoting
+
+`SQLGetInfo(SQL_IDENTIFIER_QUOTE_CHAR)` is **dialect-aware** (since v0.5.9): ANSI double-quote (`"`) for Trino, Phoenix, Pinot and Druid; backtick (`` ` ``) for Hive, Impala, MySQL-wire and BigQuery. Tools that generate quoted SQL from this value (Power BI query folding, Tableau) get the right character per backend.
+
+ODBC escape sequences (`{fn ...}`, `{d/t/ts ...}`, `{escape ...}`, `{oj ...}`, `{interval ...}`) are translated by the driver into each backend's grammar, and the scalar-function bitmaps reported by `SQLGetInfo` are derived from the same per-backend dialect table — the driver never advertises a function it cannot render. See [BI tools](./bi-tools.md).
 
 ## Type mapping
 
@@ -77,6 +100,10 @@ sidebar_position: 2
 | ARRAY / MAP / STRUCT | array / map / row | ARRAY | - | SQL_VARCHAR (JSON) |
 
 Complex types (ARRAY, MAP, STRUCT) are serialized as JSON strings.
+
+The HTTP/JSON backends (Pinot, Druid, BigQuery) and MySQL-wire map their native types onto the same ODBC SQL type set. The Flight SQL backend keeps numeric columns as **native typed values** (no per-cell string), so `SQLGetData` converts straight to the requested C type.
+
+Timestamp values are accepted both as `YYYY-MM-DD HH:MM:SS[.fff]` and as ISO-8601 with a `T` separator (as emitted by Druid).
 
 ### Phoenix-specific types
 

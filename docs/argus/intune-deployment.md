@@ -1,7 +1,7 @@
 ---
 id: intune-deployment
 title: Deploying with Microsoft Intune
-sidebar_position: 8
+sidebar_position: 10
 ---
 
 Argus can be deployed at scale on Windows endpoints using Microsoft Intune as a **Win32 app**. The driver is packaged as an `.intunewin` archive containing a signed NSIS installer and PowerShell lifecycle scripts.
@@ -53,9 +53,9 @@ Upload `argus-odbc-installer.intunewin` as the app package file.
 | Field | Value |
 |-------|-------|
 | **Name** | Argus ODBC Driver |
-| **Description** | Universal ODBC driver for Hive, Impala, Trino, Phoenix, and Kudu |
+| **Description** | Universal ODBC driver for Hive, Impala, Trino, Phoenix, Pinot, Druid, BigQuery and MySQL-wire engines (StarRocks/Doris/ClickHouse) |
 | **Publisher** | Varga Foundation |
-| **App version** | Match the release version (e.g. `0.2.0`) |
+| **App version** | Match the release version (e.g. `0.5.9`) |
 | **Category** | Business / Productivity |
 
 ### 3. Program settings
@@ -110,7 +110,7 @@ The NSIS installer (`argus-odbc-installer.exe /S`) performs the following in sil
    HKLM:\SOFTWARE\ODBC\ODBCINST.INI\Argus ODBC Driver
        Driver      = C:\Program Files\Argus ODBC Driver\argus_odbc.dll
        Setup       = C:\Program Files\Argus ODBC Driver\argus_odbc.dll
-       Description = Argus ODBC Driver for Hive, Impala, Trino, Phoenix, and Kudu
+       Description = Argus ODBC Driver
        CompanyName = Varga Foundation
        UsageCount  = 1
    ```
@@ -150,9 +150,11 @@ HKLM:\SOFTWARE\ODBC\ODBC.INI\<DSN Name>
     Driver   = Argus ODBC Driver
     HOST     = <backend-host>
     PORT     = <backend-port>
-    BACKEND  = <hive|impala|trino|phoenix|kudu>
+    BACKEND  = <hive|impala|trino|phoenix|pinot|druid|bigquery|mysql>
     DATABASE = <default-database>
 ```
+
+> Do **not** push `UID`/`PWD` through DSN properties — the Windows ODBC Manager rejects them. Supply credentials at connect time or via a DSN-less connection string.
 
 And add the DSN name to:
 
@@ -209,3 +211,10 @@ To push a new version:
 5. Save — Intune will reinstall on devices where the detection script no longer matches
 
 The NSIS installer overwrites the previous DLL in-place, so no separate uninstall step is needed for upgrades.
+
+## Deploying the Power BI connector alongside
+
+If your fleet uses Power BI Desktop with the [Argus custom connector](./bi-tools.md#power-bi), deploy it with the driver:
+
+1. Distribute the signed `Argus.pqx` to `%USERPROFILE%\Documents\Power BI Desktop\Custom Connectors\` (e.g. via an Intune PowerShell script or a second Win32 app).
+2. Push its certificate thumbprint to the `REG_MULTI_SZ` value `TrustedCertificateThumbprints` under `HKLM\Software\Policies\Microsoft\Power BI Desktop` via GPO or Intune policy — Power BI then loads the signed connector at the *Recommended* security level with no per-user toggle.

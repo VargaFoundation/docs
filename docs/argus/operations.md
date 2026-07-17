@@ -1,7 +1,7 @@
 ---
 id: operations
 title: Operations
-sidebar_position: 9
+sidebar_position: 11
 ---
 
 ## Logging
@@ -63,7 +63,8 @@ Cancel long-running queries from another thread:
 SQLCancel(stmt);
 ```
 
-This sends the appropriate cancellation request to each backend:
+`SQLCancel` is dispatched to the backend, which sends the engine's own cancellation request — e.g.:
+
 - **Trino**: DELETE `/v1/query/{id}`
 - **Hive/Impala**: `TCancelOperationReq` via Thrift
 - **Phoenix**: Avatica `closeStatement` RPC
@@ -79,6 +80,10 @@ FetchBufferSize=5000
 
 Default is 1000 rows per batch. Increase for large result sets, decrease for low-latency queries.
 
+For array-oriented applications, use **block fetch** (`SQL_ATTR_ROW_ARRAY_SIZE` + `SQLFetchScroll`) to retrieve rowsets in one call, and `SQL_ATTR_PARAMSET_SIZE` for parameter arrays. Static scrollable cursors (`SQLFetchScroll` PRIOR/FIRST/LAST/ABSOLUTE/RELATIVE) are supported.
+
+The Flight SQL backend streams Arrow record batches lazily — one block per fetch — so memory stays bounded regardless of result size.
+
 ## Monitoring
 
 - Monitor log files for connection errors and query failures.
@@ -87,6 +92,7 @@ Default is 1000 rows per batch. Increase for large result sets, decrease for low
 
 ## Upgrades
 
-- Replace `libargus_odbc.so` with the new build.
+- Linux: install the new `.deb` (or replace `libargus_odbc.so` for source builds). Windows: run the new installer — it overwrites in place.
 - No schema migrations needed (stateless driver).
 - Update DSN configuration if new parameters are available.
+- If you deploy the [Power BI or Tableau connectors](./bi-tools.md), they version independently of the driver — an upgraded driver keeps working with an older connector and vice versa, but ship both from the same release when you can.

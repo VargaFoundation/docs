@@ -36,10 +36,86 @@ HOST=trino-server;PORT=8080;UID=admin;DATABASE=hive;BACKEND=trino
 HOST=phoenix-server;PORT=8765;UID=admin;DATABASE=myschema;BACKEND=phoenix
 ```
 
-### Kudu
+### Pinot
 
 ```
-HOST=kudu-master;PORT=7051;DATABASE=default;BACKEND=kudu
+HOST=pinot-broker;PORT=8000;BACKEND=pinot
+```
+
+### Druid
+
+```
+HOST=druid-router;PORT=8888;BACKEND=druid
+```
+
+### BigQuery
+
+```
+BACKEND=bigquery;Project=my-project;Database=my_dataset;BQKeyFile=/etc/argus/sa-key.json;BQLocation=EU
+```
+
+### StarRocks / Doris / ClickHouse (MySQL-wire)
+
+```
+HOST=starrocks-fe;PORT=9030;UID=root;DATABASE=analytics;BACKEND=mysql
+HOST=doris-fe;PORT=9030;UID=admin;PWD=secret;DATABASE=ods;BACKEND=mysql
+HOST=clickhouse;PORT=9004;UID=default;DATABASE=default;BACKEND=mysql
+```
+
+### Dremio / InfluxDB 3 (Flight SQL)
+
+```
+HOST=dremio;PORT=32010;UID=user;PWD=secret;BACKEND=flightsql
+HOST=influxdb3;PORT=443;SSL=1;PWD=token;DATABASE=mydb;BACKEND=flightsql
+```
+
+### Spark Thrift Server / Flink SQL Gateway (via the Hive backend)
+
+```
+HOST=spark-thrift;PORT=10000;UID=spark;AUTHMECH=NOSASL;BACKEND=hive
+HOST=flink-gateway;PORT=10000;UID=flink;AUTHMECH=NOSASL;BACKEND=hive
+```
+
+## Authentication examples
+
+### Hive with Kerberos
+
+Linux/macOS use the system GSSAPI (`kinit` ticket or keytab); Windows uses the logged-in domain user via SSPI.
+
+```
+HOST=hive.example.com;PORT=10000;BACKEND=hive;
+AUTHMECH=KERBEROS;KrbServiceName=hive;
+SSL=1;SSLCAFile=/etc/ssl/certs/ca-bundle.crt
+```
+
+### Databricks SQL warehouse (personal access token)
+
+```
+HOST=<workspace>.cloud.databricks.com;PORT=443;SSL=1;BACKEND=hive;
+TransportMode=HTTP;HTTPPath=/sql/1.0/warehouses/<id>;
+AUTHMECH=DATABRICKS;PWD=dapi...
+```
+
+### Trino with LDAP (HTTP Basic over TLS)
+
+```
+HOST=trino.example.com;PORT=8443;SSL=1;BACKEND=trino;
+UID=analyst;PWD=secret;AUTHMECH=LDAP
+```
+
+### Trino with OAuth2 client credentials
+
+```
+HOST=trino.example.com;PORT=8443;SSL=1;BACKEND=trino;
+AUTHMECH=OAUTH2;OAuth2Issuer=https://idp.example.com;
+ClientId=svc-trino;ClientSecret=***;Scope=trino
+```
+
+### Trino with browser SSO (authorization code + PKCE)
+
+```
+HOST=trino.example.com;PORT=8443;SSL=1;BACKEND=trino;
+AUTHMECH=SSO;OAuth2Issuer=https://idp.example.com;ClientId=trino-desktop
 ```
 
 ## Production configurations
@@ -82,6 +158,17 @@ SSL=1;SSLVerify=1;SSLCAFile=/etc/ssl/certs/trino-ca.pem;
 BACKEND=trino;TrinoProtocol=v2;ApplicationName=DataPipeline
 ```
 
+### BigQuery on a sovereign cloud (S3NS-style)
+
+```
+BACKEND=bigquery;Project=my-project;
+BQEndpoint=https://bigquery.s3ns.example;
+BQTokenEndpoint=https://iam.s3ns.example/token;
+BQAudience=https://iam.s3ns.example/token;
+BQKeyFile=/etc/argus/sa-key.json;
+SSL=1;SSLVerify=1;SSLCAFile=/etc/argus/s3ns-ca.pem
+```
+
 ### Phoenix with timeout
 
 ```
@@ -90,16 +177,6 @@ DATABASE=myschema;BACKEND=phoenix;
 ConnectTimeout=30;QueryTimeout=300;
 LogLevel=4;LogFile=/var/log/argus-phoenix.log;
 ApplicationName=HBase-Analytics
-```
-
-### Kudu with query timeout
-
-```
-HOST=kudu-master.example.com;PORT=7051;
-DATABASE=production;BACKEND=kudu;
-ConnectTimeout=15;QueryTimeout=120;
-LogLevel=4;LogFile=/var/log/argus-kudu.log;
-ApplicationName=Kudu-Scanner
 ```
 
 ## C/C++ usage
@@ -139,13 +216,31 @@ SQLFreeHandle(SQL_HANDLE_DBC, dbc);
 SQLFreeHandle(SQL_HANDLE_ENV, env);
 ```
 
+### Block fetch (rowsets)
+
+```c
+#define ROWS 100
+SQLCHAR names[ROWS][64];
+SQLLEN inds[ROWS];
+SQLULEN fetched = 0;
+
+SQLSetStmtAttr(stmt, SQL_ATTR_ROW_ARRAY_SIZE, (SQLPOINTER)ROWS, 0);
+SQLSetStmtAttr(stmt, SQL_ATTR_ROWS_FETCHED_PTR, &fetched, 0);
+SQLBindCol(stmt, 1, SQL_C_CHAR, names, 64, inds);
+
+while (SQLFetchScroll(stmt, SQL_FETCH_NEXT, 0) == SQL_SUCCESS) {
+    for (SQLULEN i = 0; i < fetched; i++)
+        printf("%s\n", names[i]);
+}
+```
+
 ### Query cancellation
 
 ```c
-// Execute in background thread
+/* Execute in background thread */
 SQLExecDirect(stmt, (SQLCHAR*)"SELECT * FROM huge_table", SQL_NTS);
 
-// Cancel from another thread
+/* Cancel from another thread */
 SQLCancel(stmt);
 ```
 
@@ -164,18 +259,6 @@ AUTHMECH = NOSASL
 BACKEND = hive
 ```
 
-### Impala DSN
-
-```ini
-[ArgusImpala]
-Driver = Argus
-HOST = impala-host
-PORT = 21050
-UID = impala
-DATABASE = default
-BACKEND = impala
-```
-
 ### Trino DSN
 
 ```ini
@@ -188,28 +271,26 @@ DATABASE = hive
 BACKEND = trino
 ```
 
-### Phoenix DSN
+### StarRocks DSN
 
 ```ini
-[ArgusPhoenix]
+[ArgusStarRocks]
 Driver = Argus
-HOST = phoenix-qs
-PORT = 8765
-UID = admin
-DATABASE = myschema
-BACKEND = phoenix
+HOST = starrocks-fe
+PORT = 9030
+UID = root
+DATABASE = analytics
+BACKEND = mysql
 ```
 
-### Kudu DSN
+### Windows DSN (PowerShell)
 
-```ini
-[ArgusKudu]
-Driver = Argus
-HOST = kudu-master
-PORT = 7051
-DATABASE = default
-BACKEND = kudu
+```powershell
+Add-OdbcDsn -Name MyTrino -DriverName "Argus ODBC Driver" -DsnType User -Platform 64-bit `
+    -SetPropertyValue @("BACKEND=trino", "HOST=trino.example.com", "PORT=8443", "SSL=1")
 ```
+
+(`UID`/`PWD` cannot be set in DSN properties on Windows — supply them at connect time.)
 
 ## Testing with isql
 

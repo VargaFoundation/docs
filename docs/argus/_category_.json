@@ -3,6 +3,6 @@
   "position": 2,
   "link": {
     "type": "generated-index",
-    "description": "Production-ready ODBC driver for Hive, Impala..."
+    "description": "Multi-backend ODBC driver for analytics engines — Hive, Impala, Trino, Phoenix, Pinot, Druid, BigQuery, StarRocks/Doris/ClickHouse, Arrow Flight SQL — with an Arrow ADBC surface and Power BI / Tableau connectors."
   }
 }
