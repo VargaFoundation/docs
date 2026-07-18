@@ -1,0 +1,8 @@
+{
+  "label": "Ecphoria",
+  "position": 5,
+  "link": {
+    "type": "generated-index",
+    "description": "The open-source agentic memory platform — a durable, HA memory for AI agents that also runs the agents on top of it, in a single Rust binary."
+  }
+}
