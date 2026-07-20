@@ -8,15 +8,16 @@ Argus is a production-ready ODBC driver that provides SQL connectivity to multip
 
 ## Features
 
-- **99 ODBC entry points** (68 ANSI + 31 Unicode `W` variants): ODBC 3.x API Level 1, plus ODBC 2.x compatibility (`SQLAllocConnect`, `SQLError`, `SQLExtendedFetch`, ...).
+- **103 ODBC entry points** (69 ANSI + 34 Unicode `W` variants): ODBC 3.x API Level 1, plus ODBC 2.x compatibility (`SQLAllocConnect`, `SQLError`, `SQLExtendedFetch`, ...).
 - **10 backends** through a single driver, enabled by dependency auto-detection at build time.
+- **Statement-level asynchronous execution** (`SQL_ASYNC_MODE = SQL_AM_STATEMENT`, `SQLCompleteAsync`, `SQLCancelHandle`).
 - **Arrow ADBC driver** (`libargus_adbc`) exposing the same backends through the Arrow C Data Interface — see [ADBC](./adbc.md).
-- **BI tool support**: ODBC escape-sequence translation (`{fn ...}`, `{ts ...}`, `{oj ...}`) per backend dialect, plus a packaged [Power BI custom connector and Tableau connectors](./bi-tools.md).
+- **BI tool support**: ODBC escape-sequence translation (`{fn ...}`, `{ts ...}`, `{oj ...}`) per backend dialect, plus a packaged [Power BI custom connector and Tableau connectors](./bi-tools.md) — verified with Tableau's TDVT (**91.4 %**). How Argus stacks up against Simba/Starburst: [How Argus compares](./comparison.md).
 - **Authentication**: SASL PLAIN/LDAP, **Kerberos** (system GSSAPI on Linux/macOS, native SSPI on Windows), JWT/Bearer tokens (Databricks), and **OAuth2** for Trino — client credentials, device code (RFC 8628) and authorization code with PKCE + browser SSO, with OIDC discovery.
 - **Cross-Platform**: Linux, macOS, and Windows x64.
 - **SSL/TLS**: Secure connections with certificate verification (and mutual TLS) for all backends.
 - **Connection Resilience**: Automatic retry, configurable timeouts, query cancellation.
-- **Fetch performance**: configurable batching, block fetch (`SQL_ATTR_ROW_ARRAY_SIZE`) and static scrollable cursors (`SQLFetchScroll`).
+- **Fetch performance**: configurable batching, block fetch (`SQL_ATTR_ROW_ARRAY_SIZE`), static scrollable cursors (`SQLFetchScroll`), and a **DOM-free Trino decode** (~65 % faster on large extracts).
 - **Production Logging**: 7 log levels, thread-safe, file or stderr output.
 
 ## Architecture
@@ -64,6 +65,7 @@ Argus uses a two-layer pluggable architecture.
 ## What you'll find here
 
 - [Compatibility](./compatibility.md)
+- [How Argus compares](./comparison.md)
 - [Prerequisites and resources](./prerequisites-resources.md)
 - [Installation and deployment](./installation-deployment.md)
 - [Configuration](./configuration.md)

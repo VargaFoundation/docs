@@ -37,9 +37,10 @@ sidebar_position: 2
 | macOS | Clang | Supported |
 | Windows (MSYS2/UCRT64) | MinGW | Supported — the installer ships Hive, Impala, Trino, Phoenix, Pinot, Druid, BigQuery and MySQL-wire; Flight SQL and Kudu need dependencies MSYS2 does not provide |
 
-## ODBC entry points (99)
+## ODBC entry points (103)
 
-The driver exports 68 ANSI entry points plus 31 Unicode (`W`) variants.
+The driver exports 69 ANSI entry points plus 34 Unicode (`W`) variants — a
+broader surface than the SimbaEngine core (89). See [How Argus compares](./comparison.md).
 
 ### Environment & Handle
 - SQLAllocHandle, SQLFreeHandle
@@ -51,6 +52,7 @@ The driver exports 68 ANSI entry points plus 31 Unicode (`W`) variants.
 
 ### Statement
 - SQLExecDirect, SQLExecute, SQLPrepare, SQLCancel, SQLNativeSql
+- **Asynchronous execution**: `SQL_ATTR_ASYNC_ENABLE` (`SQL_AM_STATEMENT`), SQLCompleteAsync, SQLCancelHandle (ODBC 3.8)
 - SQLBindParameter, SQLNumParams, SQLDescribeParam, SQLParamData, SQLPutData
 - SQLNumResultCols, SQLDescribeCol, SQLColAttribute (and ODBC 2.x SQLColAttributes)
 - SQLFetch, **SQLFetchScroll**, SQLExtendedFetch, SQLGetData, SQLBindCol
@@ -65,6 +67,7 @@ The driver exports 68 ANSI entry points plus 31 Unicode (`W`) variants.
 
 ### Descriptors
 - SQLGetDescField, SQLSetDescField, SQLGetDescRec, SQLSetDescRec, SQLCopyDesc
+- Unicode: SQLGetDescFieldW, SQLSetDescFieldW, SQLGetDescRecW
 
 ### Info & Diagnostics
 - SQLGetInfo, SQLGetDiagRec, SQLGetDiagField, SQLGetFunctions
@@ -74,6 +77,15 @@ The driver exports 68 ANSI entry points plus 31 Unicode (`W`) variants.
 
 - **Block fetch**: `SQL_ATTR_ROW_ARRAY_SIZE` rowsets and `SQL_ATTR_PARAMSET_SIZE` parameter arrays.
 - **Static scrollable cursors**: `SQLFetchScroll` with NEXT/PRIOR/FIRST/LAST/ABSOLUTE/RELATIVE.
+
+### Fetch performance
+
+The Trino backend scans each result page **straight into cells without building
+a JSON DOM** (the DOM was ~half of fetch time) — proven byte-identical to the
+reference path and ~65 % faster end to end on large extracts. A kill-switch,
+`ARGUS_TRINO_NOFASTJSON`, restores the DOM path. Numeric columns are kept as
+native typed values so `SQLGetData` converts with no text round-trip, and Trino
+v2 spooling is used where the server provides it.
 
 ## SQL dialects and identifier quoting
 

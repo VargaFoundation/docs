@@ -79,6 +79,15 @@ Use the `.taco` where one exists — each connector fixes one SQL dialect:
 
 Install: copy the `.taco` to `Documents\My Tableau Repository\Connectors` — the driver itself must be installed separately. A `.taco` must be **signed with a public-CA code-signing certificate and timestamped** to load normally; unsigned connectors load only with verification disabled (`-DDisableVerifyConnectorPluginSignature=true` — development only).
 
+**Verified with TDVT.** `argus-trino` has been run through Tableau's own
+[Datasource Verification Tool](https://tableau.github.io/connector-plugin-sdk/docs/tdvt)
+against a live Trino server — **91.4 %** of the expression suite (703/769), with
+four native-Trino `dialect.tdd` overrides (`ROUND`, `ATAN2`, `ASCII`, `SPACE`).
+At that point there are no Trino SQL errors and no driver bugs left; the
+remaining differences are canonical TestV1 data conventions and PrestoDialect
+empty-string edge cases. The turnkey harness (data loader, TDS files, run guide)
+ships in `connectors/tableau/tdvt/`. See [How Argus compares](./comparison.md).
+
 - **ClickHouse** is reached with `BACKEND=mysql` but is not covered by `argus-mysql` (its SQL is not MySQL's) — use generic ODBC for it.
 - Backends with no `.taco` (phoenix, pinot, druid, flightsql) work through Tableau's generic **Other Databases (ODBC)** — functional, but Tableau [does not guarantee feature compatibility](https://help.tableau.com/current/pro/desktop/en-us/examples_otherdatabases.htm) with it, and every machine opening the workbook needs the same DSN. Only 64-bit drivers are supported (Tableau 2023.3+).
 - **Tableau Cloud** cannot host an ODBC driver: a Cloud workbook reaches Argus only through **Tableau Bridge** running on a machine with the driver and DSN installed.
