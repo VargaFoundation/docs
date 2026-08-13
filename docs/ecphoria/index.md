@@ -43,10 +43,56 @@ benchmarkable alternative: the smarts run in your own binary, on your own infras
 
 - **Single binary** — embedded DuckDB, USearch, and SQLite. No external services required to start.
 - **PostgreSQL wire-compatible** — query your agents' memory with any Postgres client.
-- **MCP-native** — connect Claude Code / Claude Desktop directly; 17 tools out of the box.
+- **MCP-native** — connect Claude Code / Claude Desktop directly; 25 tools out of the box.
 - **HA by design** — Raft consensus (openraft), leader forwarding, and multi-shard horizontal write
   scaling.
 - **Secure by default** — refuses to serve unauthenticated on a non-loopback interface; hashed API
   keys; per-vendor webhook signatures; SSRF guard.
 
-Continue with [Getting Started](./getting-started) or the [Architecture](./architecture) overview.
+## Beyond agent memory: a team knowledge base
+
+The same substrate holds an engineering team's own material — documentation that changes, ADRs,
+resolved incidents, closed tickets — and answers questions about it from your editor. Markdown is
+split on its heading hierarchy so a document that evolves keeps history *section by section*, and
+`ecphoria import --from git` keeps the corpus in step with the repository.
+
+See [Engineering knowledge base](./knowledge-base).
+
+## Instruction files vs. a knowledge base
+
+Instruction files — `CLAUDE.md`, `AGENTS.md`, `.cursorrules` — do two jobs, and only one of them
+they do well. Understanding the split is the difference between a working setup and a file nobody
+reads.
+
+|  | Instruction file — **pushed** | Ecphoria — **pulled** |
+|---|---|---|
+| How it reaches the agent | Injected into every session's context, always present | The agent queries it when a question needs it |
+| Best for | *Instructions* — build commands, conventions, rules, "always do X" | *Knowledge* — why a decision was made, what broke last quarter, which ticket covered this |
+| Cost of growth | Every token is paid on every request, forever | Nothing until asked |
+| Staleness | Someone has to remember to edit it | Re-imported from git, tickets and incidents; contradictions supersede automatically |
+| Sharing | Copied between repos, drifts | One server, many projects, tenant-scoped |
+
+Ecphoria does **not** replace the instruction file. It replaces the half of it that grows and
+rots: accumulated history, past decisions, project context — the part people stop reading because
+it is three screens long and half of it is no longer true.
+
+The pattern that works: keep the instruction file short and purely instructional, and add one
+paragraph pointing the agent at the knowledge.
+
+```markdown
+## Memory
+
+An Ecphoria server holds this project's documentation, ADRs, closed tickets and past incidents.
+Search it (`search_memory`) before answering *why* something is built the way it is, and record
+durable decisions with `add_memory` — give a `subject` so a later decision supersedes it rather
+than duplicating it.
+```
+
+Same paragraph works in `AGENTS.md` for OpenCode, or any other agent's instruction file.
+
+## Next
+
+- [Getting Started](./getting-started) — run it, add a memory, search it
+- [Editor & agent integrations](./integrations) — Claude Code, OpenCode, Claude Desktop, Hermes
+- [Engineering knowledge base](./knowledge-base) — docs, ADRs, incidents and tickets
+- [Architecture](./architecture) — how the three layers fit together

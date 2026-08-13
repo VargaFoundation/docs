@@ -1,7 +1,7 @@
 ---
 id: faq
 title: FAQ
-sidebar_position: 7
+sidebar_position: 9
 ---
 
 # FAQ
@@ -33,10 +33,41 @@ backend) to enable vector recall.
 Yes — Ecphoria speaks the PostgreSQL wire protocol on `:5432`, so any Postgres client or driver can
 query the episodic memory with SQL.
 
-### How does it connect to Claude?
+### How does it connect to my editor?
 
-It exposes a Streamable-HTTP MCP server at `/mcp` with 17 tools, so Claude Code and Claude Desktop can
-use it directly. It also offers an OpenAI-compatible LLM proxy with automatic RAG.
+It exposes a Streamable-HTTP MCP server at `/mcp` with 25 tools, so any MCP client uses it directly
+— Claude Code (`claude mcp add --transport http …`), OpenCode (a `"type": "remote"` entry in
+`opencode.json`), Claude Desktop, Cursor. One server can back all of them at once, so what one agent
+learns the others recall. See [Editor & agent integrations](./integrations).
+
+It also offers an OpenAI/Anthropic-compatible LLM proxy with automatic RAG, off by default
+(`gateway.llm_proxy_enabled`).
+
+### Can I use it as a knowledge base for my team's documentation?
+
+Yes — that is a first-class use case rather than a repurposing. `ecphoria import --from git` splits
+each Markdown file on its heading hierarchy and stores one memory per section, using the file's last
+commit date as valid-time. Re-import after a merge and only the sections that changed are
+superseded; the previous text stays queryable, so "what did this runbook say in March" is a query.
+Tickets and incidents join the same corpus through the GitHub backfill and webhook promotion. See
+[Engineering knowledge base](./knowledge-base).
+
+### Does this replace my CLAUDE.md / AGENTS.md?
+
+No — and the distinction matters. An instruction file is **pushed**: injected into every session,
+always present, which is right for build commands, conventions and rules. Ecphoria is **pulled**:
+the agent queries it when a question needs it, which is right for knowledge — why a decision was
+made, what broke last quarter, which ticket covered this.
+
+What it replaces is the half of the instruction file that *grows and rots*: accumulated history and
+project context that someone has to remember to update. Keep the instruction file short and
+instructional, and add a paragraph telling the agent the knowledge base exists. See
+[Instruction files vs. a knowledge base](./index.md#instruction-files-vs-a-knowledge-base).
+
+### Do I have to use Hermes, or an agent framework at all?
+
+No. The MCP server is the primary interface and works with any client. Hermes has a dedicated
+memory-provider plugin because its plugin slot exists; nothing else depends on it.
 
 ### How does high availability work?
 

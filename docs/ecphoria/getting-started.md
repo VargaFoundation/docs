@@ -64,10 +64,32 @@ Or query episodic memory over the PostgreSQL wire protocol:
 psql "host=localhost port=5432 dbname=ecphoria" -c "SELECT count(*) FROM episodic;"
 ```
 
-## Connect Claude (MCP)
+## Connect your editor
 
-Ecphoria exposes a Streamable-HTTP MCP server at `/mcp` with 17 tools (memory add/search/history,
-graph, state, sessions, SQL, embed). Point Claude Code or Claude Desktop at
-`http://localhost:8432/mcp`.
+Ecphoria exposes a Streamable-HTTP MCP server at `/mcp` with 25 tools (memory add/search/history,
+graph, cognition, state, sessions, SQL, embed).
 
-See [Configuration](./configuration) to enable authentication and embeddings.
+```bash
+claude mcp add --transport http --scope user ecphoria http://localhost:8432/mcp
+```
+
+`--transport http` is required — the CLI defaults to stdio, and Ecphoria serves MCP over HTTP.
+
+OpenCode, Claude Desktop, Hermes and other MCP clients are covered in
+[Editor & agent integrations](./integrations).
+
+## Enable vector search
+
+`embedding.provider` defaults to `none`, which means retrieval is BM25-only. It works — and works
+particularly well on identifiers and error codes — but it cannot match a question phrased in words
+the document does not contain. To enable vector recall:
+
+```bash
+docker run … \
+  -e ECPHORIA_EMBEDDING__PROVIDER=ollama \
+  -e ECPHORIA_EMBEDDING__OLLAMA_URL=http://host.docker.internal:11434 \
+  ghcr.io/vargafoundation/ecphoria:latest
+```
+
+See [Configuration](./configuration) for authentication and the rest of the settings, or
+[Engineering knowledge base](./knowledge-base) to point it at a repository's documentation.
