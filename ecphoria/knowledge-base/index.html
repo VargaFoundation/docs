@@ -5,7 +5,7 @@
 <meta name="generator" content="Docusaurus v3.8.1">
 <title data-rh="true">Engineering knowledge base | Varga Foundation</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://docs.varga.foundation/img/Image2.png"><meta data-rh="true" name="twitter:image" content="https://docs.varga.foundation/img/Image2.png"><meta data-rh="true" property="og:url" content="https://docs.varga.foundation/ecphoria/knowledge-base"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Engineering knowledge base | Varga Foundation"><meta data-rh="true" name="description" content="Point Ecphoria at a team&#x27;s real material — documentation that changes, architecture decisions,"><meta data-rh="true" property="og:description" content="Point Ecphoria at a team&#x27;s real material — documentation that changes, architecture decisions,"><link data-rh="true" rel="icon" href="/img/favicon.png"><link data-rh="true" rel="canonical" href="https://docs.varga.foundation/ecphoria/knowledge-base"><link data-rh="true" rel="alternate" href="https://docs.varga.foundation/ecphoria/knowledge-base" hreflang="en"><link data-rh="true" rel="alternate" href="https://docs.varga.foundation/ecphoria/knowledge-base" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Ecphoria","item":"https://docs.varga.foundation/category/ecphoria"},{"@type":"ListItem","position":2,"name":"Engineering knowledge base","item":"https://docs.varga.foundation/ecphoria/knowledge-base"}]}</script><link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="Varga Foundation RSS Feed">
 <link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="Varga Foundation Atom Feed"><link rel="stylesheet" href="/assets/css/styles.b38b9087.css">
-<script src="/assets/js/runtime~main.540f5d9f.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.240ecbfe.js" defer="defer"></script>
 <script src="/assets/js/main.ed17632a.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -73,6 +73,21 @@ and identity drives both supersession and the removal sweep. Two repositories th
 <p>Re-import is idempotent and cheap. Unchanged sections are confirmed with no write; editing one
 paragraph reports <code>0 new, 1 updated, 478 unchanged</code> and supersedes exactly that section, with the
 previous text still queryable; a section deleted from the file is expired, not orphaned.</p>
+<blockquote>
+<p><strong>Vendored trees are skipped.</strong> Committed dependency directories (<code>node_modules</code>, <code>vendor</code>,
+<code>third_party</code>, <code>.venv</code>, <code>target</code>, <code>dist</code>) are tracked files, so <code>git ls-files</code> returns them and
+somebody else&#x27;s <code>README.md</code> competes with your own — observed in practice, with Microsoft&#x27;s
+<code>typescript/SECURITY.md</code> reaching rank 1 on a policy question. <code>ECPHORIA_IMPORT_ALL=1</code> disables
+the skip.</p>
+</blockquote>
+<blockquote>
+<p><strong>Deleted files are retracted.</strong> After each run the importer reports the full set of documents it
+sent, and anything else in the project is expired. The per-document sweep only removes <em>sections</em>
+of a file it was given; a file that vanished is never mentioned again, and silence cannot be told
+from &quot;not imported this run&quot;. Without this the corpus keeps answering from documentation that no
+longer exists. Only <code>mem_type = &#x27;chunk&#x27;</code> in that project is touched, so hand-written facts and
+promoted tickets are never swept by a documentation import.</p>
+</blockquote>
 <blockquote>
 <p>Backfill runs oldest-first. Replaying history in reverse pushes every version to now instead of
 splitting intervals around it — out-of-order valid-time insertion is not supported.</p>
