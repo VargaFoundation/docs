@@ -296,6 +296,20 @@ nothing.
 
 The CLI reads `ECPHORIA_API_KEY` (or `ECPHORIA_TOKEN`).
 
+## Telling "no answer" from "a weak answer"
+
+Every hit carries `similarity` (vector cosine, comparable across queries) and `lexical` (BM25). The
+fused `score` is **not** a relevance measure — it is rank-derived, so the top hit scores about the
+same whether it answered the question or merely shared a word.
+
+A `min_similarity` floor is available, opt-in, and deliberately has no default. Measured on the
+reference corpus, questions the documentation answers score p50 0.70 and questions it has nothing on
+score p50 0.60 — the distributions overlap, so any threshold trades real answers for filtered noise.
+Shipping a default would state a confidence the data does not support.
+
+The reliable path is the agent reading the results and saying when the corpus has nothing, which is
+what it does well. See `docs/benchmarks-kb.md` in the repository for the full distributions.
+
 ## Known limits
 
 - **Backfill must run oldest-first** (above).
