@@ -310,6 +310,37 @@ Shipping a default would state a confidence the data does not support.
 The reliable path is the agent reading the results and saying when the corpus has nothing, which is
 what it does well. See `docs/benchmarks-kb.md` in the repository for the full distributions.
 
+## Measuring against your own questions
+
+The reference eval is hand-written by the people who wrote the corpus — a good regression alarm,
+weak evidence that *your team's* questions get answered. Turn on the query log and after a few weeks
+you can replace it with the real thing:
+
+```toml
+[memory.query_log]
+enabled       = true
+include_query = true   # false keeps the shape without storing what was typed
+```
+
+Each search becomes an episodic event, written from a bounded queue by a background task — a search
+pays a channel send, not a database insert.
+
+```sql
+-- The questions worth acting on: asked, and the corpus had nothing.
+SELECT payload->>'query' AS question, count(*) AS asked
+FROM episodic
+WHERE event_type = 'memory.search' AND NOT (payload->>'matched')::BOOLEAN
+GROUP BY 1 ORDER BY 2 DESC LIMIT 50;
+```
+
+> **A search never returns empty.** With no lexical or vector match it falls back to the most
+> important and recent memories in scope, so an unanswerable question comes back with a full page of
+> plausible-looking documents. Those hits are distinguishable (`score` 0, no `similarity`), but only
+> if you look — which is why the log keys "no answer" on `matched` rather than on the row count.
+
+Set a retention policy so the log does not outgrow the corpus it measures:
+`ecphoria retention set --source ecphoria/query-log --days 90`.
+
 ## Known limits
 
 - **Backfill must run oldest-first** (above).
