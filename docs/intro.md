@@ -29,4 +29,7 @@ Welcome to the Varga Foundation docs. We build and support open-source solutions
 - [Argus](./argus/index.md)
   - Production-ready ODBC driver for Apache Hive, Apache Impala, Trino, Apache Phoenix, and Apache Kudu. Single driver for multiple big data query engines.
 
+- [Trica](./trica/index.md)
+  - Infrastructure inventory (CMDB/DCIM) that keeps every fact with its source and its history: discovery of switches, firewalls, BMCs, MAAS, Kubernetes and Linux hosts, rack and topology views, a REST API and an MCP server for AI assistants.
+
 Each section includes an overview, installation, configuration, and links to the corresponding repositories and resources.
