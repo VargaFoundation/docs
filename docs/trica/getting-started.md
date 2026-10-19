@@ -13,8 +13,8 @@ collector at a device and connects an AI assistant. For Kubernetes, see
 ## Prerequisites
 
 - Docker with the Compose plugin.
-- A checkout of the trica source repository. At the time of writing the repository is not public:
-  access is granted by the Varga Foundation (see [FAQ](./faq.md#how-do-i-get-trica)).
+- A checkout of the trica source repository:
+  `git clone https://github.com/VargaFoundation/trica` (public, Apache-2.0).
 
 ## 1. Start the server and PostgreSQL
 
