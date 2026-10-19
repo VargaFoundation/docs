@@ -17,18 +17,28 @@ from the same image or binary:
 
 ## Getting the software
 
-At the time of writing, the trica source repository and its packages on GitHub
-(`ghcr.io/vargafoundation/trica`, `ghcr.io/vargafoundation/trica-ops`, the chart at
-`oci://ghcr.io/vargafoundation/charts/trica`, the release binaries) are **not public**. An
-anonymous `docker pull` or `helm pull` is refused. If the Varga Foundation has granted you access,
-log in first:
+The source repository, the container images, the Helm chart and the release binaries are public;
+no login is needed:
+
+| Artefact | Where |
+|---|---|
+| Server image (amd64, arm64, signed with cosign) | `ghcr.io/vargafoundation/trica:X.Y.Z` |
+| Backup image (for the backup CronJob) | `ghcr.io/vargafoundation/trica-ops:X.Y.Z` |
+| Helm chart | `oci://ghcr.io/vargafoundation/charts/trica` |
+| Binaries, checksums, changelog | [GitHub releases](https://github.com/VargaFoundation/trica/releases) |
 
 ```bash
-echo "$GITHUB_TOKEN" | docker login ghcr.io -u "$GITHUB_USER" --password-stdin   # token with read:packages
-echo "$GITHUB_TOKEN" | helm registry login ghcr.io -u "$GITHUB_USER" --password-stdin
+helm install trica oci://ghcr.io/vargafoundation/charts/trica --version X.Y.Z \
+  -n trica --create-namespace -f values.yaml
+cosign verify ghcr.io/vargafoundation/trica:X.Y.Z \
+  --certificate-identity-regexp 'https://github.com/VargaFoundation/trica/' \
+  --certificate-oidc-issuer https://token.actions.githubusercontent.com
 ```
 
-Otherwise, and in every case where you prefer to run what you built, build from the source. The
+To mirror the images into your own registry, copy them (`crane copy`, or `docker pull` then
+`docker push`) and set `image.repository` in the chart values.
+
+You can also build from the source, for instance to run exactly what you reviewed. The
 image needs nothing but the repository (the web UI is built in a Node stage and embedded):
 
 ```bash

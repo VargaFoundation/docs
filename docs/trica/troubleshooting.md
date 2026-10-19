@@ -13,9 +13,11 @@ stderr; `log_level: debug` adds detail without ever logging a credential.
 ## Installation
 
 - **`ImagePullBackOff`, `denied` or `unauthorized` pulling `ghcr.io/vargafoundation/trica`**:
-  the packages are not public. Log in with credentials you were given (`imagePullSecrets` in the
-  chart), or build the image from the source and push it to your registry
-  ([Installation](./installation-deployment.md#getting-the-software)).
+  the packages are public, so this is usually a tag that does not exist (check the
+  [releases](https://github.com/VargaFoundation/trica/releases)), stale credentials for `ghcr.io`
+  on the node (a wrong token is refused even for a public image), or a cluster that cannot reach
+  `ghcr.io` (mirror the image into your registry,
+  [Installation](./installation-deployment.md#getting-the-software)).
 - **`helm install` fails with `database.existingSecret is required`**: create the Secret holding
   the URL (key `database-url`) and pass its name. Other render-time guards name what is missing
   (`ingress.hosts`, `transport.hosts`, `transport.existingClaim`, `backup.existingClaim`, targets

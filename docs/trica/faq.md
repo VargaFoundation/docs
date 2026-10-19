@@ -8,9 +8,9 @@ sidebar_position: 12
 
 ## How do I get trica?
 
-At the time of writing, the source repository (`VargaFoundation/trica`) and its container images,
-chart and binaries on GitHub are not public; access is granted by the Varga Foundation. Once you
-have the source, everything builds from it alone: `docker build .` for the image, the chart in
+Everything is public: the source (`VargaFoundation/trica`, Apache-2.0), the signed multi-arch
+images on `ghcr.io/vargafoundation`, the Helm chart (`oci://ghcr.io/vargafoundation/charts/trica`)
+and the release binaries. Everything also builds from the source alone: `docker build .` for the image, the chart in
 `charts/trica`, `make package-agent` for the agent packages
 ([Installation](./installation-deployment.md)).
 
