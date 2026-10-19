@@ -5,7 +5,7 @@
 <meta name="generator" content="Docusaurus v3.8.1">
 <title data-rh="true">Troubleshooting | Varga Foundation</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://docs.varga.foundation/img/Image2.png"><meta data-rh="true" name="twitter:image" content="https://docs.varga.foundation/img/Image2.png"><meta data-rh="true" property="og:url" content="https://docs.varga.foundation/trica/troubleshooting"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Troubleshooting | Varga Foundation"><meta data-rh="true" name="description" content="Start with the Health page (GET /api/v1/health/collection): every collector and agent source"><meta data-rh="true" property="og:description" content="Start with the Health page (GET /api/v1/health/collection): every collector and agent source"><link data-rh="true" rel="icon" href="/img/favicon.png"><link data-rh="true" rel="canonical" href="https://docs.varga.foundation/trica/troubleshooting"><link data-rh="true" rel="alternate" href="https://docs.varga.foundation/trica/troubleshooting" hreflang="en"><link data-rh="true" rel="alternate" href="https://docs.varga.foundation/trica/troubleshooting" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Trica","item":"https://docs.varga.foundation/category/trica"},{"@type":"ListItem","position":2,"name":"Troubleshooting","item":"https://docs.varga.foundation/trica/troubleshooting"}]}</script><link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="Varga Foundation RSS Feed">
 <link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="Varga Foundation Atom Feed"><link rel="stylesheet" href="/assets/css/styles.b38b9087.css">
-<script src="/assets/js/runtime~main.1c66ab3d.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.a03abeb0.js" defer="defer"></script>
 <script src="/assets/js/main.d82e3195.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -19,9 +19,11 @@ stderr; <code>log_level: debug</code> adds detail without ever logging a credent
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="installation">Installation<a href="#installation" class="hash-link" aria-label="Direct link to Installation" title="Direct link to Installation">​</a></h2>
 <ul>
 <li><strong><code>ImagePullBackOff</code>, <code>denied</code> or <code>unauthorized</code> pulling <code>ghcr.io/vargafoundation/trica</code></strong>:
-the packages are not public. Log in with credentials you were given (<code>imagePullSecrets</code> in the
-chart), or build the image from the source and push it to your registry
-(<a href="/trica/installation-deployment#getting-the-software">Installation</a>).</li>
+the packages are public, so this is usually a tag that does not exist (check the
+<a href="https://github.com/VargaFoundation/trica/releases" target="_blank" rel="noopener noreferrer">releases</a>), stale credentials for <code>ghcr.io</code>
+on the node (a wrong token is refused even for a public image), or a cluster that cannot reach
+<code>ghcr.io</code> (mirror the image into your registry,
+<a href="/trica/installation-deployment#getting-the-software">Installation</a>).</li>
 <li><strong><code>helm install</code> fails with <code>database.existingSecret is required</code></strong>: create the Secret holding
 the URL (key <code>database-url</code>) and pass its name. Other render-time guards name what is missing
 (<code>ingress.hosts</code>, <code>transport.hosts</code>, <code>transport.existingClaim</code>, <code>backup.existingClaim</code>, targets
