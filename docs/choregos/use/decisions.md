@@ -152,4 +152,4 @@ console or with their own token.
 
 - [Work items](work-items.md): what happens after your decision.
 - [Workflows](workflows.md): where a workflow names who decides.
-- [Governed actions](https://github.com/VargaFoundation/choregos/blob/main/docs/usage.md#4-bis-governed-actions), in depth.
+- [Governed actions](https://github.com/VargaFoundation/choregos/blob/v0.26.0/docs/usage.md#4-bis-governed-actions), in depth.

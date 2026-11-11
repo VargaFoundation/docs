@@ -76,21 +76,24 @@ Read it in order the first time: what it is, the ideas, a first project, then th
 | ▸ [Knowledge](use/knowledge.md) | Give agents documents to read: uploads, Confluence, SharePoint, git, the web |
 | ▸ [Connectors](use/connectors.md) | Connect the tracker, the repository, the deployment and the other systems |
 | ▸ [Budgets and policies](use/budgets-and-policies.md) | Cap what work costs and bound what agents may do |
+| ▸ [Assistants](use/assistants.md) | Talk to an assistant, confirm its writes, and keep control of what it remembers and does for you |
 | **Build agents** | Write what agents carry |
-| ▸ Skills | Package know-how an agent loads |
-| ▸ Agents | Create, version and release agents of every kind |
-| ▸ Plugins | Ship templates, agents and connectors as one package |
-| ▸ Tools | Give agents tools they cannot misuse |
+| ▸ [Skills](build/skills.md) | Package know-how an agent loads |
+| ▸ [Agents](build/agents.md) | Create, version and release agents of every kind |
+| ▸ [Plugins](build/plugins.md) | Ship templates, agents and connectors as one package |
+| ▸ [Tools](build/tools.md) | Give agents tools they cannot misuse |
+| ▸ [Assistants](build/assistants.md) | Ship a conversational assistant in a plugin |
 | **Integrate** | Reach Choregos from outside |
-| ▸ MCP | Connect an AI assistant (Claude, Cursor, VS Code) to Choregos |
-| ▸ A2A | Start and follow a workflow from another agent or an application |
-| ▸ Triggers | Start work from a schedule, a webhook or a tracker |
-| ▸ REST API | Script anything the console does |
+| ▸ [MCP](integrate/mcp.md) | Connect an AI assistant (Claude, Cursor, VS Code) to Choregos |
+| ▸ [Assistants](integrate/assistants.md) | Use an assistant from claude.ai or embed it in your application |
+| ▸ [A2A](integrate/a2a.md) | Start and follow a workflow from another agent or an application |
+| ▸ [Triggers](integrate/triggers.md) | Start work from a schedule, a webhook or a tracker |
+| ▸ [REST API](integrate/rest.md) | Script anything the console does |
 | **Command line** | Use the `choregos` command |
-| ▸ Install | Install the command on your machine |
-| ▸ Reference | Look up every command and option |
-| Host Choregos | Deploy, secure and upgrade an instance |
-| Reference | The workflow YAML, the errors, the API |
+| ▸ [Install](cli/install.md) | Install the command on your machine |
+| ▸ [Reference](cli/reference.md) | Look up every command and option |
+| [Host Choregos](host/index.md) | Deploy, secure and upgrade an instance |
+| [Reference](reference/index.md) | The workflow YAML, the errors, the API |
 
 ## Editions
 
@@ -102,7 +105,7 @@ shows which edition runs under **About**, at the bottom of the sidebar.
 ## Where the deep detail lives
 
 These pages are written for people who use Choregos. The complete reference, written for the people
-who run and extend it, is in the repository: the [reference documentation](https://github.com/VargaFoundation/choregos/blob/main/docs/README.md), the
-[concepts in depth](https://github.com/VargaFoundation/choregos/blob/main/docs/concepts.md), [usage in depth](https://github.com/VargaFoundation/choregos/blob/main/docs/usage.md), [security](https://github.com/VargaFoundation/choregos/blob/main/docs/security.md) and the
-[architecture decisions](https://github.com/VargaFoundation/choregos/blob/main/docs/adr/README.md). Where a page and the code disagree, the code is right and
+who run and extend it, is in the repository: the [reference documentation](https://github.com/VargaFoundation/choregos/blob/v0.26.0/docs/README.md), the
+[concepts in depth](https://github.com/VargaFoundation/choregos/blob/v0.26.0/docs/concepts.md), [usage in depth](https://github.com/VargaFoundation/choregos/blob/v0.26.0/docs/usage.md), [security](https://github.com/VargaFoundation/choregos/blob/v0.26.0/docs/security.md) and the
+[architecture decisions](https://github.com/VargaFoundation/choregos/blob/v0.26.0/docs/adr/README.md). Where a page and the code disagree, the code is right and
 the page is a bug: [report it](https://github.com/VargaFoundation/choregos/issues).

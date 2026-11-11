@@ -25,6 +25,9 @@ shows how to create one, feed it, keep it current, and decide who uses it.
 - To sync from Confluence or SharePoint: a connector of that kind, declared by an organisation admin
   (see [Connectors](connectors.md)).
 
+An [assistant](assistants.md) reads the knowledge bases its plugin seeded, and cites the documents it
+uses.
+
 ## Knowledge or memory?
 
 | | Knowledge base | Memory |
@@ -87,7 +90,7 @@ and run it.
 
 A base is read by the agents that name it, in runs of the projects it is served to. The base's
 **Who uses it** card lists the **Agents that read it** and the **Runs it may be served to**. To add one,
-name the base in the agent's knowledge (see Agents). A run whose project is not
+name the base in the agent's knowledge (see [Agents](../build/agents.md)). A run whose project is not
 served a base its agent names does not start, and says why.
 
 ## Decide who may change it
@@ -173,5 +176,5 @@ not list are left alone. These commands need an organisation admin's token.
 
 ## Go further
 
-- [Knowledge bases](https://github.com/VargaFoundation/choregos/blob/main/docs/usage.md#knowledge-bases), in depth: conversion, sources, distillation.
-- Skills: what a distilled base becomes.
+- [Knowledge bases](https://github.com/VargaFoundation/choregos/blob/v0.26.0/docs/usage.md#knowledge-bases), in depth: conversion, sources, distillation.
+- [Skills](../build/skills.md): what a distilled base becomes.

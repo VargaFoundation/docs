@@ -163,7 +163,7 @@ What to notice:
 
 - **States** with `kind: wait` wait for a person. `terminal: true` ends the work item;
   `outcome: cancelled` shows it in grey rather than green.
-- **`agent: developer`** names an agent of the organisation's registry. See Agents.
+- **`agent: developer`** names an agent of the organisation's registry. See [Agents](../build/agents.md).
 - **Gates** are checks the platform runs, not instructions: `scope_respected` compares the diff with
   the allowed paths, `evidence_present` requires tests the platform saw run, `ci_green` reads the pull
   request's checks.
@@ -229,5 +229,5 @@ A work item that landed in the wrong workflow can be moved: open it and press **
 ## Go further
 
 - [Work items](work-items.md): what happens to a request inside a workflow.
-- [Write the workflow](https://github.com/VargaFoundation/choregos/blob/main/docs/usage.md#3-write-the-workflow), in depth: fan-outs, schedules, release trains.
-- [Gates](https://github.com/VargaFoundation/choregos/blob/main/docs/concepts.md#gate): every gate and its parameters.
+- [Write the workflow](https://github.com/VargaFoundation/choregos/blob/v0.26.0/docs/usage.md#3-write-the-workflow), in depth: fan-outs, schedules, release trains.
+- [Gates](https://github.com/VargaFoundation/choregos/blob/v0.26.0/docs/concepts.md#gate): every gate and its parameters.
