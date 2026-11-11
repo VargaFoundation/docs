@@ -1,0 +1,8 @@
+{
+  "label": "Choregos",
+  "position": 10,
+  "link": {
+    "type": "generated-index",
+    "description": "The governed-agent platform: workflows that agents and humans move forward under measured guarantees, a plugin format, assistants for people, and an MCP door for Claude and other clients."
+  }
+}
