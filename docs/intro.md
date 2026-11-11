@@ -32,4 +32,7 @@ Welcome to the Varga Foundation docs. We build and support open-source solutions
 - [Trica](./trica/index.md)
   - Infrastructure inventory (CMDB/DCIM) that keeps every fact with its source and its history: discovery of switches, firewalls, BMCs, MAAS, Kubernetes and Linux hosts, rack and topology views, a REST API and an MCP server for AI assistants.
 
+- [Choregos](./choregos/index.md)
+  - Governed agents: workflows carried by agents and people, with budgets they cannot exceed, checks that refuse, and a trace of every step. Imported from the Choregos repository at its latest release.
+
 Each section includes an overview, installation, configuration, and links to the corresponding repositories and resources.

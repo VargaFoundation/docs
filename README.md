@@ -39,3 +39,15 @@ GIT_USER=<Your GitHub username> yarn deploy
 ```
 
 If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+
+## Choregos
+
+`docs/choregos/` is imported from `docs/site/` of
+[VargaFoundation/choregos](https://github.com/VargaFoundation/choregos), at its latest release tag, by the
+*Import the Choregos documentation* workflow (`.github/workflows/import-choregos-docs.yml`): every day,
+or by hand with a tag. It opens a pull request; edit the pages in the Choregos repository, not here.
+
+```bash
+yarn test                                                  # the import script's tests
+yarn import-choregos --source ../choregos --ref v0.26.0    # an import by hand
+```
