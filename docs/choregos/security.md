@@ -80,7 +80,10 @@ person**, so the source decides what that person reads:
   revocable at once, suspended when the person leaves the audience or the task's needs change, and journaled
   with its id.
 
-A dedicated security review of the exchange and of offline tokens is required before production use.
+The person's identity (token exchange, connected accounts, standing delegation) had its dedicated security
+review before 0.26 (findings fixed; the review is in the repository's `docs/security.md`). Before production,
+set `CHOREGOS_TOKEN_EXCHANGE_AUDIENCES` to your sources' audiences, and configure the identity provider: token
+exchange limited to those audiences, bounded and revocable offline sessions bound to the exchange client.
 
 ## Secrets
 

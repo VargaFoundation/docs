@@ -7,10 +7,9 @@ sidebar_position: 7
 # Assistants
 
 :::info Availability
-Assistants ship **from Choregos 0.26**. The latest release at the time of writing is 0.25.3, which does not
-include them. Some delivery items (the conversation judge model, a reminder before a delegation ends,
-delegations in a first production organisation) are noted below as not delivered or gated by a security
-review.
+Assistants ship **from Choregos 0.26**. Standing delegations (ADR 0137) are delivered, but their decision
+record stays *proposed* until the deploying organisation's works council opinion and data protection impact
+assessment: do not offer delegated tasks to people before then.
 :::
 
 An **assistant** is a conversational agent that a plugin ships, that an organisation installs for an
@@ -293,8 +292,8 @@ are away needs a standing delegation:
 
 - **Explicit**: given per task, after the person has seen the exact list of needs and operations read.
 - **Read only**: only `access: read` needs; a write in a delegated task is refused.
-- **Bounded in time**: 90 days by default, lowered by the installation's maximum. No automatic renewal
-  yet, and no reminder before expiry yet.
+- **Bounded in time**: 90 days by default, lowered by the installation's maximum. The person is reminded
+  before it ends (7 days by default, `policy_overrides.delegation.remind_days`) and agrees again to renew it.
 - **Revocable at once**: revocation cuts the derived tokens and revokes the offline token at the identity
   provider when it exposes a revocation endpoint.
 - **Suspended automatically** when the person leaves the audience, is disabled, or the manifest changes the
@@ -303,11 +302,12 @@ are away needs a standing delegation:
 
 A task with `delegation: none` reads only `service` needs, so a public-data poll needs no delegation.
 
-:::caution Security review required
-A delegation stores a credential that can act as a person with nobody present. Review the identity
-provider's offline-session bounds and revocation, that the exchange client is the only client the offline
-token is bound to, the sealed-store key ring and rotation, and the maximum duration, before enabling it in a
-production organisation.
+:::caution Before enabling delegations
+A delegation stores a credential that can act as a person with nobody present. The platform side was
+security-reviewed before 0.26; on your side, check the identity provider's offline-session bounds and
+revocation, that the exchange client is the only client the offline token is bound to, the sealed-store key
+ring and rotation, and the maximum duration, and obtain the works council's opinion and the data protection
+impact assessment, before offering delegated tasks in a production organisation.
 :::
 
 ## Surfaces
@@ -360,7 +360,9 @@ signs in to Choregos and the conversation is theirs.
   `localhost`). The console answers with `Content-Security-Policy: frame-ancestors` set to them; every other
   console page refuses framing.
 - **Sign-in** is silent when possible (OIDC `prompt=none`), else a button in the frame opens a popup. The
-  session cookie stays `SameSite=Lax`, so the host must be on the **same site** as the console.
+  popup hands the frame a short-lived token (15 minutes) bound to the person, their browser session and this
+  installation; the frame sends it on each call, so the host may be on **another site** than the console
+  (third-party cookies are not needed). The token opens the embedded component's routes only.
 - **Events** are posted to the host with `postMessage` (`conversation.started`, `action.confirmed`,
   `memory.updated`, `resize`); check `event.origin` and `event.data.source === "choregos.assistant"`.
 
@@ -402,8 +404,10 @@ cases:
 Assertions (`must_call`, `must_not_call`, `must_cite`, `must_not_contain`, `call_order`, `length`) run first
 and are exact: a rule such as "never read X before Y" is a fact of the journal, not an opinion. The suite
 **counts in promotion**: the agent version an assistant wraps does not reach `production` on the channel an
-installation follows below the suite's threshold. The judge model that scores the `rubric` is not delivered
-yet: rubrics are stored only.
+installation follows below the suite's threshold. A judge model then scores the `rubric`, one score per
+criterion against its threshold (`conversation_judge_model`, else the `strong` model profile); a malformed or
+refused judgement fails the case. With no model gateway, promotion is refused rather than silently allowed
+(`conversation_suites_require_model=false` opts out).
 
 **Feedback.** A thumb up or down on each answer, with an optional comment. A thumb down proposes a
 pseudonymised **candidate case** to the agent's managers; it never enters a suite automatically, because
