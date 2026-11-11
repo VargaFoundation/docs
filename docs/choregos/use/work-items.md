@@ -51,7 +51,7 @@ choregos items create onboarding --title "Quarterly access review" --workflow ac
 ```
 
 Work can also start on a schedule, from a webhook or from another system: see
-Triggers and A2A.
+[Triggers](../integrate/triggers.md) and [A2A](../integrate/a2a.md).
 
 ## Follow a work item
 
@@ -167,4 +167,4 @@ finding turned into a ticket becomes a new work item, the others are marked dupl
 
 - [Decisions](decisions.md): approve, send back, answer, complete a task.
 - [Budgets and policies](budgets-and-policies.md): what bounds a run.
-- [Let a ticket run](https://github.com/VargaFoundation/choregos/blob/main/docs/usage.md#5-let-a-ticket-run) and [Read what came out](https://github.com/VargaFoundation/choregos/blob/main/docs/usage.md#6-read-what-came-out), in depth.
+- [Let a ticket run](https://github.com/VargaFoundation/choregos/blob/v0.26.0/docs/usage.md#5-let-a-ticket-run) and [Read what came out](https://github.com/VargaFoundation/choregos/blob/v0.26.0/docs/usage.md#6-read-what-came-out), in depth.

@@ -156,7 +156,7 @@ choregos machines token billing-api invoicing-portal --name production --expires
 ```
 
 An application's token opens the A2A door only, on that one project. It starts and follows work; it
-never takes a decision. See A2A.
+never takes a decision. See [A2A](../integrate/a2a.md).
 
 ## What can go wrong
 
@@ -172,4 +172,4 @@ never takes a decision. See A2A.
 
 - [Connectors](connectors.md): connect the tracker, the repository and the other systems.
 - [Workflows](workflows.md): the process the project follows.
-- [Project settings and readiness](https://github.com/VargaFoundation/choregos/blob/main/docs/usage.md#project-settings-and-readiness), in depth.
+- [Project settings and readiness](https://github.com/VargaFoundation/choregos/blob/v0.26.0/docs/usage.md#project-settings-and-readiness), in depth.

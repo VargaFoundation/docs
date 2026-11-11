@@ -139,7 +139,7 @@ agent. A few examples:
 | `docs_updated` | a change to the code also changes the documentation |
 
 **A gate that cannot see what it must check refuses.** A guarantee that passes blindly is worse than
-none. The [workflow reference](https://github.com/VargaFoundation/choregos/blob/main/docs/concepts.md#gate) lists every gate.
+none. The [workflow reference](https://github.com/VargaFoundation/choregos/blob/v0.26.0/docs/concepts.md#gate) lists every gate.
 
 ## Agents
 
@@ -163,14 +163,14 @@ Agents come in several kinds:
 | Code agent | An agent written in code (LangGraph, the OpenAI Agents SDK, plain Python), in an image built from the runner's |
 | Remote agent | An agent elsewhere, called over A2A (for example Atlassian Rovo), under the same gates and budget |
 
-See Agents for how to create them.
+See [Agents](build/agents.md) for how to create them.
 
 ## Skills
 
 A skill is a folder of know-how an agent loads: how to write a decision record, how your team names
 branches, the checklist of a security review. Skills are a library of the organisation, versioned like
 agents. **A skill grants no permission**: what an agent may call is decided by its version and its
-project, never by a file it reads. See Skills.
+project, never by a file it reads. See [Skills](build/skills.md).
 
 ## Tools and MCP servers
 
@@ -185,7 +185,7 @@ platform offers:
   found", like a tool that does not exist.
 
 An agent version names the tools it uses; its project can only narrow that list, never widen it. See
-Tools.
+[Tools](build/tools.md).
 
 ## Knowledge bases and memory
 
@@ -265,5 +265,5 @@ write, forbidden commands, the hosts a run may reach, release trains. An organis
 ## Go further
 
 - [Get started](get-started.md): try it, then run a first project.
-- [Concepts in depth](https://github.com/VargaFoundation/choregos/blob/main/docs/concepts.md), the reference page these concepts come from.
-- [Where Choregos sits](https://github.com/VargaFoundation/choregos/blob/main/docs/positioning.md) against other agent platforms, runtimes and tool brokers.
+- [Concepts in depth](https://github.com/VargaFoundation/choregos/blob/v0.26.0/docs/concepts.md), the reference page these concepts come from.
+- [Where Choregos sits](https://github.com/VargaFoundation/choregos/blob/v0.26.0/docs/positioning.md) against other agent platforms, runtimes and tool brokers.
