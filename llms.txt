@@ -26,9 +26,35 @@ This file contains links to documentation sections following the llmstxt.org sta
 - [Networking Guide](https://docs.varga.foundation/azurite/networking): Network architecture and configuration for the Azurite Ambari Management Pack on Azure.
 - [Operations Guide](https://docs.varga.foundation/azurite/operations): Day-2 operations for the Azurite Ambari Management Pack.
 - [Troubleshooting](https://docs.varga.foundation/azurite/troubleshooting): Problem/solution reference for the Azurite Ambari Management Pack.
+- [Build an agent](https://docs.varga.foundation/choregos/build/agents): From nothing to a published, governed agent used in a workflow, as a prompt agent, a coding agent, or a Python program with the agent SDK.
+- [Ship an assistant in a plugin](https://docs.varga.foundation/choregos/build/assistants): Write an assistant manifest, declare what it needs, remembers, knows and does, test it with conversation suites, and validate it with the CLI.
+- [Package agents as a plugin](https://docs.varga.foundation/choregos/build/plugins): Bundle agents, skills, templates and their checks in one versioned package, validate it with the CLI, and install it in an organisation.
+- [Write a skill](https://docs.varga.foundation/choregos/build/skills): Package what an agent should know how to do as a skill, add it to your organisation, and give it to agents.
+- [Give agents tools and network access](https://docs.varga.foundation/choregos/build/tools): Add an MCP server, open its tools one by one, grant them to an agent, and decide which hosts a run may reach.
+- [Install the CLI](https://docs.varga.foundation/choregos/cli/install): Get the choregos command from your instance or from the GitHub release, sign in, and keep it up to date.
+- [CLI reference](https://docs.varga.foundation/choregos/cli/reference): Every choregos command and option, generated from the CLI itself.
 - [Concepts](https://docs.varga.foundation/choregos/concepts): The words Choregos uses, what each one means, and how they fit together.
 - [Get started](https://docs.varga.foundation/choregos/get-started): Try Choregos on your machine in ten minutes, then take a real development project from an issue to a merged pull request.
+- [Backups and restore](https://docs.varga.foundation/choregos/host/backups): What to back up on a Choregos instance, and how to restore it to one consistent instant.
+- [Identity](https://docs.varga.foundation/choregos/host/identity): Connect Choregos to your OIDC identity provider, give roles through groups, and let MCP clients sign in with OAuth.
+- [Host Choregos](https://docs.varga.foundation/choregos/host/): For operators. What a Choregos instance is made of, what it needs, and how to install, secure, upgrade and back it up on Kubernetes.
+- [Install with Helm](https://docs.varga.foundation/choregos/host/install): Install Choregos on Kubernetes with its Helm chart, give it a first values file, create the first organisation and token, and check it works.
+- [Runbooks](https://docs.varga.foundation/choregos/host/runbooks): The short list of runbooks for a Choregos instance, and the symptom each one answers.
+- [Secrets](https://docs.varga.foundation/choregos/host/secrets): The secrets a Choregos instance needs, where it reads them, how to generate them, and the key that seals connector secrets.
+- [Security model](https://docs.varga.foundation/choregos/host/security): What protects what on a Choregos instance - organisations, agent sandboxes, network, tokens, secrets, audit - and what is not a wall.
+- [Upgrades](https://docs.varga.foundation/choregos/host/upgrades): Upgrade a Choregos instance with Helm, in the right order, with its migrations, and know what to do when it goes wrong.
 - [Choregos](https://docs.varga.foundation/choregos/): What Choregos is, who it is for, a five-minute tour, and a map of this documentation.
+- [Start a workflow over A2A](https://docs.varga.foundation/choregos/integrate/a2a): Let an application or another agent start one of your workflows, hand it data and files, follow it and read its result, over the A2A protocol.
+- [Use assistants from claude.ai, MCP clients and your own application](https://docs.varga.foundation/choregos/integrate/assistants): Talk to an assistant from an MCP client such as claude.ai, and embed it in an internal web application.
+- [Connect your AI assistant (MCP)](https://docs.varga.foundation/choregos/integrate/mcp): Connect Claude Code, Claude Desktop, claude.ai, Cursor, VS Code, ChatGPT or any MCP client to Choregos, with your rights and never more.
+- [Script Choregos with the REST API](https://docs.varga.foundation/choregos/integrate/rest): Call the REST API from a script or a CI job with a full-access token, to open a work item, follow it and list a project's work.
+- [Open work items from another system (HTTP triggers)](https://docs.varga.foundation/choregos/integrate/triggers): Let a monitoring tool, a form or any system that can only send JSON open work items in a workflow, with its own token.
+- [API overview](https://docs.varga.foundation/choregos/reference/api): The REST API's base path, authentication, conventions and resources, and where its OpenAPI document is.
+- [Error codes](https://docs.varga.foundation/choregos/reference/errors): Every answer the A2A door, the MCP door, the HTTP triggers and the REST API can refuse with, what it means, and what to do.
+- [Glossary](https://docs.varga.foundation/choregos/reference/glossary): The words Choregos uses, in one line each.
+- [Reference](https://docs.varga.foundation/choregos/reference/): The exact definitions - workflow YAML, error codes, the API, the words.
+- [Workflow YAML](https://docs.varga.foundation/choregos/reference/workflow-yaml): Every key of a Choregos workflow, with its type, its default and what it does, and complete examples that the platform's own parser checks.
+- [Assistants](https://docs.varga.foundation/choregos/use/assistants): Find the assistants your organisation gives you, talk to them, check their sources, confirm what they want to write, and keep control of what they ...
 - [Budgets and policies](https://docs.varga.foundation/choregos/use/budgets-and-policies): See what work costs, cap it per work item, per stage, per day and per month, and bound what agents may write, run and reach.
 - [Connectors](https://docs.varga.foundation/choregos/use/connectors): Connect a project to its tracker, repository and deployment, and the organisation to its directory, documents, MCP servers and notifications.
 - [Decisions](https://docs.varga.foundation/choregos/use/decisions): Find what waits for you, approve or send back, answer an agent's question, complete a task, and approve governed actions and releases.
