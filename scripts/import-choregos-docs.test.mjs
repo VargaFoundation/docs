@@ -63,6 +63,14 @@ test("code is never rewritten", () => {
   assert.match(out, /\[z\]\(https:\/\/github\.com\/VargaFoundation\/choregos\/blob\/v1\/docs\/usage\.md\)/);
 });
 
+test("a link whose text is inline code is rewritten, the code of its text kept", () => {
+  const root = checkout(BASE);
+  const text = "See [`templates/dev`](../../../templates/dev/) and `../usage.md` alone.\n";
+  const out = rewritePage(text, { pageInSite: "use/work-items.md", sourceRoot: root, ref: "v1", missingPages: "fail" });
+  assert.match(out, /\[`templates\/dev`\]\(https:\/\/github\.com\/VargaFoundation\/choregos\/tree\/v1\/templates\/dev\/?\)/);
+  assert.match(out, / `\.\.\/usage\.md` alone/);
+});
+
 test("a link to a file that does not exist fails, and leaves the destination untouched", () => {
   const root = checkout({ ...BASE, "docs/site/index.md": "[gone](../gone.md)\n" });
   const dest = fs.mkdtempSync(path.join(os.tmpdir(), "site-"));

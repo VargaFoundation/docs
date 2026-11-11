@@ -43,12 +43,15 @@ export function splitCode(text) {
     last = match.index + match[0].length;
   }
   parts.push({ code: false, text: text.slice(last) });
-  // Inline code inside prose.
+  // Inline code inside prose. A whole link stays prose, even when its text is inline code
+  // ([`file`](../../../file)): splitting the code out of it would hide the link from the rewrite.
   return parts.flatMap((part) => {
     if (part.code) return [part];
     const out = [];
     let at = 0;
-    for (const match of part.text.matchAll(/`+[^`\n]*?`+/g)) {
+    const token = /!?\[(?:[^\]\n]|\\\])*\]\([^)\n]*\)|`+[^`\n]*?`+/g;
+    for (const match of part.text.matchAll(token)) {
+      if (!match[0].startsWith("`")) continue;
       out.push({ code: false, text: part.text.slice(at, match.index) });
       out.push({ code: true, text: match[0] });
       at = match.index + match[0].length;
