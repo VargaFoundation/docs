@@ -1,0 +1,18 @@
+# Choregos
+
+> Governed agents: workflows carried by agents and people, under budgets and checks you can read.
+
+This file contains links to documentation sections following the llmstxt.org standard.
+
+## Table of Contents
+
+- [Choregos](https://docs.varga.foundation/choregos/): What Choregos is, who it is for, a five-minute tour, and a map of this documentation.
+- [Concepts](https://docs.varga.foundation/choregos/concepts): The words Choregos uses, what each one means, and how they fit together.
+- [Get started](https://docs.varga.foundation/choregos/get-started): Try Choregos on your machine in ten minutes, then take a real development project from an issue to a merged pull request.
+- [Budgets and policies](https://docs.varga.foundation/choregos/use/budgets-and-policies): See what work costs, cap it per work item, per stage, per day and per month, and bound what agents may write, run and reach.
+- [Connectors](https://docs.varga.foundation/choregos/use/connectors): Connect a project to its tracker, repository and deployment, and the organisation to its directory, documents, MCP servers and notifications.
+- [Decisions](https://docs.varga.foundation/choregos/use/decisions): Find what waits for you, approve or send back, answer an agent's question, complete a task, and approve governed actions and releases.
+- [Knowledge](https://docs.varga.foundation/choregos/use/knowledge): Give agents documents to read, from uploads, Confluence, SharePoint, git or the web, and decide who may use and change them.
+- [Projects and members](https://docs.varga.foundation/choregos/use/projects-and-members): Create a project, check what it still lacks, invite people and give them the right role.
+- [Work items](https://docs.varga.foundation/choregos/use/work-items): File work, follow what agents do with it, read what came out, and take over when it is stuck.
+- [Workflows](https://docs.varga.foundation/choregos/use/workflows): Choose, read, change and publish the process a project follows, and decide which workflow each request takes.
