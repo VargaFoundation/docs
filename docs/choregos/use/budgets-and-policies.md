@@ -163,6 +163,6 @@ always wins. **Admin › Network** shows it with the hosts Choregos itself calls
 
 ## Go further
 
-- [Where the money goes](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/concepts.md#where-the-money-goes), in depth.
-- [Write the policy](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/usage.md#4-write-the-policy): every key of the policy and the ceiling.
-- [Security](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/security.md): what bounds a run, and what is not a wall.
+- [Where the money goes](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/concepts.md#where-the-money-goes), in depth.
+- [Write the policy](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/usage.md#4-write-the-policy): every key of the policy and the ceiling.
+- [Security](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/security.md): what bounds a run, and what is not a wall.

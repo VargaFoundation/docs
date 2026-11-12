@@ -144,4 +144,4 @@ the same conversation in the console under **Assistants**, **My conversations**.
 
 - [Connect your AI assistant (MCP)](mcp.md) for the door, tokens and limits.
 - [Ship an assistant in a plugin](../build/assistants.md) to declare its prompts and context schema.
-- The full contract: [integrations reference](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/integrations.md).
+- The full contract: [integrations reference](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/integrations.md).
