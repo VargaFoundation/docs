@@ -62,7 +62,7 @@ from a template, connect its repository, open an issue, let agents work, approve
 | :-- | :-- |
 | A port is already in use | Set `CHOREGOS_PORT_WEB` or `CHOREGOS_PORT_API` in `.env`, then start again |
 | The console does not answer after several minutes | Run `docker compose ps`: the one-shot services (the migrations, the seed) have exited, every other one is healthy |
-| You want real agents | Put an `ANTHROPIC_API_KEY` or `OPENAI_API_KEY` in `.env` and start again; see the [local install in depth](https://github.com/VargaFoundation/choregos/blob/v0.26.0/docs/getting-started.md#fakes-mode-and-a-real-model) |
+| You want real agents | Put an `ANTHROPIC_API_KEY` or `OPENAI_API_KEY` in `.env` and start again; see the [local install in depth](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/getting-started.md#fakes-mode-and-a-real-model) |
 
 This install is for a laptop only. With a model key, the workers start agent containers through the
 Docker socket, which amounts to root on the machine. To stop everything and delete the data:
@@ -209,5 +209,5 @@ production from measured facts, and the work item ends in **Verified in producti
 - [Concepts](concepts.md), if a word on this page was new.
 - [Work items](use/work-items.md) and [Decisions](use/decisions.md), for the daily work.
 - [Workflows](use/workflows.md), to change the process the template brought.
-- The [template's own page](https://github.com/VargaFoundation/choregos/blob/v0.26.0/templates/github-software-delivery/README.md), for every detail of its
+- The [template's own page](https://github.com/VargaFoundation/choregos/blob/v0.26.1/templates/github-software-delivery/README.md), for every detail of its
   three workflows.

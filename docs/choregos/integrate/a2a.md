@@ -426,4 +426,4 @@ Every code the door can answer is in [Error codes](../reference/errors.md#the-a2
 - [Open work items from any system that sends JSON](triggers.md), when the sender cannot speak A2A.
 - [The REST API](rest.md), for your own scripts with a full-access token.
 - The design decision behind the door:
-  [ADR 0078](https://github.com/VargaFoundation/choregos/blob/v0.26.0/docs/adr/0078-governed-workflows-as-a2a-skills.md).
+  [ADR 0078](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/adr/0078-governed-workflows-as-a2a-skills.md).

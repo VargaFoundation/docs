@@ -128,7 +128,7 @@ choregos plugin index plugins/ -o index.yaml --git-url https://github.com/acme/a
 ```
 
 Declaring the source and its trust is your operator's part:
-[plugin sources](https://github.com/VargaFoundation/choregos/blob/v0.26.0/docs/plugins.md#sources-and-trust).
+[plugin sources](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/plugins.md#sources-and-trust).
 
 ## 4. Install it in an organisation
 
@@ -165,5 +165,5 @@ it in **Plugins**.
 
 - A plugin can also ship a conversational assistant: [Ship an assistant in a plugin](assistants.md).
 - The full plugin format, servers and trust:
-  [plugins reference](https://github.com/VargaFoundation/choregos/blob/v0.26.0/docs/plugins.md).
+  [plugins reference](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/plugins.md).
 - [CLI reference](../cli/reference.md#choregos-plugin) for every option of `choregos plugin`.

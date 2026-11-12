@@ -205,7 +205,7 @@ result is checked like any agent's.
 ### 1. Write it
 
 ```shell
-pip install ./choregos_agent_sdk-0.26.0-py3-none-any.whl ./choregos_contracts-0.26.0-py3-none-any.whl
+pip install ./choregos_agent_sdk-0.26.1-py3-none-any.whl ./choregos_contracts-0.26.1-py3-none-any.whl
 ```
 
 The SDK's wheel and the contracts it validates against are attached to each
@@ -254,14 +254,14 @@ Use `tools.call`, never the run's MCP addresses with another client, and give a 
 `ctx.llm.openai_client()` or `ctx.llm.http_client()` rather than a client built from the URL and key:
 both bypasses work, and both skip the runner's checks and the turn count. LangGraph, the OpenAI Agents
 SDK and Pydantic AI have bridges in the SDK; the
-[code agents reference](https://github.com/VargaFoundation/choregos/blob/v0.26.0/docs/code-agents.md#bring-your-framework)
+[code agents reference](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/code-agents.md#bring-your-framework)
 shows each.
 
 ### 2. Ship it as an image
 
 1. Build an image **from the runner image** of your instance's version, with your agent in its own
    virtualenv (example:
-   [`examples/agents/plain/Dockerfile`](https://github.com/VargaFoundation/choregos/blob/v0.26.0/examples/agents/plain/Dockerfile)).
+   [`examples/agents/plain/Dockerfile`](https://github.com/VargaFoundation/choregos/blob/v0.26.1/examples/agents/plain/Dockerfile)).
 2. Push it and give its digest to your operator, who names it in the platform's agent images
    (`global.images.agents` in the Helm values). An image is never named by a workflow or an agent, only
    by the operator, pinned by digest.
@@ -300,7 +300,7 @@ operator gave. The platform's conformance suite checks a code agent the same way
   digest is resolved and pinned at publication) or upload a zip the platform builds. The runner gives
   the container the run's model, its tools and the network on loopback addresses, never a credential.
   Console: **New agent**, *Or a hosted agent (image or zip)*. See the
-  [hosted agents reference](https://github.com/VargaFoundation/choregos/blob/v0.26.0/docs/hosted-agents.md).
+  [hosted agents reference](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/hosted-agents.md).
 
 ## What can go wrong
 
