@@ -9,7 +9,7 @@ sidebar_position: 7
 Choregos assumes **an agent may attempt anything**, by mistake or by injection, and that a member of
 one organisation will try to read another's. This page is the digest; the full model, with what is
 not guarded, is the
-[security reference](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/security.md).
+[security reference](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/security.md).
 
 ## Organisations are isolated in the database
 
@@ -70,5 +70,5 @@ signature (`global.images.hostedCosign: enforce`).
 
 ## Reporting a vulnerability
 
-Follow [SECURITY.md](https://github.com/VargaFoundation/choregos/blob/v0.26.1/SECURITY.md); do not
+Follow [SECURITY.md](https://github.com/VargaFoundation/choregos/blob/v0.27.0/SECURITY.md); do not
 open a public issue.

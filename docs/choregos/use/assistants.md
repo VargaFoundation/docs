@@ -131,7 +131,7 @@ A delegation is bounded:
 
 :::caution Your organisation may not offer delegated tasks yet
 The standing delegation is delivered, but its decision record
-([ADR 0137](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/adr/0137-a-standing-read-only-delegation.md)) is still **proposed**. An organisation
+([ADR 0137](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/adr/0137-a-standing-read-only-delegation.md)) is still **proposed**. An organisation
 should not offer delegated tasks until its works council has given its opinion and its data protection
 impact assessment is done. If you see no **Review and agree** button, or your administrator tells you
 the feature is off, that is why. Tasks that read only public sources, and tasks you run yourself, do
