@@ -5,8 +5,8 @@
 <meta name="generator" content="Docusaurus v3.8.1">
 <title data-rh="true">Build an agent | Varga Foundation</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://docs.varga.foundation/img/Image2.png"><meta data-rh="true" name="twitter:image" content="https://docs.varga.foundation/img/Image2.png"><meta data-rh="true" property="og:url" content="https://docs.varga.foundation/choregos/build/agents"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Build an agent | Varga Foundation"><meta data-rh="true" name="description" content="From nothing to a published, governed agent used in a workflow, as a prompt agent, a coding agent, or a Python program with the agent SDK."><meta data-rh="true" property="og:description" content="From nothing to a published, governed agent used in a workflow, as a prompt agent, a coding agent, or a Python program with the agent SDK."><link data-rh="true" rel="icon" href="/img/favicon.png"><link data-rh="true" rel="canonical" href="https://docs.varga.foundation/choregos/build/agents"><link data-rh="true" rel="alternate" href="https://docs.varga.foundation/choregos/build/agents" hreflang="en"><link data-rh="true" rel="alternate" href="https://docs.varga.foundation/choregos/build/agents" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Choregos","item":"https://docs.varga.foundation/choregos/"},{"@type":"ListItem","position":2,"name":"Build agents","item":"https://docs.varga.foundation/category/build-agents"},{"@type":"ListItem","position":3,"name":"Build an agent","item":"https://docs.varga.foundation/choregos/build/agents"}]}</script><link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="Varga Foundation RSS Feed">
 <link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="Varga Foundation Atom Feed"><link rel="stylesheet" href="/assets/css/styles.5c00959a.css">
-<script src="/assets/js/runtime~main.0f29c5d5.js" defer="defer"></script>
-<script src="/assets/js/main.f6f32fa5.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.1ae6856f.js" defer="defer"></script>
+<script src="/assets/js/main.9bff7870.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;"><defs>
@@ -72,7 +72,7 @@ guarantees. The runner starts your program, every tool call and every file it wr
 permission first, every model call counts against the step&#x27;s <code>max_turns</code> and the run&#x27;s budget, and its
 result is checked like any agent&#x27;s.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="1-write-it">1. Write it<a href="#1-write-it" class="hash-link" aria-label="Direct link to 1. Write it" title="Direct link to 1. Write it">​</a></h3>
-<div class="language-shell codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-shell codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">pip install ./choregos_agent_sdk-0.26.1-py3-none-any.whl ./choregos_contracts-0.26.1-py3-none-any.whl</span><br></span></code></pre></div></div>
+<div class="language-shell codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-shell codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">pip install ./choregos_agent_sdk-0.27.0-py3-none-any.whl ./choregos_contracts-0.27.0-py3-none-any.whl</span><br></span></code></pre></div></div>
 <p>The SDK&#x27;s wheel and the contracts it validates against are attached to each
 <a href="https://github.com/VargaFoundation/choregos/releases" target="_blank" rel="noopener noreferrer">GitHub release</a>; take the version of your
 instance.</p>
@@ -85,13 +85,13 @@ limit <code>max_turns</code>.</p>
 <code>ctx.llm.openai_client()</code> or <code>ctx.llm.http_client()</code> rather than a client built from the URL and key:
 both bypasses work, and both skip the runner&#x27;s checks and the turn count. LangGraph, the OpenAI Agents
 SDK and Pydantic AI have bridges in the SDK; the
-<a href="https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/code-agents.md#bring-your-framework" target="_blank" rel="noopener noreferrer">code agents reference</a>
+<a href="https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/code-agents.md#bring-your-framework" target="_blank" rel="noopener noreferrer">code agents reference</a>
 shows each.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="2-ship-it-as-an-image">2. Ship it as an image<a href="#2-ship-it-as-an-image" class="hash-link" aria-label="Direct link to 2. Ship it as an image" title="Direct link to 2. Ship it as an image">​</a></h3>
 <ol>
 <li>Build an image <strong>from the runner image</strong> of your instance&#x27;s version, with your agent in its own
 virtualenv (example:
-<a href="https://github.com/VargaFoundation/choregos/blob/v0.26.1/examples/agents/plain/Dockerfile" target="_blank" rel="noopener noreferrer"><code>examples/agents/plain/Dockerfile</code></a>).</li>
+<a href="https://github.com/VargaFoundation/choregos/blob/v0.27.0/examples/agents/plain/Dockerfile" target="_blank" rel="noopener noreferrer"><code>examples/agents/plain/Dockerfile</code></a>).</li>
 <li>Push it and give its digest to your operator, who names it in the platform&#x27;s agent images
 (<code>global.images.agents</code> in the Helm values). An image is never named by a workflow or an agent, only
 by the operator, pinned by digest.</li>
@@ -114,7 +114,7 @@ call. It runs in sessions, never as a workflow step. Console: <strong>New agent<
 digest is resolved and pinned at publication) or upload a zip the platform builds. The runner gives
 the container the run&#x27;s model, its tools and the network on loopback addresses, never a credential.
 Console: <strong>New agent</strong>, <em>Or a hosted agent (image or zip)</em>. See the
-<a href="https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/hosted-agents.md" target="_blank" rel="noopener noreferrer">hosted agents reference</a>.</li>
+<a href="https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/hosted-agents.md" target="_blank" rel="noopener noreferrer">hosted agents reference</a>.</li>
 </ul>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="what-can-go-wrong">What can go wrong<a href="#what-can-go-wrong" class="hash-link" aria-label="Direct link to What can go wrong" title="Direct link to What can go wrong">​</a></h2>
 <table><thead><tr><th>Symptom</th><th>Why</th><th>Fix</th></tr></thead><tbody><tr><td><code>422</code> when creating</td><td>a key the API does not know, a <code>backend</code> with a <code>prompt</code> runtime, a reserved slug (<code>new</code>)</td><td>read <code>errors</code>: each names the key</td></tr><tr><td>the workflow is refused on publication</td><td>the actor names an agent that does not exist, or names both <code>agent:</code> and a <code>backend:</code> the agent does not allow</td><td>create the agent first; let the agent decide its backend</td></tr><tr><td>the step fails <code>max_turns</code></td><td>the agent needed more calls than <code>limits.max_turns</code></td><td>raise the limit in a new version, or narrow the task</td></tr><tr><td>the step fails <code>budget</code></td><td>the run spent <code>budget.run_usd</code>, or the day&#x27;s budget is spent</td><td>raise it in a new version, or wait for the next day</td></tr><tr><td>a tool call answers <code>404</code></td><td>the agent&#x27;s version does not grant the tool, or the tool is closed</td><td>grant it (<a href="/choregos/build/tools">Tools</a>)</td></tr><tr><td>the step stops with a host refused</td><td>the project&#x27;s network does not allow a host the agent needs</td><td>allow it in the project (<a href="/choregos/build/tools#network">Tools</a>)</td></tr></tbody></table>

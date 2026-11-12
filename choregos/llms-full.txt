@@ -105,9 +105,9 @@ shows which edition runs under **About**, at the bottom of the sidebar.
 ### Where the deep detail lives
 
 These pages are written for people who use Choregos. The complete reference, written for the people
-who run and extend it, is in the repository: the [reference documentation](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/README.md), the
-[concepts in depth](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/concepts.md), [usage in depth](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/usage.md), [security](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/security.md) and the
-[architecture decisions](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/adr/README.md). Where a page and the code disagree, the code is right and
+who run and extend it, is in the repository: the [reference documentation](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/README.md), the
+[concepts in depth](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/concepts.md), [usage in depth](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/usage.md), [security](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/security.md) and the
+[architecture decisions](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/adr/README.md). Where a page and the code disagree, the code is right and
 the page is a bug: [report it](https://github.com/VargaFoundation/choregos/issues).
 
 ---
@@ -247,7 +247,7 @@ agent. A few examples:
 | `docs_updated` | a change to the code also changes the documentation |
 
 **A gate that cannot see what it must check refuses.** A guarantee that passes blindly is worse than
-none. The [workflow reference](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/concepts.md#gate) lists every gate.
+none. The [workflow reference](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/concepts.md#gate) lists every gate.
 
 ### Agents
 
@@ -373,8 +373,8 @@ write, forbidden commands, the hosts a run may reach, release trains. An organis
 ### Go further
 
 - [Get started](get-started.md): try it, then run a first project.
-- [Concepts in depth](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/concepts.md), the reference page these concepts come from.
-- [Where Choregos sits](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/positioning.md) against other agent platforms, runtimes and tool brokers.
+- [Concepts in depth](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/concepts.md), the reference page these concepts come from.
+- [Where Choregos sits](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/positioning.md) against other agent platforms, runtimes and tool brokers.
 
 ---
 
@@ -436,7 +436,7 @@ from a template, connect its repository, open an issue, let agents work, approve
 | :-- | :-- |
 | A port is already in use | Set `CHOREGOS_PORT_WEB` or `CHOREGOS_PORT_API` in `.env`, then start again |
 | The console does not answer after several minutes | Run `docker compose ps`: the one-shot services (the migrations, the seed) have exited, every other one is healthy |
-| You want real agents | Put an `ANTHROPIC_API_KEY` or `OPENAI_API_KEY` in `.env` and start again; see the [local install in depth](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/getting-started.md#fakes-mode-and-a-real-model) |
+| You want real agents | Put an `ANTHROPIC_API_KEY` or `OPENAI_API_KEY` in `.env` and start again; see the [local install in depth](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/getting-started.md#fakes-mode-and-a-real-model) |
 
 This install is for a laptop only. With a model key, the workers start agent containers through the
 Docker socket, which amounts to root on the machine. To stop everything and delete the data:
@@ -583,7 +583,7 @@ production from measured facts, and the work item ends in **Verified in producti
 - [Concepts](concepts.md), if a word on this page was new.
 - [Work items](use/work-items.md) and [Decisions](use/decisions.md), for the daily work.
 - [Workflows](use/workflows.md), to change the process the template brought.
-- The [template's own page](https://github.com/VargaFoundation/choregos/blob/v0.26.1/templates/github-software-delivery/README.md), for every detail of its
+- The [template's own page](https://github.com/VargaFoundation/choregos/blob/v0.27.0/templates/github-software-delivery/README.md), for every detail of its
   three workflows.
 
 ---
@@ -715,7 +715,7 @@ A delegation is bounded:
 
 :::caution Your organisation may not offer delegated tasks yet
 The standing delegation is delivered, but its decision record
-([ADR 0137](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/adr/0137-a-standing-read-only-delegation.md)) is still **proposed**. An organisation
+([ADR 0137](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/adr/0137-a-standing-read-only-delegation.md)) is still **proposed**. An organisation
 should not offer delegated tasks until its works council has given its opinion and its data protection
 impact assessment is done. If you see no **Review and agree** button, or your administrator tells you
 the feature is off, that is why. Tasks that read only public sources, and tasks you run yourself, do
@@ -901,9 +901,9 @@ always wins. **Admin › Network** shows it with the hosts Choregos itself calls
 
 ### Go further
 
-- [Where the money goes](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/concepts.md#where-the-money-goes), in depth.
-- [Write the policy](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/usage.md#4-write-the-policy): every key of the policy and the ceiling.
-- [Security](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/security.md): what bounds a run, and what is not a wall.
+- [Where the money goes](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/concepts.md#where-the-money-goes), in depth.
+- [Write the policy](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/usage.md#4-write-the-policy): every key of the policy and the ceiling.
+- [Security](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/security.md): what bounds a run, and what is not a wall.
 
 ---
 
@@ -1002,11 +1002,11 @@ continue**; anyone else presses **Ask an administrator**, and the request waits 
 ### How to connect a given system
 
 Each connector type has a step-by-step page: what to create on the other side, the permissions to give,
-and the errors you may meet. For example: [GitHub](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/procedures/connector.scm.github.md),
-[Jira](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/procedures/connector.tracker.jira.md), [Argo CD](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/procedures/connector.cd.argocd.md),
-[Slack](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/procedures/connector.notify.slack.md),
-[Confluence](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/procedures/connector.documents.confluence.md),
-[Microsoft Entra ID](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/procedures/connector.identity.entra.md). The [full list](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/procedures/README.md)
+and the errors you may meet. For example: [GitHub](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/procedures/connector.scm.github.md),
+[Jira](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/procedures/connector.tracker.jira.md), [Argo CD](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/procedures/connector.cd.argocd.md),
+[Slack](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/procedures/connector.notify.slack.md),
+[Confluence](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/procedures/connector.documents.confluence.md),
+[Microsoft Entra ID](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/procedures/connector.identity.entra.md). The [full list](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/procedures/README.md)
 is generated from the platform's own procedures.
 
 ### What can go wrong
@@ -1023,7 +1023,7 @@ is generated from the platform's own procedures.
 
 - [Projects and members](projects-and-members.md): the readiness list.
 - [Knowledge](knowledge.md): document sources that sync.
-- [Connectors](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/usage.md#connectors), in depth.
+- [Connectors](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/usage.md#connectors), in depth.
 
 ---
 
@@ -1175,7 +1175,7 @@ console or with their own token.
 
 - [Work items](work-items.md): what happens after your decision.
 - [Workflows](workflows.md): where a workflow names who decides.
-- [Governed actions](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/usage.md#4-bis-governed-actions), in depth.
+- [Governed actions](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/usage.md#4-bis-governed-actions), in depth.
 
 ---
 
@@ -1351,7 +1351,7 @@ not list are left alone. These commands need an organisation admin's token.
 
 ### Go further
 
-- [Knowledge bases](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/usage.md#knowledge-bases), in depth: conversion, sources, distillation.
+- [Knowledge bases](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/usage.md#knowledge-bases), in depth: conversion, sources, distillation.
 - [Skills](../build/skills.md): what a distilled base becomes.
 
 ---
@@ -1524,7 +1524,7 @@ never takes a decision. See [A2A](../integrate/a2a.md).
 
 - [Connectors](connectors.md): connect the tracker, the repository and the other systems.
 - [Workflows](workflows.md): the process the project follows.
-- [Project settings and readiness](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/usage.md#project-settings-and-readiness), in depth.
+- [Project settings and readiness](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/usage.md#project-settings-and-readiness), in depth.
 
 ---
 
@@ -1691,7 +1691,7 @@ finding turned into a ticket becomes a new work item, the others are marked dupl
 
 - [Decisions](decisions.md): approve, send back, answer, complete a task.
 - [Budgets and policies](budgets-and-policies.md): what bounds a run.
-- [Let a ticket run](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/usage.md#5-let-a-ticket-run) and [Read what came out](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/usage.md#6-read-what-came-out), in depth.
+- [Let a ticket run](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/usage.md#5-let-a-ticket-run) and [Read what came out](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/usage.md#6-read-what-came-out), in depth.
 
 ---
 
@@ -1920,8 +1920,8 @@ A work item that landed in the wrong workflow can be moved: open it and press **
 ### Go further
 
 - [Work items](work-items.md): what happens to a request inside a workflow.
-- [Write the workflow](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/usage.md#3-write-the-workflow), in depth: fan-outs, schedules, release trains.
-- [Gates](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/concepts.md#gate): every gate and its parameters.
+- [Write the workflow](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/usage.md#3-write-the-workflow), in depth: fan-outs, schedules, release trains.
+- [Gates](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/concepts.md#gate): every gate and its parameters.
 
 ---
 
@@ -2126,7 +2126,7 @@ result is checked like any agent's.
 #### 1. Write it
 
 ```shell
-pip install ./choregos_agent_sdk-0.26.1-py3-none-any.whl ./choregos_contracts-0.26.1-py3-none-any.whl
+pip install ./choregos_agent_sdk-0.27.0-py3-none-any.whl ./choregos_contracts-0.27.0-py3-none-any.whl
 ```
 
 The SDK's wheel and the contracts it validates against are attached to each
@@ -2175,14 +2175,14 @@ Use `tools.call`, never the run's MCP addresses with another client, and give a 
 `ctx.llm.openai_client()` or `ctx.llm.http_client()` rather than a client built from the URL and key:
 both bypasses work, and both skip the runner's checks and the turn count. LangGraph, the OpenAI Agents
 SDK and Pydantic AI have bridges in the SDK; the
-[code agents reference](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/code-agents.md#bring-your-framework)
+[code agents reference](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/code-agents.md#bring-your-framework)
 shows each.
 
 #### 2. Ship it as an image
 
 1. Build an image **from the runner image** of your instance's version, with your agent in its own
    virtualenv (example:
-   [`examples/agents/plain/Dockerfile`](https://github.com/VargaFoundation/choregos/blob/v0.26.1/examples/agents/plain/Dockerfile)).
+   [`examples/agents/plain/Dockerfile`](https://github.com/VargaFoundation/choregos/blob/v0.27.0/examples/agents/plain/Dockerfile)).
 2. Push it and give its digest to your operator, who names it in the platform's agent images
    (`global.images.agents` in the Helm values). An image is never named by a workflow or an agent, only
    by the operator, pinned by digest.
@@ -2221,7 +2221,7 @@ operator gave. The platform's conformance suite checks a code agent the same way
   digest is resolved and pinned at publication) or upload a zip the platform builds. The runner gives
   the container the run's model, its tools and the network on loopback addresses, never a credential.
   Console: **New agent**, *Or a hosted agent (image or zip)*. See the
-  [hosted agents reference](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/hosted-agents.md).
+  [hosted agents reference](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/hosted-agents.md).
 
 ### What can go wrong
 
@@ -2381,6 +2381,16 @@ tools:
   assistant says what is missing.
 - The source decides what a person may read, not Choregos.
 
+#### Upgrading a plugin that changes a need
+
+When a new version of your plugin changes `tools`, each installation follows it. A need you drop has its
+binding switched off and kept for the audit. A need you add is unbound: the installation shows it as
+something to do. A need whose operations, `access` or `identity` changed is checked again against the
+connector it is bound to; if the connector still fits, nothing is asked of the owners, if not the binding is
+switched off and the installation says why. Flipping `required` changes what the installation needs to be
+ready. The owners are told by email when the installation has an email delivery. Keep a need's name when
+you change it, since a new name is a new need.
+
 ### 3. Memory spaces
 
 ```text
@@ -2433,9 +2443,25 @@ tasks:
 ```
 
 A task runs a workflow of the plugin, in the subscriber's personal space. A trigger is `on_demand`,
-`schedule` (a cron in the person's time zone) or `poll` (a cron that calls one read operation and starts
-the workflow only when a condition on its result holds). `deliver` is `inbox`, `email`, `teams` or
-`webhook`.
+`schedule` (a cron in the person's time zone), `poll` (a cron that calls one read operation and starts
+the workflow only when a condition on its result holds) or `trigger` (a system sends an event for one
+person). `deliver` is `inbox`, `email`, `teams` or `webhook`. `teams` posts a message card to a Microsoft Teams
+incoming webhook or Workflows URL that the installation's manager seals once; the same channel hears the
+installation's owners notices. The URL is never shown again, and the organisation opens its host in the
+egress allowlist first.
+
+```text
+triggers: [{ kind: trigger, subscriber: /attendee/email, idempotency: /event/id }]
+```
+
+`subscriber` is the JSON pointer, in the event, of the email of the person it is for; it is matched against the
+people subscribed to the task. An event that names nobody, several people, or nobody subscribed is refused and
+journaled for the installation's manager, and the same event id never starts the task twice. The sender signs
+the event with a key the manager reads on the installation page (card **Task event door**: type the task's name,
+then **Show the URL and key**; the key is a secret, shown again on each click and recorded in the audit log, never
+the key itself). The card **Task events** lists what each event decided, newest first: started, duplicate or
+refused, with a summary and the work item. The card **Microsoft Teams** shows whether the channel is configured and
+its version, seals a new webhook URL and removes it; the URL is never displayed.
 
 A task that reads with a person's identity while they are away needs `delegation: read_only` and lists
 the `needs` it reads; the person agrees to that exact list. A delegated task never calls a write need.
@@ -2513,7 +2539,8 @@ Each refusal names the file and the path in it.
   that is not `owner_only`; a subject resolver that is not a need marked `subject_resolver: true`.
 - `personal_data: true` without a conversation retention and an erasure mode.
 - A task that names a need or an operation the assistant does not declare, or a `read_only` task without
-  its `needs`; a poll without `cron`, `operation` and `when`.
+  its `needs`; a poll without `cron`, `operation` and `when`; a
+  `trigger` without a `subscriber` pointer.
 - A workflow, seed folder, or suite file that is not in the plugin, or a workflow that is not valid.
 - A suite that evaluates another agent than the assistant's, repeats a case name, or names a tool that
   is not a `need__operation` of the assistant.
@@ -2524,11 +2551,11 @@ Each refusal names the file and the path in it.
 ### Go further
 
 - Install it and bind its needs: sidebar **Assistants**, then **Manage installations** (organisation
-  administrators). The full contract is in the [plugins reference](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/plugins.md#assistants).
+  administrators). The full contract is in the [plugins reference](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/plugins.md#assistants).
 - [Use an assistant](../use/assistants.md), as the people you ship it to see it.
 - [Connect it to claude.ai or embed it](../integrate/assistants.md).
-- The decisions: [ADR 0133](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/adr/0133-a-plugin-ships-an-assistant-an-organisation-installs-it-for-an-audience.md)
-  and [ADR 0140](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/adr/0140-conversation-evals-and-user-feedback.md).
+- The decisions: [ADR 0133](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/adr/0133-a-plugin-ships-an-assistant-an-organisation-installs-it-for-an-audience.md)
+  and [ADR 0140](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/adr/0140-conversation-evals-and-user-feedback.md).
 
 ---
 
@@ -2656,7 +2683,7 @@ choregos plugin index plugins/ -o index.yaml --git-url https://github.com/acme/a
 ```
 
 Declaring the source and its trust is your operator's part:
-[plugin sources](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/plugins.md#sources-and-trust).
+[plugin sources](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/plugins.md#sources-and-trust).
 
 ### 4. Install it in an organisation
 
@@ -2693,7 +2720,7 @@ it in **Plugins**.
 
 - A plugin can also ship a conversational assistant: [Ship an assistant in a plugin](assistants.md).
 - The full plugin format, servers and trust:
-  [plugins reference](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/plugins.md).
+  [plugins reference](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/plugins.md).
 - [CLI reference](../cli/reference.md#choregos-plugin) for every option of `choregos plugin`.
 
 ---
@@ -2984,7 +3011,7 @@ with the layer that decided.
 
 - [Write a skill](skills.md): knowledge, where a tool is an action.
 - Bringing an organisation's own MCP gateway:
-  [the gateway reference](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/integrations.md#your-organisations-mcp-gateway-adr-0105).
+  [the gateway reference](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/integrations.md#your-organisations-mcp-gateway-adr-0105).
 - [Host: security model](../host/security.md), for what the sandbox and the egress proxy enforce.
 
 ---
@@ -3411,7 +3438,7 @@ Every code the door can answer is in [Error codes](../reference/errors.md#the-a2
 - [Open work items from any system that sends JSON](triggers.md), when the sender cannot speak A2A.
 - [The REST API](rest.md), for your own scripts with a full-access token.
 - The design decision behind the door:
-  [ADR 0078](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/adr/0078-governed-workflows-as-a2a-skills.md).
+  [ADR 0078](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/adr/0078-governed-workflows-as-a2a-skills.md).
 
 ---
 
@@ -3555,7 +3582,7 @@ the same conversation in the console under **Assistants**, **My conversations**.
 
 - [Connect your AI assistant (MCP)](mcp.md) for the door, tokens and limits.
 - [Ship an assistant in a plugin](../build/assistants.md) to declare its prompts and context schema.
-- The full contract: [integrations reference](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/integrations.md).
+- The full contract: [integrations reference](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/integrations.md).
 
 ---
 
@@ -4062,15 +4089,15 @@ senders that sign their webhooks, such as many monitoring and ticketing tools.
 - **From your tracker:** an issue labelled `agent-ready` starts in Choregos; *start rules* start other
   items, for instance a Jira bug of a given type or an issue carrying two labels. They are edited as
   JSON in the same **Triggers** card, under *Tracker start rules (JSON)*
-  ([usage reference](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/usage.md#tracker-items-that-start-without-agent-ready)).
+  ([usage reference](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/usage.md#tracker-items-that-start-without-agent-ready)).
 - **On a schedule:** a project can open a work item on a cron schedule, for a weekly dependency
-  update or a nightly check ([usage reference](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/usage.md#work-items-on-a-schedule)).
+  update or a nightly check ([usage reference](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/usage.md#work-items-on-a-schedule)).
 
 ### Go further
 
 - [Start a workflow over A2A](a2a.md), when the caller wants to follow the work and read its result.
 - The design decision:
-  [ADR 0113](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/adr/0113-a-workflow-starts-from-a-trigger.md).
+  [ADR 0113](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/adr/0113-a-workflow-starts-from-a-trigger.md).
 
 ---
 
@@ -4156,13 +4183,13 @@ choregos self update
 
 This works on every version, and is the way on 0.25.3 and earlier. It needs Python 3.12 and
 [uv](https://docs.astral.sh/uv/). Download three wheels of your instance's version from its
-[GitHub release](https://github.com/VargaFoundation/choregos/releases) (here 0.26.1):
-`choregos_cli-0.26.1-py3-none-any.whl`, `choregos_core-0.26.1-py3-none-any.whl` and
-`choregos_contracts-0.26.1-py3-none-any.whl`. Then:
+[GitHub release](https://github.com/VargaFoundation/choregos/releases) (here 0.27.0):
+`choregos_cli-0.27.0-py3-none-any.whl`, `choregos_core-0.27.0-py3-none-any.whl` and
+`choregos_contracts-0.27.0-py3-none-any.whl`. Then:
 
 ```shell
-uv tool install --python 3.12 ./choregos_cli-0.26.1-py3-none-any.whl \
-  --with ./choregos_core-0.26.1-py3-none-any.whl --with ./choregos_contracts-0.26.1-py3-none-any.whl
+uv tool install --python 3.12 ./choregos_cli-0.27.0-py3-none-any.whl \
+  --with ./choregos_core-0.27.0-py3-none-any.whl --with ./choregos_contracts-0.27.0-py3-none-any.whl
 ```
 
 To upgrade, install the next version's
@@ -5139,9 +5166,9 @@ Temporal and in the platform database disagree is stuck or replays a step.
 
 1. Restore PostgreSQL into a **new** cluster at the chosen instant, then point
    `global.database.secretRef` at it:
-   [PostgreSQL restore runbook](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/runbooks/postgres-restore.md).
+   [PostgreSQL restore runbook](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/runbooks/postgres-restore.md).
 2. Restore Temporal's database to the same instant:
-   [Temporal backup runbook](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/runbooks/temporal-backup.md).
+   [Temporal backup runbook](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/runbooks/temporal-backup.md).
 3. Restart the API and the workers, then list the workflows Temporal runs and compare them with the
    work items the console shows in progress. The Temporal runbook says how to start again a work item
    that lost its workflow.
@@ -5149,7 +5176,7 @@ Temporal and in the platform database disagree is stuck or replays a step.
 ### Purging
 
 The database grows with runs, events and transcripts; the
-[purge runbook](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/runbooks/purge-runs.md)
+[purge runbook](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/runbooks/purge-runs.md)
 says what can go, and keeps what the audit needs.
 
 ---
@@ -5228,7 +5255,7 @@ global:
 The door publishes `/.well-known/oauth-protected-resource/mcp`. For claude.ai and ChatGPT, it and
 `/mcp` must be reachable on a public HTTPS address. A person must have signed in to the console once
 before the door knows them. Setting up Keycloak for it:
-[runbook](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/runbooks/keycloak-mcp.md).
+[runbook](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/runbooks/keycloak-mcp.md).
 
 ### What can go wrong
 
@@ -5241,7 +5268,7 @@ before the door knows them. Setting up Keycloak for it:
 | `401 invalid_token` at the MCP door with OAuth | a wrong audience or issuer, or keys the provider no longer publishes |
 
 Everything about identity, including moving to a new provider and per-organisation providers:
-[deployment reference, Identity](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/deployment.md#identity-what-the-oidc-provider-must-give-us).
+[deployment reference, Identity](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/deployment.md#identity-what-the-oidc-provider-must-give-us).
 
 ---
 
@@ -5249,7 +5276,7 @@ Everything about identity, including moving to a new provider and per-organisati
 
 These pages are for the people who run a Choregos instance on Kubernetes. They are a digest: each one
 says what to do and links to the full
-[deployment reference](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/deployment.md) for
+[deployment reference](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/deployment.md) for
 every value and every edge case.
 
 **What you will be able to do:** install an instance with Helm, connect it to your identity provider,
@@ -5367,7 +5394,7 @@ For a single-node bench with every dependency embedded, start from the chart's
 
 ```shell
 helm upgrade --install choregos oci://ghcr.io/vargafoundation/charts/choregos \
-  --version 0.26.1 --namespace choregos --create-namespace -f my-values.yaml
+  --version 0.27.0 --namespace choregos --create-namespace -f my-values.yaml
 ```
 
 The chart's version is the product's version; the images
@@ -5412,7 +5439,7 @@ choregos login --api-url https://choregos.example.com --token chg_... --org acme
 | the first run that writes a file fails | the object store has no credentials or a wrong endpoint |
 
 The full list of values: the
-[deployment reference](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/deployment.md).
+[deployment reference](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/deployment.md).
 
 ---
 
@@ -5423,20 +5450,20 @@ repository, next to the alerts that link to them.
 
 | Symptom | Runbook |
 | --- | --- |
-| the API answers 5xx | [The API returns 5xx](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/runbooks/api-5xx.md) |
-| a run stays `Pending` or never ends | [A run stays Pending or never ends](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/runbooks/stuck-run.md) |
-| a ticket labelled for an agent did not start | [An agent-ready ticket did not start](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/runbooks/lost-webhook.md) |
-| a release train is frozen | [A train is frozen and nothing departs](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/runbooks/train-frozen.md) |
-| a node was lost | [Losing a node](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/runbooks/node-loss.md) |
-| the database must be restored | [Restoring PostgreSQL](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/runbooks/postgres-restore.md) |
-| Temporal must be backed up, restored or upgraded | [Temporal: what to back up](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/runbooks/temporal-backup.md), [Upgrading Temporal](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/runbooks/temporal-upgrade.md) |
-| a secret must be rotated | [Rotating secrets](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/runbooks/secret-rotation.md) |
-| the database keeps growing | [Purging runs, events and transcripts](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/runbooks/purge-runs.md) |
-| the MCP gateway is down or refusing | [The MCP gateway is down](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/runbooks/mcp-gateway-down.md) |
-| claude.ai cannot sign in to the MCP door | [Signing in to the MCP door with Keycloak](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/runbooks/keycloak-mcp.md) |
-| the memory service lost its quorum | [Ecphoria lost its Raft quorum](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/runbooks/ecphoria-quorum.md) |
+| the API answers 5xx | [The API returns 5xx](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/runbooks/api-5xx.md) |
+| a run stays `Pending` or never ends | [A run stays Pending or never ends](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/runbooks/stuck-run.md) |
+| a ticket labelled for an agent did not start | [An agent-ready ticket did not start](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/runbooks/lost-webhook.md) |
+| a release train is frozen | [A train is frozen and nothing departs](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/runbooks/train-frozen.md) |
+| a node was lost | [Losing a node](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/runbooks/node-loss.md) |
+| the database must be restored | [Restoring PostgreSQL](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/runbooks/postgres-restore.md) |
+| Temporal must be backed up, restored or upgraded | [Temporal: what to back up](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/runbooks/temporal-backup.md), [Upgrading Temporal](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/runbooks/temporal-upgrade.md) |
+| a secret must be rotated | [Rotating secrets](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/runbooks/secret-rotation.md) |
+| the database keeps growing | [Purging runs, events and transcripts](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/runbooks/purge-runs.md) |
+| the MCP gateway is down or refusing | [The MCP gateway is down](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/runbooks/mcp-gateway-down.md) |
+| claude.ai cannot sign in to the MCP door | [Signing in to the MCP door with Keycloak](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/runbooks/keycloak-mcp.md) |
+| the memory service lost its quorum | [Ecphoria lost its Raft quorum](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/runbooks/ecphoria-quorum.md) |
 
-The full index: [runbooks](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/runbooks/README.md).
+The full index: [runbooks](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/runbooks/README.md).
 
 ---
 
@@ -5504,7 +5531,7 @@ can still be restored.
   no run is in flight.
 
 The step-by-step:
-[secret rotation runbook](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/runbooks/secret-rotation.md).
+[secret rotation runbook](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/runbooks/secret-rotation.md).
 `global.devSecrets: true` generates everything for a bench; it is refused in `staging` and `prod`.
 
 ---
@@ -5514,7 +5541,7 @@ The step-by-step:
 Choregos assumes **an agent may attempt anything**, by mistake or by injection, and that a member of
 one organisation will try to read another's. This page is the digest; the full model, with what is
 not guarded, is the
-[security reference](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/security.md).
+[security reference](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/security.md).
 
 ### Organisations are isolated in the database
 
@@ -5575,7 +5602,7 @@ signature (`global.images.hostedCosign: enforce`).
 
 ### Reporting a vulnerability
 
-Follow [SECURITY.md](https://github.com/VargaFoundation/choregos/blob/v0.26.1/SECURITY.md); do not
+Follow [SECURITY.md](https://github.com/VargaFoundation/choregos/blob/v0.27.0/SECURITY.md); do not
 open a public issue.
 
 ---
@@ -5589,7 +5616,7 @@ open a public issue.
 1. **Read the release notes** of every version between yours and the target, on the
    [GitHub releases](https://github.com/VargaFoundation/choregos/releases), and the "Upgrading to …"
    sections of the
-   [deployment reference](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/deployment.md#upgrading-to-024).
+   [deployment reference](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/deployment.md#upgrading-to-024).
    A breaking change says what to rename or set before you upgrade.
 2. **Back up** the platform database and Temporal's, to the same instant ([Backups](backups.md)).
    The migrations change the schema; restoring a backup is the only way back.
@@ -5601,7 +5628,7 @@ The same command as the install, with the new version:
 
 ```shell
 helm upgrade --install choregos oci://ghcr.io/vargafoundation/charts/choregos \
-  --version 0.26.1 --namespace choregos -f my-values.yaml
+  --version 0.27.0 --namespace choregos -f my-values.yaml
 ```
 
 - The database migrations run as a Helm hook **before** the new API starts
@@ -5632,7 +5659,7 @@ completed, and the edition answer's `version` naming the new version.
 | you must go back | `helm rollback` restores the previous pods, not the previous schema: restore the database backup taken before the upgrade, then roll back |
 
 Upgrading Temporal itself has its own
-[runbook](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/runbooks/temporal-upgrade.md).
+[runbook](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/runbooks/temporal-upgrade.md).
 
 ### Upgrading to 0.26
 
@@ -5640,12 +5667,12 @@ Upgrading Temporal itself has its own
 an audience, and people converse with it in the console, from an MCP client or in an embedded frame.
 Nothing changes for an organisation that installs none. The migrations run with the chart's job as
 usual. The full table is in the
-[deployment reference](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/deployment.md#upgrading-to-026); what you do is:
+[deployment reference](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/deployment.md#upgrading-to-026); what you do is:
 
 1. **Bound the token exchange.** Set `CHOREGOS_TOKEN_EXCHANGE_AUDIENCES` to a JSON list of your sources'
    audiences (in `global.extraEnv`) before binding a need that uses the person's identity
    (`user_exchange`). Unset, a connector's editor chooses any audience the identity provider allows. See
-   the [review of the person's identity](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/security.md).
+   the [review of the person's identity](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/security.md).
 2. **Prepare the identity provider.** `user_exchange` needs token exchange (RFC 8693) enabled for the
    API's client and limited to those audiences. A standing delegation needs `offline_access` with
    bounded, revocable offline sessions. See [Identity](identity.md).
@@ -5660,7 +5687,7 @@ usual. The full table is in the
 
 :::caution Delegated tasks
 The standing delegation ships, but its decision record
-([ADR 0137](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/adr/0137-a-standing-read-only-delegation.md)) stays proposed until the works council has
+([ADR 0137](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/adr/0137-a-standing-read-only-delegation.md)) stays proposed until the works council has
 given its opinion and the data protection impact assessment is done. Do not offer delegated tasks to
 people before then.
 :::
@@ -5676,7 +5703,7 @@ Everything the console does goes through the REST API, under `/api/v1` on your i
 
 The API is described by an OpenAPI 3 document, the contract the console and the CLI are generated
 against:
-[`packages/contracts/openapi.yaml`](https://github.com/VargaFoundation/choregos/blob/v0.26.1/packages/contracts/openapi.yaml).
+[`packages/contracts/openapi.yaml`](https://github.com/VargaFoundation/choregos/blob/v0.27.0/packages/contracts/openapi.yaml).
 Take the version of your instance (`GET /api/v1/edition` says which). The MCP and A2A doors are not
 in it: they speak their own protocols ([MCP](../integrate/mcp.md), [A2A](../integrate/a2a.md)).
 
