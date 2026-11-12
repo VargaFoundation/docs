@@ -64,7 +64,7 @@ For a single-node bench with every dependency embedded, start from the chart's
 
 ```shell
 helm upgrade --install choregos oci://ghcr.io/vargafoundation/charts/choregos \
-  --version 0.26.0 --namespace choregos --create-namespace -f my-values.yaml
+  --version 0.26.1 --namespace choregos --create-namespace -f my-values.yaml
 ```
 
 The chart's version is the product's version; the images
@@ -109,4 +109,4 @@ choregos login --api-url https://choregos.example.com --token chg_... --org acme
 | the first run that writes a file fails | the object store has no credentials or a wrong endpoint |
 
 The full list of values: the
-[deployment reference](https://github.com/VargaFoundation/choregos/blob/v0.26.0/docs/deployment.md).
+[deployment reference](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/deployment.md).

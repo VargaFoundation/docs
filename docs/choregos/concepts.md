@@ -139,7 +139,7 @@ agent. A few examples:
 | `docs_updated` | a change to the code also changes the documentation |
 
 **A gate that cannot see what it must check refuses.** A guarantee that passes blindly is worse than
-none. The [workflow reference](https://github.com/VargaFoundation/choregos/blob/v0.26.0/docs/concepts.md#gate) lists every gate.
+none. The [workflow reference](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/concepts.md#gate) lists every gate.
 
 ## Agents
 
@@ -265,5 +265,5 @@ write, forbidden commands, the hosts a run may reach, release trains. An organis
 ## Go further
 
 - [Get started](get-started.md): try it, then run a first project.
-- [Concepts in depth](https://github.com/VargaFoundation/choregos/blob/v0.26.0/docs/concepts.md), the reference page these concepts come from.
-- [Where Choregos sits](https://github.com/VargaFoundation/choregos/blob/v0.26.0/docs/positioning.md) against other agent platforms, runtimes and tool brokers.
+- [Concepts in depth](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/concepts.md), the reference page these concepts come from.
+- [Where Choregos sits](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/positioning.md) against other agent platforms, runtimes and tool brokers.

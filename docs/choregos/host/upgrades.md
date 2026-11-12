@@ -13,7 +13,7 @@ sidebar_position: 5
 1. **Read the release notes** of every version between yours and the target, on the
    [GitHub releases](https://github.com/VargaFoundation/choregos/releases), and the "Upgrading to …"
    sections of the
-   [deployment reference](https://github.com/VargaFoundation/choregos/blob/v0.26.0/docs/deployment.md#upgrading-to-024).
+   [deployment reference](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/deployment.md#upgrading-to-024).
    A breaking change says what to rename or set before you upgrade.
 2. **Back up** the platform database and Temporal's, to the same instant ([Backups](backups.md)).
    The migrations change the schema; restoring a backup is the only way back.
@@ -25,7 +25,7 @@ The same command as the install, with the new version:
 
 ```shell
 helm upgrade --install choregos oci://ghcr.io/vargafoundation/charts/choregos \
-  --version 0.26.0 --namespace choregos -f my-values.yaml
+  --version 0.26.1 --namespace choregos -f my-values.yaml
 ```
 
 - The database migrations run as a Helm hook **before** the new API starts
@@ -56,7 +56,7 @@ completed, and the edition answer's `version` naming the new version.
 | you must go back | `helm rollback` restores the previous pods, not the previous schema: restore the database backup taken before the upgrade, then roll back |
 
 Upgrading Temporal itself has its own
-[runbook](https://github.com/VargaFoundation/choregos/blob/v0.26.0/docs/runbooks/temporal-upgrade.md).
+[runbook](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/runbooks/temporal-upgrade.md).
 
 ## Upgrading to 0.26
 
@@ -64,12 +64,12 @@ Upgrading Temporal itself has its own
 an audience, and people converse with it in the console, from an MCP client or in an embedded frame.
 Nothing changes for an organisation that installs none. The migrations run with the chart's job as
 usual. The full table is in the
-[deployment reference](https://github.com/VargaFoundation/choregos/blob/v0.26.0/docs/deployment.md#upgrading-to-026); what you do is:
+[deployment reference](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/deployment.md#upgrading-to-026); what you do is:
 
 1. **Bound the token exchange.** Set `CHOREGOS_TOKEN_EXCHANGE_AUDIENCES` to a JSON list of your sources'
    audiences (in `global.extraEnv`) before binding a need that uses the person's identity
    (`user_exchange`). Unset, a connector's editor chooses any audience the identity provider allows. See
-   the [review of the person's identity](https://github.com/VargaFoundation/choregos/blob/v0.26.0/docs/security.md).
+   the [review of the person's identity](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/security.md).
 2. **Prepare the identity provider.** `user_exchange` needs token exchange (RFC 8693) enabled for the
    API's client and limited to those audiences. A standing delegation needs `offline_access` with
    bounded, revocable offline sessions. See [Identity](identity.md).
@@ -84,7 +84,7 @@ usual. The full table is in the
 
 :::caution Delegated tasks
 The standing delegation ships, but its decision record
-([ADR 0137](https://github.com/VargaFoundation/choregos/blob/v0.26.0/docs/adr/0137-a-standing-read-only-delegation.md)) stays proposed until the works council has
+([ADR 0137](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/adr/0137-a-standing-read-only-delegation.md)) stays proposed until the works council has
 given its opinion and the data protection impact assessment is done. Do not offer delegated tasks to
 people before then.
 :::

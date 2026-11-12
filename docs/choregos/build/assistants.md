@@ -286,8 +286,8 @@ Each refusal names the file and the path in it.
 ## Go further
 
 - Install it and bind its needs: sidebar **Assistants**, then **Manage installations** (organisation
-  administrators). The full contract is in the [plugins reference](https://github.com/VargaFoundation/choregos/blob/v0.26.0/docs/plugins.md#assistants).
+  administrators). The full contract is in the [plugins reference](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/plugins.md#assistants).
 - [Use an assistant](../use/assistants.md), as the people you ship it to see it.
 - [Connect it to claude.ai or embed it](../integrate/assistants.md).
-- The decisions: [ADR 0133](https://github.com/VargaFoundation/choregos/blob/v0.26.0/docs/adr/0133-a-plugin-ships-an-assistant-an-organisation-installs-it-for-an-audience.md)
-  and [ADR 0140](https://github.com/VargaFoundation/choregos/blob/v0.26.0/docs/adr/0140-conversation-evals-and-user-feedback.md).
+- The decisions: [ADR 0133](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/adr/0133-a-plugin-ships-an-assistant-an-organisation-installs-it-for-an-audience.md)
+  and [ADR 0140](https://github.com/VargaFoundation/choregos/blob/v0.26.1/docs/adr/0140-conversation-evals-and-user-feedback.md).
