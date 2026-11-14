@@ -68,5 +68,5 @@ can still be restored.
   no run is in flight.
 
 The step-by-step:
-[secret rotation runbook](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/runbooks/secret-rotation.md).
+[secret rotation runbook](https://github.com/VargaFoundation/choregos/blob/v0.27.4/docs/runbooks/secret-rotation.md).
 `global.devSecrets: true` generates everything for a bench; it is refused in `staging` and `prod`.

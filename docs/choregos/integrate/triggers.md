@@ -146,12 +146,12 @@ senders that sign their webhooks, such as many monitoring and ticketing tools.
 - **From your tracker:** an issue labelled `agent-ready` starts in Choregos; *start rules* start other
   items, for instance a Jira bug of a given type or an issue carrying two labels. They are edited as
   JSON in the same **Triggers** card, under *Tracker start rules (JSON)*
-  ([usage reference](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/usage.md#tracker-items-that-start-without-agent-ready)).
+  ([usage reference](https://github.com/VargaFoundation/choregos/blob/v0.27.4/docs/usage.md#tracker-items-that-start-without-agent-ready)).
 - **On a schedule:** a project can open a work item on a cron schedule, for a weekly dependency
-  update or a nightly check ([usage reference](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/usage.md#work-items-on-a-schedule)).
+  update or a nightly check ([usage reference](https://github.com/VargaFoundation/choregos/blob/v0.27.4/docs/usage.md#work-items-on-a-schedule)).
 
 ## Go further
 
 - [Start a workflow over A2A](a2a.md), when the caller wants to follow the work and read its result.
 - The design decision:
-  [ADR 0113](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/adr/0113-a-workflow-starts-from-a-trigger.md).
+  [ADR 0113](https://github.com/VargaFoundation/choregos/blob/v0.27.4/docs/adr/0113-a-workflow-starts-from-a-trigger.md).
