@@ -176,5 +176,5 @@ not list are left alone. These commands need an organisation admin's token.
 
 ## Go further
 
-- [Knowledge bases](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/usage.md#knowledge-bases), in depth: conversion, sources, distillation.
+- [Knowledge bases](https://github.com/VargaFoundation/choregos/blob/v0.27.4/docs/usage.md#knowledge-bases), in depth: conversion, sources, distillation.
 - [Skills](../build/skills.md): what a distilled base becomes.

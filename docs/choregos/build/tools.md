@@ -172,5 +172,8 @@ with the layer that decided.
 
 - [Write a skill](skills.md): knowledge, where a tool is an action.
 - Bringing an organisation's own MCP gateway:
-  [the gateway reference](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/integrations.md#your-organisations-mcp-gateway-adr-0105).
+  [the gateway reference](https://github.com/VargaFoundation/choregos/blob/v0.27.4/docs/integrations.md#your-organisations-mcp-gateway-adr-0105).
+- Tools in a network the platform cannot reach, for an organisation with no gateway there:
+  [outposts](https://github.com/VargaFoundation/choregos/blob/v0.27.4/docs/outposts.md). They are off unless your operator turns them on; a write
+  through one is delivered at most once, and may end in doubt.
 - [Host: security model](../host/security.md), for what the sandbox and the egress proxy enforce.

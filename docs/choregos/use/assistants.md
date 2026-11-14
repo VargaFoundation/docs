@@ -69,6 +69,22 @@ Only you, the person who owns the conversation, can decide. The write is made wi
 the source decides whether you are allowed to make it. A proposal that nobody decides within 24 hours
 expires.
 
+## Confirm a workflow the assistant proposes to start
+
+Some assistants may start a workflow one of your organisation's projects runs, such as asking a team for a
+document. The assistant never starts it by itself: a card **The assistant proposes to start a workflow**
+appears, naming the workflow and the project, with the title and the inputs it would give.
+
+1. Read the card.
+2. Press **Confirm** to file the work item, or **Refuse**.
+
+The work item is filed in your name, in that project: you are its reporter, and it follows the project's
+rules, approvals and budget like any work item there. You need the right to create work items in the project
+(the developer role there, or above); without it, the confirmation is refused and nothing is filed. Once
+started, the work item is listed under **Started from this conversation**, with a link to it, and you can
+ask the assistant where it stands. From claude.ai or another MCP client, the answer carries a link to confirm
+in the console.
+
 ## What the assistant remembers
 
 From **Assistants**, press **Memory, accounts and tasks** on a card. The **Memory** tab shows one card
@@ -131,7 +147,7 @@ A delegation is bounded:
 
 :::caution Your organisation may not offer delegated tasks yet
 The standing delegation is delivered, but its decision record
-([ADR 0137](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/adr/0137-a-standing-read-only-delegation.md)) is still **proposed**. An organisation
+([ADR 0137](https://github.com/VargaFoundation/choregos/blob/v0.27.4/docs/adr/0137-a-standing-read-only-delegation.md)) is still **proposed**. An organisation
 should not offer delegated tasks until its works council has given its opinion and its data protection
 impact assessment is done. If you see no **Review and agree** button, or your administrator tells you
 the feature is off, that is why. Tasks that read only public sources, and tasks you run yourself, do
@@ -147,6 +163,8 @@ not need a delegation.
 | The badge says `suspended` | its plugin is uninstalled | same |
 | **An account is not connected** | the assistant needs your account at a source | press the **Connect** button, then ask again |
 | A write card is gone | nobody decided within 24 hours | ask again |
+| **You may not create work items** when you confirm a workflow | you have no developer role in its project | ask the project's owner for the role, or someone who has it |
+| The workflow is **now bound elsewhere** when you confirm | the owners changed where it starts since the proposal | ask the assistant again |
 | The last run of a task was refused | it needed a delegation you have not given or that is suspended | **Review and agree**, or **Agree again** |
 | A turn is refused before it starts | a budget is spent (the conversation's, yours for the month, or the installation's) | wait for the next month, or ask the owners |
 

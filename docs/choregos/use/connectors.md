@@ -99,11 +99,11 @@ continue**; anyone else presses **Ask an administrator**, and the request waits 
 ## How to connect a given system
 
 Each connector type has a step-by-step page: what to create on the other side, the permissions to give,
-and the errors you may meet. For example: [GitHub](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/procedures/connector.scm.github.md),
-[Jira](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/procedures/connector.tracker.jira.md), [Argo CD](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/procedures/connector.cd.argocd.md),
-[Slack](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/procedures/connector.notify.slack.md),
-[Confluence](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/procedures/connector.documents.confluence.md),
-[Microsoft Entra ID](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/procedures/connector.identity.entra.md). The [full list](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/procedures/README.md)
+and the errors you may meet. For example: [GitHub](https://github.com/VargaFoundation/choregos/blob/v0.27.4/docs/procedures/connector.scm.github.md),
+[Jira](https://github.com/VargaFoundation/choregos/blob/v0.27.4/docs/procedures/connector.tracker.jira.md), [Argo CD](https://github.com/VargaFoundation/choregos/blob/v0.27.4/docs/procedures/connector.cd.argocd.md),
+[Slack](https://github.com/VargaFoundation/choregos/blob/v0.27.4/docs/procedures/connector.notify.slack.md),
+[Confluence](https://github.com/VargaFoundation/choregos/blob/v0.27.4/docs/procedures/connector.documents.confluence.md),
+[Microsoft Entra ID](https://github.com/VargaFoundation/choregos/blob/v0.27.4/docs/procedures/connector.identity.entra.md). The [full list](https://github.com/VargaFoundation/choregos/blob/v0.27.4/docs/procedures/README.md)
 is generated from the platform's own procedures.
 
 ## What can go wrong
@@ -120,4 +120,4 @@ is generated from the platform's own procedures.
 
 - [Projects and members](projects-and-members.md): the readiness list.
 - [Knowledge](knowledge.md): document sources that sync.
-- [Connectors](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/usage.md#connectors), in depth.
+- [Connectors](https://github.com/VargaFoundation/choregos/blob/v0.27.4/docs/usage.md#connectors), in depth.

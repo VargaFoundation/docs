@@ -167,4 +167,4 @@ finding turned into a ticket becomes a new work item, the others are marked dupl
 
 - [Decisions](decisions.md): approve, send back, answer, complete a task.
 - [Budgets and policies](budgets-and-policies.md): what bounds a run.
-- [Let a ticket run](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/usage.md#5-let-a-ticket-run) and [Read what came out](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/usage.md#6-read-what-came-out), in depth.
+- [Let a ticket run](https://github.com/VargaFoundation/choregos/blob/v0.27.4/docs/usage.md#5-let-a-ticket-run) and [Read what came out](https://github.com/VargaFoundation/choregos/blob/v0.27.4/docs/usage.md#6-read-what-came-out), in depth.

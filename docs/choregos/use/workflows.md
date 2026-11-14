@@ -229,5 +229,5 @@ A work item that landed in the wrong workflow can be moved: open it and press **
 ## Go further
 
 - [Work items](work-items.md): what happens to a request inside a workflow.
-- [Write the workflow](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/usage.md#3-write-the-workflow), in depth: fan-outs, schedules, release trains.
-- [Gates](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/concepts.md#gate): every gate and its parameters.
+- [Write the workflow](https://github.com/VargaFoundation/choregos/blob/v0.27.4/docs/usage.md#3-write-the-workflow), in depth: fan-outs, schedules, release trains.
+- [Gates](https://github.com/VargaFoundation/choregos/blob/v0.27.4/docs/concepts.md#gate): every gate and its parameters.
