@@ -105,7 +105,7 @@ shows which edition runs under **About**, at the bottom of the sidebar.
 ## Where the deep detail lives
 
 These pages are written for people who use Choregos. The complete reference, written for the people
-who run and extend it, is in the repository: the [reference documentation](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/README.md), the
-[concepts in depth](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/concepts.md), [usage in depth](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/usage.md), [security](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/security.md) and the
-[architecture decisions](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/adr/README.md). Where a page and the code disagree, the code is right and
+who run and extend it, is in the repository: the [reference documentation](https://github.com/VargaFoundation/choregos/blob/v0.27.6/docs/README.md), the
+[concepts in depth](https://github.com/VargaFoundation/choregos/blob/v0.27.6/docs/concepts.md), [usage in depth](https://github.com/VargaFoundation/choregos/blob/v0.27.6/docs/usage.md), [security](https://github.com/VargaFoundation/choregos/blob/v0.27.6/docs/security.md) and the
+[architecture decisions](https://github.com/VargaFoundation/choregos/blob/v0.27.6/docs/adr/README.md). Where a page and the code disagree, the code is right and
 the page is a bug: [report it](https://github.com/VargaFoundation/choregos/issues).
