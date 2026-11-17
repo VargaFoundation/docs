@@ -4,20 +4,6 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
-// The reading order of the Choregos documentation, for its llms files: overview, concepts, get started,
-// then the sections in the sidebar's order.
-const CHOREGOS_ORDER = [
-  'choregos/index.md',
-  'choregos/concepts.md',
-  'choregos/get-started.md',
-  'choregos/use/**',
-  'choregos/build/**',
-  'choregos/integrate/**',
-  'choregos/cli/**',
-  'choregos/host/**',
-  'choregos/reference/**',
-];
-
 const config: Config = {
   title: 'Varga Foundation',
   tagline: 'Committed to open source, building the future of AI.',
@@ -42,7 +28,7 @@ const config: Config = {
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
 
-  // Mermaid diagrams in code blocks (```mermaid), used by the Choregos pages.
+  // Mermaid diagrams in code blocks (```mermaid).
   markdown: {
     mermaid: true,
   },
@@ -50,32 +36,13 @@ const config: Config = {
 
   plugins: [
     [
-      // llms.txt and llms-full.txt (https://llmstxt.org/) at the site's root, plus the same pair for
-      // Choregos alone under /choregos/, which the Choregos instance's documentation tools read.
+      // llms.txt and llms-full.txt (https://llmstxt.org/) at the site's root.
       'docusaurus-plugin-llms',
       {
         title: 'Varga Foundation documentation',
         description: 'Open-source data and AI projects of the Varga Foundation.',
         excludeImports: true,
         removeDuplicateHeadings: true,
-        customLLMFiles: [
-          {
-            filename: 'choregos/llms.txt',
-            includePatterns: ['choregos/**/*.md'],
-            orderPatterns: CHOREGOS_ORDER,
-            fullContent: false,
-            title: 'Choregos',
-            description: 'Governed agents: workflows carried by agents and people, under budgets and checks you can read.',
-          },
-          {
-            filename: 'choregos/llms-full.txt',
-            includePatterns: ['choregos/**/*.md'],
-            orderPatterns: CHOREGOS_ORDER,
-            fullContent: true,
-            title: 'Choregos',
-            description: 'Governed agents: workflows carried by agents and people, under budgets and checks you can read.',
-          },
-        ],
       },
     ],
   ],
@@ -95,12 +62,7 @@ const config: Config = {
         docs: {
           routeBasePath: '/',
           sidebarPath: './sidebars.ts',
-          // "Edit this page" opens the page's source. Choregos' pages are imported from its own
-          // repository (scripts/import-choregos-docs.mjs): they are edited there, on main.
-          editUrl: ({docPath}) =>
-            docPath.startsWith('choregos/')
-              ? `https://github.com/VargaFoundation/choregos/edit/main/docs/site/${docPath.slice('choregos/'.length)}`
-              : `https://github.com/VargaFoundation/docs/edit/main/docs/${docPath}`,
+          editUrl: 'https://github.com/VargaFoundation/docs/edit/main/docs/',
         },
         blog: {
           showReadingTime: true,
