@@ -57,6 +57,14 @@ Each transition names its actor with `by`:
 When an agent step fails its gates, `on_fail` sends it back a few times (`max_attempts`), then to the
 state named by `escalate_to`, where a person takes over.
 
+The platform merges the commit that the gates of the merging transition judged, and no other. A gate
+on an earlier step judged the branch as it stood then: to have `no_secrets`, `diff_size_max` or
+`docs_updated` hold on what is merged, declare them on the transition that merges as well. The
+workflows of the library do. `scope_respected` checks what one agent step wrote: on the transition
+that merges, write `{ name: scope_respected, params: { over: work_item } }`, which checks the whole
+change instead — nothing under a path the project's policy forbids, and nothing outside `paths` if
+you add them.
+
 ## Adopt a workflow from the library
 
 1. On the **Workflows** page, press **Browse the library**.
@@ -143,7 +151,7 @@ transitions:
     to: merged
     by: platform
     does: merge_pr
-    gates: [ci_green]
+    gates: [ci_green, no_secrets, { name: scope_respected, params: { over: work_item } }]
     on_fail: { to: approved, max_attempts: 2, escalate_to: needs_human }
   - id: t-abandon
     from: needs_human
@@ -229,5 +237,5 @@ A work item that landed in the wrong workflow can be moved: open it and press **
 ## Go further
 
 - [Work items](work-items.md): what happens to a request inside a workflow.
-- [Write the workflow](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/usage.md#3-write-the-workflow), in depth: fan-outs, schedules, release trains.
-- [Gates](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/concepts.md#gate): every gate and its parameters.
+- [Write the workflow](https://github.com/VargaFoundation/choregos/blob/v0.27.12/docs/usage.md#3-write-the-workflow), in depth: fan-outs, schedules, release trains.
+- [Gates](https://github.com/VargaFoundation/choregos/blob/v0.27.12/docs/concepts.md#gate): every gate and its parameters.

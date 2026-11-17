@@ -139,7 +139,7 @@ agent. A few examples:
 | `docs_updated` | a change to the code also changes the documentation |
 
 **A gate that cannot see what it must check refuses.** A guarantee that passes blindly is worse than
-none. The [workflow reference](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/concepts.md#gate) lists every gate.
+none. The [workflow reference](https://github.com/VargaFoundation/choregos/blob/v0.27.12/docs/concepts.md#gate) lists every gate.
 
 ## Agents
 
@@ -258,12 +258,14 @@ write, forbidden commands, the hosts a run may reach, release trains. An organis
 - The **community edition** is Apache 2.0 and holds one organisation per instance. Everything in this
   documentation is in it.
 - The **enterprise edition** is published separately. It adds several organisations on one instance,
-  with the isolation and the identity features they need.
+  with the isolation, SCIM provisioning and the identity features they need. SAML sign-in,
+  re-authentication and session revocation are decided to belong to the community edition (2026-11-15);
+  they are not all delivered there yet.
 
 **Admin › Edition** and **About** (at the bottom of the sidebar) say which one runs.
 
 ## Go further
 
 - [Get started](get-started.md): try it, then run a first project.
-- [Concepts in depth](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/concepts.md), the reference page these concepts come from.
-- [Where Choregos sits](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/positioning.md) against other agent platforms, runtimes and tool brokers.
+- [Concepts in depth](https://github.com/VargaFoundation/choregos/blob/v0.27.12/docs/concepts.md), the reference page these concepts come from.
+- [Where Choregos sits](https://github.com/VargaFoundation/choregos/blob/v0.27.12/docs/positioning.md) against other agent platforms, runtimes and tool brokers.

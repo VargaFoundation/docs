@@ -78,7 +78,23 @@ global:
 The door publishes `/.well-known/oauth-protected-resource/mcp`. For claude.ai and ChatGPT, it and
 `/mcp` must be reachable on a public HTTPS address. A person must have signed in to the console once
 before the door knows them. Setting up Keycloak for it:
-[runbook](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/runbooks/keycloak-mcp.md).
+[runbook](https://github.com/VargaFoundation/choregos/blob/v0.27.12/docs/runbooks/keycloak-mcp.md).
+
+## Changing the identity provider
+
+A new provider gives every person a new `sub`. Plan the change with
+`choregos admin identity relink --issuer <new issuer>`, then switch the issuer and open a re-link window
+in the same deployment:
+
+```yaml
+choregos-api:
+  oidcRelinkUntil: "2026-12-15T00:00:00Z"   # an end, at most 31 days ahead
+```
+
+Until then, each person's first sign-in through the new provider moves their account (same id, same
+history) to the new subject, when the provider asserts the address with `email_verified: true` and one
+account carries it. The whole procedure:
+[deployment reference, Changing the identity provider](https://github.com/VargaFoundation/choregos/blob/v0.27.12/docs/deployment.md#changing-the-identity-provider).
 
 ## What can go wrong
 
@@ -88,7 +104,9 @@ before the door knows them. Setting up Keycloak for it:
 | sign-in answers `401` | the ID token's issuer, audience or nonce does not match the sign-in |
 | a person signs in with no role | no `choregos:<org>:…` group, or an unprefixed group without `defaultOrg` |
 | an existing account is not linked | the provider says `email_verified: false` |
+| after a change of provider, `401` "belongs to another identity" | no re-link window is open, the provider does not assert `email_verified: true`, or the account already moved to another identity of the new provider |
+| after a change of provider, `401` "several accounts carry this address" | two accounts differ only by letter case: resolve them, then sign in again |
 | `401 invalid_token` at the MCP door with OAuth | a wrong audience or issuer, or keys the provider no longer publishes |
 
 Everything about identity, including moving to a new provider and per-organisation providers:
-[deployment reference, Identity](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/deployment.md#identity-what-the-oidc-provider-must-give-us).
+[deployment reference, Identity](https://github.com/VargaFoundation/choregos/blob/v0.27.12/docs/deployment.md#identity-what-the-oidc-provider-must-give-us).
