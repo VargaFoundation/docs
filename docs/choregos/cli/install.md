@@ -68,7 +68,7 @@ chmod +x choregos-linux-x86_64 && mv choregos-linux-x86_64 ~/.local/bin/choregos
 
 On macOS, `shasum -a 256` gives the same digest. The same files, a `SHA256SUMS` file and their
 signatures are also attached to each
-[GitHub release](https://github.com/VargaFoundation/choregos/releases), under the same names.
+[GitHub release](https://github.com/graalsystems/tranibor/releases), under the same names.
 
 An instance built without the CLI says so on its Integrations page; ask your operator, or use the
 GitHub release.
@@ -86,13 +86,13 @@ choregos self update
 
 This works on every version, and is the way on 0.25.3 and earlier. It needs Python 3.12 and
 [uv](https://docs.astral.sh/uv/). Download three wheels of your instance's version from its
-[GitHub release](https://github.com/VargaFoundation/choregos/releases) (here 0.27.0):
-`choregos_cli-0.27.0-py3-none-any.whl`, `choregos_core-0.27.0-py3-none-any.whl` and
-`choregos_contracts-0.27.0-py3-none-any.whl`. Then:
+[GitHub release](https://github.com/graalsystems/tranibor/releases) (here 0.27.12):
+`choregos_cli-0.27.12-py3-none-any.whl`, `choregos_core-0.27.12-py3-none-any.whl` and
+`choregos_contracts-0.27.12-py3-none-any.whl`. Then:
 
 ```shell
-uv tool install --python 3.12 ./choregos_cli-0.27.0-py3-none-any.whl \
-  --with ./choregos_core-0.27.0-py3-none-any.whl --with ./choregos_contracts-0.27.0-py3-none-any.whl
+uv tool install --python 3.12 ./choregos_cli-0.27.12-py3-none-any.whl \
+  --with ./choregos_core-0.27.12-py3-none-any.whl --with ./choregos_contracts-0.27.12-py3-none-any.whl
 ```
 
 To upgrade, install the next version's
@@ -100,12 +100,20 @@ wheels the same way with `--force`.
 
 ## Sign in
 
-The CLI cannot issue its first token: create a full-access token in the console, menu under your
-name, **My account**, *Access tokens*, **Create an API token (90 days)**. Then:
+`choregos login` opens your browser on the console, which shows a code; check it is the one the terminal
+shows and approve. The CLI then holds a session of yours, listed under **My account**, *Sessions*:
+
+```bash
+choregos login --api-url https://choregos.example.com --org acme
+choregos whoami
+```
+
+Over SSH, or on a machine without a display, nothing opens: the terminal prints the link to open in a browser
+anywhere. Later runs of `choregos login` reuse the saved address. A script or a CI job saves an access token
+instead (**My account**, *Access tokens*):
 
 ```bash
 choregos login --api-url https://choregos.example.com --token chg_... --org acme
-choregos whoami
 ```
 
 **What you should see:** `whoami` prints who you are and your roles. The profile is saved in
@@ -121,6 +129,7 @@ reads `CHOREGOS_API_URL`, `CHOREGOS_TOKEN` and `CHOREGOS_ORG`, which suits a CI 
 | `403` on every command | an MCP or A2A token in the profile | the CLI needs a full-access (`*`) token |
 | `no organisation` | neither `--org`, the profile nor `CHOREGOS_ORG` names one | `choregos login --org acme`, or `choregos orgs list` |
 | the digest does not match | an incomplete or altered download | download again; do not run the file |
+| `Windows refused to run` (or `refused access to`) `the downloaded choregos.exe` | a managed Windows: Defender's attack surface reduction blocks an executable that is new and not yet widespread or signed | ask your IT administrator for an exclusion of the install folder, or install [from the GitHub release](#from-the-github-release) |
 
 ## Go further
 

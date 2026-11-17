@@ -102,7 +102,13 @@ transitions:
     to: merged
     by: ci
     does: merge_pr
-    gates: [ci_green, review_approved, scans_ok]
+    gates:
+      - ci_green
+      - review_approved
+      - scans_ok
+      - no_secrets
+      - { name: diff_size_max, params: { files: 60 } }
+      - { name: scope_respected, params: { over: work_item } }
     timeout_hours: 48
     on_fail: { to: in_progress, max_attempts: 3, escalate_to: needs_human }
   - id: t-deploy
@@ -172,7 +178,7 @@ Each actor has a `type`.
 | `type` | Keys | What it is |
 | --- | --- | --- |
 | `agent` | `role` (required), `agent`, `model`, `backend`, `playbook`, `max_turns`, `max_minutes`, `fresh_context` | an agent run in a sandbox. `agent` names a registry agent (`slug` or `slug@version`) whose version sets the instructions, model, limits and budget ([Build an agent](../build/agents.md)). `model` is `profile:<name>`, `profile:by_size` (the default, by the work item's size) or a model id. `backend` is the coding agent, the project's default otherwise. `playbook` names the instructions when there is no registry agent (the role's own otherwise). `fresh_context: true` starts without the previous runs' context |
-| `human` | `group` (required), `sla_hours`, `escalate_to` | a person of the identity provider's group decides in the console |
+| `human` | `group`, `user` (at least one), `sla_hours`, `escalate_to` | a person decides in the console: a member of the identity provider's `group`, or the person `user` names by e-mail. With both, that person is asked first and the group may answer once `sla_hours` (24 by default) has passed. An actor that approves a `train` names a `group` |
 | `system` | none | the platform itself: opens or merges a pull request (`does`), proposes an action |
 | `job` | `role` and `command` (required), `image`, `max_minutes` | a command run in the step's sandbox, without a model: `command` is an argument list, never a shell line; `image` is a job image the operator named. The facts it writes in `.choregos/facts.json` are measured |
 | `decision` | `role`, `questions`, `state` (required), `model`, `timeout_seconds` | a decision model answers typed questions about the work item, without a sandbox. `state` lists what it reads (`title`, `description`, `labels`, `type`, `fields.<name>`, `outputs.<name>`). Each question writes an output `<name>` and `<name>_confidence`, which `when` reads |
@@ -281,7 +287,7 @@ result and the diff; the others wait for an event.
 
 | Gate | Checks |
 | --- | --- |
-| `scope_respected` | the change stays inside the allowed paths and out of the denied ones |
+| `scope_respected` | what the step's run wrote stays inside the allowed paths (`params.paths`, else the run's) and out of the paths the policy forbids; with `params.over: work_item`, the work item's whole diff stays out of the forbidden paths and, when `params.paths` is given, inside them — the reading for a transition the platform takes |
 | `diff_size_max` | the change touches at most `params.files` files |
 | `no_secrets` | the change adds no secret |
 | `evidence_present` | the step brought its evidence (tests that ran, coverage) |
@@ -391,5 +397,8 @@ Each problem has a code, a line and a column. The most frequent:
 | `transition.unbounded_retry` | an agent or job step that goes back to an earlier state without `on_fail.max_attempts` |
 | `transition.does_requires_system` | `does` on a transition whose actor is not `system` |
 | `workflow.no_verify_before_pr` | a pull request opened without a verification step (a warning) |
+| `workflow.no_diff_gate_at_merge` | a transition that merges with no gate read on the diff (a warning) |
+| `workflow.run_scope_on_system_step` | `scope_respected` without `over: work_item` on a transition the platform takes (a warning) |
+| `gate.scope_over_unknown` | an `over` of `scope_respected` that is not `work_item` |
 
 The complete list is in [Error codes](errors.md#workflow-validation).

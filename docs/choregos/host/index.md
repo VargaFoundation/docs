@@ -8,7 +8,7 @@ sidebar_position: 1
 
 These pages are for the people who run a Choregos instance on Kubernetes. They are a digest: each one
 says what to do and links to the full
-[deployment reference](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/deployment.md) for
+[deployment reference](https://github.com/VargaFoundation/choregos/blob/v0.27.12/docs/deployment.md) for
 every value and every edge case.
 
 **What you will be able to do:** install an instance with Helm, connect it to your identity provider,
@@ -49,7 +49,7 @@ there), gVisor as a `RuntimeClass` for agent pods, and a memory service (Ecphori
 ## Try it on your machine first
 
 To see Choregos before installing it on a cluster, run it with Docker Compose from the repository:
-`git clone https://github.com/VargaFoundation/choregos.git`, `cp .env.example .env`, then
+`git clone https://github.com/graalsystems/tranibor.git`, `cp .env.example .env`, then
 `docker compose up`, and open `http://localhost:3000`. It listens on `127.0.0.1` only and is not a
 deployment.
 

@@ -77,6 +77,7 @@ Read it in order the first time: what it is, the ideas, a first project, then th
 | ▸ [Connectors](use/connectors.md) | Connect the tracker, the repository, the deployment and the other systems |
 | ▸ [Budgets and policies](use/budgets-and-policies.md) | Cap what work costs and bound what agents may do |
 | ▸ [Assistants](use/assistants.md) | Talk to an assistant, confirm its writes, and keep control of what it remembers and does for you |
+| ▸ [The terminal](use/terminal.md) | Sign in as yourself, ask an assistant, follow what runs, decide what waits, from a terminal |
 | **Build agents** | Write what agents carry |
 | ▸ [Skills](build/skills.md) | Package know-how an agent loads |
 | ▸ [Agents](build/agents.md) | Create, version and release agents of every kind |
@@ -99,13 +100,15 @@ Read it in order the first time: what it is, the ideas, a first project, then th
 
 This documentation describes the **community edition**: Apache 2.0, one organisation per instance,
 everything in this documentation included. An **enterprise edition**, published separately, adds
-several organisations on one instance and the identity features that come with them. The console
+several organisations on one instance, SCIM provisioning and the identity features that come with several
+organisations. SAML sign-in, re-authentication and the revocation of sessions are decided to belong to the
+community edition (2026-11-15); they are not all delivered there yet. The console
 shows which edition runs under **About**, at the bottom of the sidebar.
 
 ## Where the deep detail lives
 
 These pages are written for people who use Choregos. The complete reference, written for the people
-who run and extend it, is in the repository: the [reference documentation](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/README.md), the
-[concepts in depth](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/concepts.md), [usage in depth](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/usage.md), [security](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/security.md) and the
-[architecture decisions](https://github.com/VargaFoundation/choregos/blob/v0.27.0/docs/adr/README.md). Where a page and the code disagree, the code is right and
-the page is a bug: [report it](https://github.com/VargaFoundation/choregos/issues).
+who run and extend it, is in the repository: the [reference documentation](https://github.com/VargaFoundation/choregos/blob/v0.27.12/docs/README.md), the
+[concepts in depth](https://github.com/VargaFoundation/choregos/blob/v0.27.12/docs/concepts.md), [usage in depth](https://github.com/VargaFoundation/choregos/blob/v0.27.12/docs/usage.md), [security](https://github.com/VargaFoundation/choregos/blob/v0.27.12/docs/security.md) and the
+[architecture decisions](https://github.com/VargaFoundation/choregos/blob/v0.27.12/docs/adr/README.md). Where a page and the code disagree, the code is right and
+the page is a bug: [report it](https://github.com/graalsystems/tranibor/issues).
